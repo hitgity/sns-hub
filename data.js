@@ -9,7 +9,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "ox_zung",
-"followers": 50100000,
+"followers": "약 5010만",
 "desc": "리액션·듀엣 밈 코미디, 한국 최다 팔로워 틱톡커"
 },
 {
@@ -20,7 +20,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "belt_man",
-"followers": 4900000,
+"followers": "약 490만",
 "desc": "한국 틱톡 상위권 코믹 스킷"
 },
 {
@@ -31,7 +31,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 4000000,
+"followers": "약 400만",
 "desc": "김원훈·조진세·엄지윤의 공감형 하이퍼리얼리즘 스케치"
 },
 {
@@ -42,7 +42,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 3190000,
+"followers": "약 319만",
 "desc": "안테나 플러스 운영, 유재석 '핑계고' 중심 토크 코미디"
 },
 {
@@ -53,7 +53,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "donguk2da",
-"followers": 2980000,
+"followers": "약 298만",
 "desc": "틱톡 어워즈 2025 올해의 앰배서더, 편집 기법 코믹 숏폼"
 },
 {
@@ -64,7 +64,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2840000,
+"followers": "약 284만",
 "desc": "이용주·정재형·김민수의 캐릭터 코미디"
 },
 {
@@ -75,7 +75,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2450000,
+"followers": "약 245만",
 "desc": "병맛 더빙·애니메이션 코미디, 메타코미디 소속"
 },
 {
@@ -86,7 +86,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2390000,
+"followers": "약 239만",
 "desc": "문상훈의 캐릭터 스케치 코미디"
 },
 {
@@ -97,7 +97,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "hada.kr",
-"followers": 2300000,
+"followers": "약 230만",
 "desc": "틱톡 어워즈 2024 올해의 앰배서더, 코믹 스킷·챌린지"
 },
 {
@@ -108,7 +108,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2250000,
+"followers": "약 225만",
 "desc": "한으뜸·장다운의 남매 콩트·상황극"
 },
 {
@@ -119,7 +119,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "hea_dli_",
-"followers": 2200000,
+"followers": "약 220만",
 "desc": "틱톡 어워즈 2024 베스트 케미(혜다&고로켓), 코믹 상황극"
 },
 {
@@ -130,7 +130,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2160000,
+"followers": "약 216만",
 "desc": "실험·몰카·미션형 코믹 콘텐츠"
 },
 {
@@ -141,7 +141,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2130000,
+"followers": "약 213만",
 "desc": "장윤석·임종혁 개그맨 듀오, 웹드라마형 코미디"
 },
 {
@@ -152,7 +152,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": "nerd_ult",
 "tt": null,
-"followers": 2110000,
+"followers": "약 211만",
 "desc": "직장·일상 스케치 코미디, 인스타 @nerd_ult 병행"
 },
 {
@@ -163,7 +163,7 @@ window.ACCOUNTS=[
 "ytId": "UC9ZLv1m7QDLv991X1-p50AA",
 "ig": null,
 "tt": null,
-"followers": 2060000,
+"followers": "약 206만",
 "desc": "몰래카메라·성대모사·상황극 숏폼"
 },
 {
@@ -174,7 +174,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2010000,
+"followers": "약 201만",
 "desc": "약사 크리에이터의 언어유희·패러디 댄스 코미디"
 },
 {
@@ -185,7 +185,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1960000,
+"followers": "약 196만",
 "desc": "부캐 '이명화' 캐릭터 코미디"
 },
 {
@@ -196,7 +196,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1860000,
+"followers": "약 186만",
 "desc": "풍자·블랙코미디 스케치"
 },
 {
@@ -207,7 +207,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1720000,
+"followers": "약 172만",
 "desc": "패러디·몰카·참교육 코미디"
 },
 {
@@ -218,7 +218,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1540000,
+"followers": "약 154만",
 "desc": "몰카·상황극 중심 개그"
 },
 {
@@ -229,7 +229,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "boseok751",
-"followers": 1500000,
+"followers": "약 150만",
 "desc": "코믹 상황극·연애 스킷"
 },
 {
@@ -240,7 +240,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1430000,
+"followers": "약 143만",
 "desc": "안진호·정재형·최부기의 몰카·상황극"
 },
 {
@@ -251,7 +251,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1390000,
+"followers": "약 139만",
 "desc": "학교생활 캐릭터 상황극"
 },
 {
@@ -262,7 +262,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1330000,
+"followers": "약 133만",
 "desc": "70대 할머니의 날것 리액션 코미디"
 },
 {
@@ -273,7 +273,7 @@ window.ACCOUNTS=[
 "ytId": "UC6yEsiYQjnLve24g34lVa1w",
 "ig": null,
 "tt": null,
-"followers": 1080000,
+"followers": "약 108만",
 "desc": "하루 여러 편 올리는 숏폼 개그"
 },
 {
@@ -284,7 +284,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1000000,
+"followers": "약 100만",
 "desc": "KBS 개그콘서트 코너 풀영상·쇼츠"
 },
 {
@@ -295,7 +295,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 992000,
+"followers": "약 99.2만",
 "desc": "메타코미디 레이블 공식 코미디 쇼"
 },
 {
@@ -306,7 +306,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 910000,
+"followers": "약 91만",
 "desc": "김승진·유룡·이재훈의 몰카 코미디"
 },
 {
@@ -317,7 +317,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 872000,
+"followers": "약 87.2만",
 "desc": "정진하·박진호의 '2032년 미래 일상' 스케치"
 },
 {
@@ -328,7 +328,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 853000,
+"followers": "약 85.3만",
 "desc": "이재율·강현석의 빠른 템포 병맛 스케치, 메타코미디"
 },
 {
@@ -339,7 +339,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 840000,
+"followers": "약 84만",
 "desc": "강유미의 캐릭터 연기·ASMR 상황극"
 },
 {
@@ -350,7 +350,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 690000,
+"followers": "약 69만",
 "desc": "개그 상황극·콩트"
 },
 {
@@ -361,7 +361,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "kdh_uv",
-"followers": 623000,
+"followers": "약 62.3만",
 "desc": "게임 패러디 기반 1인 캐릭터 세계관 숏폼 (유튜브 기준 수치)"
 },
 {
@@ -372,7 +372,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "yourhyeda",
-"followers": 620000,
+"followers": "약 62만",
 "desc": "틱톡 어워즈 2024 베스트 케미(혜다&고로켓), 코믹 상황극"
 },
 {
@@ -383,7 +383,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 620000,
+"followers": "약 62만",
 "desc": "김대희의 '밥묵자' 2인극 콩트"
 },
 {
@@ -394,7 +394,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 610000,
+"followers": "약 61만",
 "desc": "개그 상황극 코미디"
 },
 {
@@ -405,7 +405,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 590000,
+"followers": "약 59만",
 "desc": "메타코미디 소속 개그맨 조충현"
 },
 {
@@ -416,7 +416,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 580000,
+"followers": "약 58만",
 "desc": "코믹 상황극·콩트"
 },
 {
@@ -427,7 +427,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 577000,
+"followers": "약 57.7만",
 "desc": "곽범·이창호의 '매드몬스터' 세계관 코미디, 메타코미디"
 },
 {
@@ -438,7 +438,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 570000,
+"followers": "약 57만",
 "desc": "드립·개그 숏폼"
 },
 {
@@ -449,7 +449,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 570000,
+"followers": "약 57만",
 "desc": "양세형·양세찬 형제의 코미디·먹방"
 },
 {
@@ -460,7 +460,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "jeon_unni",
-"followers": 570000,
+"followers": "약 57만",
 "desc": "틱톡 어워즈 2024 올해의 크리에이터, 코믹 일상 상황극"
 },
 {
@@ -471,7 +471,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 530000,
+"followers": "약 53만",
 "desc": "코미디 상황극 채널"
 },
 {
@@ -482,7 +482,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "needmorecash_vdbh",
-"followers": 490000,
+"followers": "약 49만",
 "desc": "틱톡 어워즈 코리아 2024 코미디 크리에이터 수상, 상황극"
 },
 {
@@ -493,7 +493,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 440000,
+"followers": "약 44만",
 "desc": "개그맨 이수근의 개인 채널"
 },
 {
@@ -504,7 +504,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 430000,
+"followers": "약 43만",
 "desc": "개그맨 김준호의 개인 채널"
 },
 {
@@ -515,7 +515,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 412000,
+"followers": "약 41.2만",
 "desc": "이선민·조훈의 몰카·스케치, 메타코미디"
 },
 {
@@ -526,7 +526,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 360000,
+"followers": "약 36만",
 "desc": "박형민·정승우의 공익 몰카 코미디"
 },
 {
@@ -537,7 +537,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 352000,
+"followers": "약 35.2만",
 "desc": "양세찬·안테나 플러스의 기획회의형 코미디"
 },
 {
@@ -548,7 +548,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 340000,
+"followers": "약 34만",
 "desc": "노홍철의 셀프 코미디"
 },
 {
@@ -559,7 +559,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "cotegory",
-"followers": 333000,
+"followers": "약 33.3만",
 "desc": "고빈도 숏폼 개그, 유튜브 @코테고리 병행 (유튜브 기준 수치)"
 },
 {
@@ -570,7 +570,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 310000,
+"followers": "약 31만",
 "desc": "코믹 상황극·콩트"
 },
 {
@@ -581,7 +581,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 292000,
+"followers": "약 29.2만",
 "desc": "성우 김보민의 성대모사·캐릭터 코미디 숏폼"
 },
 {
@@ -592,7 +592,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 242000,
+"followers": "약 24.2만",
 "desc": "한·미·일 문화 비교 캐릭터 상황극 숏폼"
 },
 {
@@ -603,7 +603,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 210000,
+"followers": "약 21만",
 "desc": "몰카·당황 리액션 코미디"
 },
 {
@@ -614,7 +614,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 199000,
+"followers": "약 19.9만",
 "desc": "면상들의 서브 채널"
 },
 {
@@ -625,7 +625,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": "iamluluboi",
-"followers": 190000,
+"followers": "약 19만",
 "desc": "틱톡 어워즈 2024 올해의 라이징 크리에이터"
 },
 {
@@ -636,7 +636,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 120000,
+"followers": "약 12만",
 "desc": "장하나·황정혜의 개그맨 대상 몰카"
 },
 {
@@ -647,7 +647,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 6070000,
+"followers": "약 607만",
 "desc": "MBC 보도국 공식, 언론사 유튜브 구독자 1위 · 언론"
 },
 {
@@ -658,7 +658,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 4580000,
+"followers": "약 458만",
 "desc": "24시간 보도전문채널 공식 뉴스 · 언론"
 },
 {
@@ -669,7 +669,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 4430000,
+"followers": "약 443만",
 "desc": "SBS 보도본부 공식 뉴스 · 언론"
 },
 {
@@ -680,7 +680,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 3650000,
+"followers": "약 365만",
 "desc": "경제·시사 이슈 해설 토크 · 경제·시사"
 },
 {
@@ -691,7 +691,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 3100000,
+"followers": "약 310만",
 "desc": "TV조선 보도본부 공식 뉴스 · 언론(보수지)"
 },
 {
@@ -702,7 +702,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2600000,
+"followers": "약 260만",
 "desc": "MBN 매일방송 공식 뉴스 · 언론"
 },
 {
@@ -713,7 +713,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2300000,
+"followers": "약 230만",
 "desc": "아침 생방송 시사 토크 · 진보"
 },
 {
@@ -724,7 +724,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1890000,
+"followers": "약 189만",
 "desc": "연합뉴스 보도전문채널 · 언론"
 },
 {
@@ -735,7 +735,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1850000,
+"followers": "약 185만",
 "desc": "전 정치인 진성호의 시사 방송 · 보수"
 },
 {
@@ -746,7 +746,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1800000,
+"followers": "약 180만",
 "desc": "비영리 독립 탐사보도 · 진보"
 },
 {
@@ -757,7 +757,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1800000,
+"followers": "약 180만",
 "desc": "조선일보 공식 유튜브 · 언론(보수지)"
 },
 {
@@ -768,7 +768,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1710000,
+"followers": "약 171만",
 "desc": "정규재 중심 시사 해설 · 보수"
 },
 {
@@ -779,7 +779,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1660000,
+"followers": "약 166만",
 "desc": "이재명 대통령 개인 채널 · 진보"
 },
 {
@@ -790,7 +790,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1580000,
+"followers": "약 158만",
 "desc": "신혜식 대표의 시사 채널 · 보수"
 },
 {
@@ -801,7 +801,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1500000,
+"followers": "약 150만",
 "desc": "시사·경제·국제 이슈 해설 교양 · 경제·시사"
 },
 {
@@ -812,7 +812,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1440000,
+"followers": "약 144만",
 "desc": "노무현재단 공식, 시사 대담 · 진보"
 },
 {
@@ -823,7 +823,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1400000,
+"followers": "약 140만",
 "desc": "채널A 시사 프로그램 · 언론"
 },
 {
@@ -834,7 +834,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1400000,
+"followers": "약 140만",
 "desc": "KBS 1라디오 시사·뉴스 · 언론"
 },
 {
@@ -845,7 +845,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1400000,
+"followers": "약 140만",
 "desc": "정치학자 김지윤의 국제정치 해설 · 경제·시사"
 },
 {
@@ -856,7 +856,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1400000,
+"followers": "약 140만",
 "desc": "부산·경남 민방 KNN 뉴스 · 언론"
 },
 {
@@ -867,7 +867,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1330000,
+"followers": "약 133만",
 "desc": "정치평론가 고성국의 시사 채널 · 보수"
 },
 {
@@ -878,7 +878,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1330000,
+"followers": "약 133만",
 "desc": "김어준의 딴지일보 방송 · 진보"
 },
 {
@@ -889,7 +889,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1330000,
+"followers": "약 133만",
 "desc": "백은종 대표의 인터넷 언론 · 진보"
 },
 {
@@ -900,7 +900,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1300000,
+"followers": "약 130만",
 "desc": "시사 방송 채널 · 보수"
 },
 {
@@ -911,7 +911,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1060000,
+"followers": "약 106만",
 "desc": "유튜버 성제준의 시사 채널 · 보수"
 },
 {
@@ -922,7 +922,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1000000,
+"followers": "약 100만",
 "desc": "시사 토크 방송 · 진보"
 },
 {
@@ -933,7 +933,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1000000,
+"followers": "약 100만",
 "desc": "전주방송 JTV 뉴스 · 언론"
 },
 {
@@ -944,7 +944,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 995000,
+"followers": "약 99.5만",
 "desc": "전 국정원 차장의 안보·시사 · 보수"
 },
 {
@@ -955,7 +955,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 990000,
+"followers": "약 99만",
 "desc": "김세의 대표의 시사 폭로 채널 · 보수"
 },
 {
@@ -966,7 +966,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 983000,
+"followers": "약 98.3만",
 "desc": "시사 해설 채널 · 보수"
 },
 {
@@ -977,7 +977,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 954000,
+"followers": "약 95.4만",
 "desc": "매일경제 경제 전문 방송 · 경제·시사"
 },
 {
@@ -988,7 +988,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 950000,
+"followers": "약 95만",
 "desc": "시사 뉴스 해설 · 진보"
 },
 {
@@ -999,7 +999,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 920000,
+"followers": "약 92만",
 "desc": "YTN 라디오 시사 프로그램 · 언론"
 },
 {
@@ -1010,7 +1010,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 900000,
+"followers": "약 90만",
 "desc": "전 KBS 기자 성창경의 시사 채널 · 보수"
 },
 {
@@ -1021,7 +1021,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 900000,
+"followers": "약 90만",
 "desc": "시사평론가 이봉규 · 보수"
 },
 {
@@ -1032,7 +1032,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 842000,
+"followers": "약 84.2만",
 "desc": "한국사 강사 전한길의 시사 채널 · 보수"
 },
 {
@@ -1043,7 +1043,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 795000,
+"followers": "약 79.5만",
 "desc": "SBS 라디오 시사교양 · 언론"
 },
 {
@@ -1054,7 +1054,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 768000,
+"followers": "약 76.8만",
 "desc": "연합뉴스TV 경제 전문 · 경제·시사"
 },
 {
@@ -1065,7 +1065,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 749000,
+"followers": "약 74.9만",
 "desc": "김채환의 시사 해설 · 보수"
 },
 {
@@ -1076,7 +1076,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 676000,
+"followers": "약 67.6만",
 "desc": "더불어민주당 정청래 의원 · 진보"
 },
 {
@@ -1087,7 +1087,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 668000,
+"followers": "약 66.8만",
 "desc": "대구 매일신문 유튜브 · 언론(보수지)"
 },
 {
@@ -1098,7 +1098,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 652000,
+"followers": "약 65.2만",
 "desc": "시사 채널 · 보수"
 },
 {
@@ -1109,7 +1109,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 640000,
+"followers": "약 64만",
 "desc": "청년 보수 시사 채널 · 보수"
 },
 {
@@ -1120,7 +1120,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 598000,
+"followers": "약 59.8만",
 "desc": "중앙일보 공식 유튜브 · 언론"
 },
 {
@@ -1131,7 +1131,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 592000,
+"followers": "약 59.2만",
 "desc": "우원재의 시사 비평 · 보수"
 },
 {
@@ -1142,7 +1142,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 590000,
+"followers": "약 59만",
 "desc": "전주MBC 뉴스 · 언론"
 },
 {
@@ -1153,7 +1153,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 581000,
+"followers": "약 58.1만",
 "desc": "1인 시사 기자 채널 · 보수"
 },
 {
@@ -1164,7 +1164,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 578000,
+"followers": "약 57.8만",
 "desc": "정광용의 시사 채널 · 보수"
 },
 {
@@ -1175,7 +1175,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 545000,
+"followers": "약 54.5만",
 "desc": "1인 미디어 현장 취재 · 진보"
 },
 {
@@ -1186,7 +1186,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 504000,
+"followers": "약 50.4만",
 "desc": "더불어민주당 김병주 의원 · 진보"
 },
 {
@@ -1197,7 +1197,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 492000,
+"followers": "약 49.2만",
 "desc": "미국의소리 한국어 뉴스 · 언론"
 },
 {
@@ -1208,7 +1208,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 475000,
+"followers": "약 47.5만",
 "desc": "더불어민주당 박선원 의원 · 진보"
 },
 {
@@ -1219,7 +1219,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 465000,
+"followers": "약 46.5만",
 "desc": "MBC 시사 토론 프로그램 · 언론"
 },
 {
@@ -1230,7 +1230,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 464000,
+"followers": "약 46.4만",
 "desc": "시사 채널 · 보수"
 },
 {
@@ -1241,7 +1241,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 320000,
+"followers": "약 32만",
 "desc": "더불어민주당 추미애 의원 · 진보"
 },
 {
@@ -1252,7 +1252,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 307000,
+"followers": "약 30.7만",
 "desc": "국민의힘 주진우 의원 · 보수"
 },
 {
@@ -1263,7 +1263,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 272000,
+"followers": "약 27.2만",
 "desc": "김민석 국무총리 개인 채널 · 진보"
 },
 {
@@ -1274,7 +1274,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 258000,
+"followers": "약 25.8만",
 "desc": "뉴스핌 통신사 영상 채널 · 언론"
 },
 {
@@ -1285,7 +1285,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 255000,
+"followers": "약 25.5만",
 "desc": "시사 채널 · 보수"
 },
 {
@@ -1296,7 +1296,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 225000,
+"followers": "약 22.5만",
 "desc": "더불어민주당 김성회 의원 · 진보"
 },
 {
@@ -1307,7 +1307,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 216000,
+"followers": "약 21.6만",
 "desc": "KTV 국민방송 정책·뉴스 · 언론"
 },
 {
@@ -1318,7 +1318,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 206000,
+"followers": "약 20.6만",
 "desc": "박주현 변호사의 시사 채널 · 보수"
 },
 {
@@ -1329,7 +1329,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 188000,
+"followers": "약 18.8만",
 "desc": "한동훈 전 국민의힘 대표 · 보수"
 },
 {
@@ -1340,7 +1340,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 163000,
+"followers": "약 16.3만",
 "desc": "인터넷 뉴스 채널 · 보수"
 },
 {
@@ -1351,7 +1351,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 158000,
+"followers": "약 15.8만",
 "desc": "CBS 이정주 기자 · 언론"
 },
 {
@@ -1362,7 +1362,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 145000,
+"followers": "약 14.5만",
 "desc": "국민의힘 나경원 의원 · 보수"
 },
 {
@@ -1373,7 +1373,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 140000,
+"followers": "약 14만",
 "desc": "청년 보수 단체 채널 · 보수"
 },
 {
@@ -1384,7 +1384,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 137000,
+"followers": "약 13.7만",
 "desc": "허재현 기자의 시사 채널 · 진보"
 },
 {
@@ -1395,7 +1395,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 132000,
+"followers": "약 13.2만",
 "desc": "우원식 국회의장 개인 채널 · 진보"
 },
 {
@@ -1406,7 +1406,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 124000,
+"followers": "약 12.4만",
 "desc": "이승만학당의 역사·시사 · 보수"
 },
 {
@@ -1417,7 +1417,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "JTBC 보도국 공식, 속보·쇼츠 · 언론"
 },
 {
@@ -1428,7 +1428,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "MBC의 MZ 대상 숏폼 뉴스 해설 · 언론"
 },
 {
@@ -1439,7 +1439,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "SBS의 젊은 층 대상 숏폼 이슈 해설 · 언론"
 },
 {
@@ -1450,7 +1450,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "오마이뉴스 영상 채널, 정치 현장 중계 · 진보"
 },
 {
@@ -1461,7 +1461,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "최욱 진행 시사 풍자 토크쇼 · 진보"
 },
 {
@@ -1472,7 +1472,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "변호사의 정치·법률 이슈 해설 · 보수"
 },
 {
@@ -1483,7 +1483,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1200000,
+"followers": "약 120만",
 "desc": "극한 날씨 속 오지 솔로 비박 캠핑"
 },
 {
@@ -1494,7 +1494,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 870000,
+"followers": "약 87만",
 "desc": "오지·극한 여행 탐방"
 },
 {
@@ -1505,7 +1505,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 790000,
+"followers": "약 79만",
 "desc": "오토바이 세계일주·오지 바이크 투어링"
 },
 {
@@ -1516,7 +1516,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 760000,
+"followers": "약 76만",
 "desc": "어류 칼럼니스트 김지민의 수산물·낚시"
 },
 {
@@ -1527,7 +1527,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 740000,
+"followers": "약 74만",
 "desc": "반려견과 개조 갤로퍼로 떠나는 차박 캠핑"
 },
 {
@@ -1538,7 +1538,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 580000,
+"followers": "약 58만",
 "desc": "낚시·해산물 요리·먹방·캠핑"
 },
 {
@@ -1549,7 +1549,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 570000,
+"followers": "약 57만",
 "desc": "특전사 출신 박은하의 생존 캠핑·부시크래프트"
 },
 {
@@ -1560,7 +1560,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 470000,
+"followers": "약 47만",
 "desc": "캠핑·아웃도어·여행 브이로그"
 },
 {
@@ -1571,7 +1571,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 380000,
+"followers": "약 38만",
 "desc": "직접 잡은 물고기 요리와 낚시 로드트립"
 },
 {
@@ -1582,7 +1582,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 325000,
+"followers": "약 32.5만",
 "desc": "캠핑·국내 아웃도어 모험 (채널명 변경됨)"
 },
 {
@@ -1593,7 +1593,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 320000,
+"followers": "약 32만",
 "desc": "낚시·수산물·바다 콘텐츠"
 },
 {
@@ -1604,7 +1604,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 313000,
+"followers": "약 31.3만",
 "desc": "차박·캠핑 여행 브이로그"
 },
 {
@@ -1615,7 +1615,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 300000,
+"followers": "약 30만",
 "desc": "영상미 좋은 캠핑 요리"
 },
 {
@@ -1626,7 +1626,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 288000,
+"followers": "약 28.8만",
 "desc": "솔로 캠핑·감성 캠핑 브이로그"
 },
 {
@@ -1637,7 +1637,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 260000,
+"followers": "약 26만",
 "desc": "강원 고성 어촌 생활, 바다낚시와 어판장 경매"
 },
 {
@@ -1648,7 +1648,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 250000,
+"followers": "약 25만",
 "desc": "캠핑·차박 브이로그"
 },
 {
@@ -1659,7 +1659,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": "torii_camp",
 "tt": null,
-"followers": 231000,
+"followers": "약 23.1만",
 "desc": "캠핑·아웃도어 인스타 크리에이터"
 },
 {
@@ -1670,7 +1670,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 198000,
+"followers": "약 19.8만",
 "desc": "캠핑카·차박 캠핑"
 },
 {
@@ -1681,7 +1681,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 180000,
+"followers": "약 18만",
 "desc": "낚시 유튜버"
 },
 {
@@ -1692,7 +1692,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 170000,
+"followers": "약 17만",
 "desc": "낚시·수산물 전문"
 },
 {
@@ -1703,7 +1703,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 140000,
+"followers": "약 14만",
 "desc": "낚시·아웃도어 일상"
 },
 {
@@ -1714,7 +1714,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 138000,
+"followers": "약 13.8만",
 "desc": "섬 생활·자연 속 생존형 브이로그"
 },
 {
@@ -1725,7 +1725,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 128000,
+"followers": "약 12.8만",
 "desc": "캠핑 장비·캠핑 콘텐츠"
 },
 {
@@ -1736,7 +1736,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 120000,
+"followers": "약 12만",
 "desc": "여성 낚시 크리에이터"
 },
 {
@@ -1747,7 +1747,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 113000,
+"followers": "약 11.3만",
 "desc": "캠핑·차박 브이로그"
 },
 {
@@ -1758,7 +1758,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 111000,
+"followers": "약 11.1만",
 "desc": "생활낚시·바다낚시"
 },
 {
@@ -1769,7 +1769,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 110000,
+"followers": "약 11만",
 "desc": "낚시 채널"
 },
 {
@@ -1780,7 +1780,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 110000,
+"followers": "약 11만",
 "desc": "초보 낚시 가이드"
 },
 {
@@ -1791,7 +1791,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 100000,
+"followers": "약 10만",
 "desc": "낚시 채널"
 },
 {
@@ -1802,7 +1802,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 100000,
+"followers": "약 10만",
 "desc": "낚시 채널"
 },
 {
@@ -1813,7 +1813,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "한겨울·암반·무인도 야생 캠핑"
 },
 {
@@ -1824,7 +1824,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 22900000,
+"followers": "약 2290만",
 "desc": "한국·베트남 커플의 일상·먹방·밈 숏폼, 국내 커플 채널 1위"
 },
 {
@@ -1835,7 +1835,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 8000000,
+"followers": "약 800만",
 "desc": "배우 진우와 영국인 해티 부부의 문화차이 밈, 틱톡 310만+"
 },
 {
@@ -1846,7 +1846,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2950000,
+"followers": "약 295만",
 "desc": "한국인 남편과 벨라루스 아내의 커플 일상·몰카"
 },
 {
@@ -1857,7 +1857,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2290000,
+"followers": "약 229만",
 "desc": "박보성·김민준 커플 채널, 일상·라이브"
 },
 {
@@ -1868,7 +1868,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2230000,
+"followers": "약 223만",
 "desc": "손민수·임라라 개그맨 커플의 몰카·코미디"
 },
 {
@@ -1879,7 +1879,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1670000,
+"followers": "약 167만",
 "desc": "한국 남편·러시아 아내 국제부부 브이로그"
 },
 {
@@ -1890,7 +1890,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1100000,
+"followers": "약 110만",
 "desc": "남자친구의 입담이 특징인 연애 일상"
 },
 {
@@ -1901,7 +1901,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1050000,
+"followers": "약 105만",
 "desc": "한일 커플의 일본 생활·데이트 숏폼"
 },
 {
@@ -1912,7 +1912,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1040000,
+"followers": "약 104만",
 "desc": "9년 연애 후 결혼한 음악 전공 커플 브이로그"
 },
 {
@@ -1923,7 +1923,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 924000,
+"followers": "약 92.4만",
 "desc": "20대 동갑 커플 일상 (2023년 결별 발표, 활동 중단 가능)"
 },
 {
@@ -1934,7 +1934,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 864000,
+"followers": "약 86.4만",
 "desc": "신혼 컨셉 커플 일상·장난"
 },
 {
@@ -1945,7 +1945,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 630000,
+"followers": "약 63만",
 "desc": "덴마크 남성과 중국계 덴마크 여자친구의 한국 데이트 브이로그"
 },
 {
@@ -1956,7 +1956,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 557000,
+"followers": "약 55.7만",
 "desc": "9년차 장기연애 커플, 기념일 이벤트·연애 조언"
 },
 {
@@ -1967,7 +1967,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 530000,
+"followers": "약 53만",
 "desc": "제주 거주 커플의 일상 숏폼"
 },
 {
@@ -1978,7 +1978,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 520000,
+"followers": "약 52만",
 "desc": "커플 일상·코믹 숏폼"
 },
 {
@@ -1989,7 +1989,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 457000,
+"followers": "약 45.7만",
 "desc": "한국 남편·프랑스 아내 국제부부 가족 일상"
 },
 {
@@ -2000,7 +2000,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 440000,
+"followers": "약 44만",
 "desc": "한국인 BD와 마케도니아인 나타샤의 서울 일상"
 },
 {
@@ -2011,7 +2011,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 430000,
+"followers": "약 43만",
 "desc": "커플 채널 (IMR 2026 커플 채널 10위)"
 },
 {
@@ -2022,7 +2022,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 259000,
+"followers": "약 25.9만",
 "desc": "한국·영국 국제부부, 런던 생활 브이로그"
 },
 {
@@ -2033,7 +2033,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 200000,
+"followers": "약 20만",
 "desc": "한국 남편·러시아 아내 국제부부 일상"
 },
 {
@@ -2044,7 +2044,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 170000,
+"followers": "약 17만",
 "desc": "한국 남편 규호·캐나다 아내 세라, 문화 차이 콘텐츠"
 },
 {
@@ -2055,7 +2055,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 170000,
+"followers": "약 17만",
 "desc": "한국 남편·일본 아내 국제부부 일상"
 },
 {
@@ -2066,7 +2066,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 150000,
+"followers": "약 15만",
 "desc": "한국 아내·우크라이나 남편 국제부부"
 },
 {
@@ -2077,7 +2077,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 150000,
+"followers": "약 15만",
 "desc": "한국 남성·베트남 여자친구 국제커플"
 },
 {
@@ -2088,7 +2088,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 130000,
+"followers": "약 13만",
 "desc": "한국 남편·일본 아내 국제부부"
 },
 {
@@ -2099,7 +2099,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 3720000,
+"followers": "약 372만",
 "desc": "플레이타운 산하 웹드라마, 학원물·직장물"
 },
 {
@@ -2110,7 +2110,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 3310000,
+"followers": "약 331만",
 "desc": "10대의 사랑·우정·학교 이슈 웹드라마"
 },
 {
@@ -2121,7 +2121,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2390000,
+"followers": "약 239만",
 "desc": "에이틴·연애플레이리스트 등 로맨스 웹드라마"
 },
 {
@@ -2132,7 +2132,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 2300000,
+"followers": "약 230만",
 "desc": "배우 3인의 공감형 상황극 스케치 드라마, 반전 엔딩"
 },
 {
@@ -2143,7 +2143,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1830000,
+"followers": "약 183만",
 "desc": "CJ ENM tvN D의 Z세대 타깃 디지털 웹드라마"
 },
 {
@@ -2154,7 +2154,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1730000,
+"followers": "약 173만",
 "desc": "와이낫미디어 운영, 일진에게 찍혔을 때 등 로맨스 웹드라마"
 },
 {
@@ -2165,7 +2165,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1510000,
+"followers": "약 151만",
 "desc": "페이크다큐·웹드라마 형식의 풍자 코미디"
 },
 {
@@ -2176,7 +2176,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1430000,
+"followers": "약 143만",
 "desc": "학생·커플·친구 일상의 캐릭터 에피소드, '맑눈광' 배출"
 },
 {
@@ -2187,7 +2187,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1250000,
+"followers": "약 125만",
 "desc": "'우당탕탕 알바 공감', '빌런' 시리즈 1인 공감 상황극"
 },
 {
@@ -2198,7 +2198,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 1200000,
+"followers": "약 120만",
 "desc": "20대 일상·연애 세계관 연결형 옴니버스 드라마"
 },
 {
@@ -2209,7 +2209,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 817000,
+"followers": "약 81.7만",
 "desc": "10대·대학생·직장인 대상 웹드라마 제작사"
 },
 {
@@ -2220,7 +2220,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 499000,
+"followers": "약 49.9만",
 "desc": "플레이타운 브랜드, 10~20대 현실 연애 웹드라마"
 },
 {
@@ -2231,7 +2231,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 489000,
+"followers": "약 48.9만",
 "desc": "'폭스클럽' 모큐멘터리 등 드라마형 코미디"
 },
 {
@@ -2242,7 +2242,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 427000,
+"followers": "약 42.7만",
 "desc": "'좋아해요' 시리즈 스케치 코미디·드라마"
 },
 {
@@ -2253,7 +2253,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 385000,
+"followers": "약 38.5만",
 "desc": "구독자 사연 기반 웹드라마 (2024년 이후 휴식)"
 },
 {
@@ -2264,7 +2264,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 362000,
+"followers": "약 36.2만",
 "desc": "치즈필름에서 독립한 세 친구의 웹드라마·쇼츠"
 },
 {
@@ -2275,7 +2275,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 300000,
+"followers": "약 30만",
 "desc": "학교 배경 성장·연애 웹드라마"
 },
 {
@@ -2286,7 +2286,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 210000,
+"followers": "약 21만",
 "desc": "삼각관계 로맨스 등 TV급 웹드라마"
 },
 {
@@ -2297,7 +2297,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 120000,
+"followers": "약 12만",
 "desc": "쉐어하우스 대학생 3인의 일상 웹드라마"
 },
 {
@@ -2308,7 +2308,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 120000,
+"followers": "약 12만",
 "desc": "코미디언 출연 스케치형 웹드라마"
 },
 {
@@ -2319,7 +2319,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 110000,
+"followers": "약 11만",
 "desc": "로맨스 웹드라마"
 },
 {
@@ -2330,7 +2330,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "퀴어·GL 소재 웹드라마, '여자에게 설레는 편' 1,000만 뷰"
 },
 {
@@ -2341,7 +2341,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "웹드라마 제작 스튜디오"
 },
 {
@@ -2352,7 +2352,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "스푼랩스의 세로형 숏드라마 플랫폼"
 },
 {
@@ -2363,7 +2363,7 @@ window.ACCOUNTS=[
 "ytId": null,
 "ig": null,
 "tt": null,
-"followers": 0,
+"followers": "",
 "desc": "한국 숏드라마 플랫폼"
 },
 {
