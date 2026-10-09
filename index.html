@@ -59,6 +59,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .top{display:flex;align-items:center;gap:10px}
 .avatar{flex:none;width:48px;height:48px;border-radius:50%;background:var(--chip);object-fit:cover;display:grid;place-items:center;font-weight:600;color:var(--muted);font-size:16px;overflow:hidden}
 .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar.live{box-shadow:0 0 0 2px var(--surface),0 0 0 4.5px var(--yt)}
+.livebadge{display:inline-flex;align-items:center;gap:5px;background:var(--yt);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;border-radius:5px;padding:2px 7px 2px 6px;text-decoration:none;vertical-align:middle;margin-left:6px}
+.livebadge i{width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;animation:blink 1.1s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.livebadge i{animation:none}}
+.vid .lv{position:absolute;left:6px;top:6px;background:var(--yt);color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:1px 5px}
+.vid{position:relative}
+.card.islive{border-color:var(--yt)}
 .name{font-weight:600;font-size:15.5px;line-height:1.25;overflow-wrap:anywhere}
 .subs{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .subs .live{color:var(--live);font-weight:600;font-size:11px;letter-spacing:.04em}
@@ -153,10 +161,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 <div class="grid" id="grid"></div>
 
-<p class="foot">구독자 수에 <b style="color:var(--live)">LIVE</b>가 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
+<p class="foot">라이브 중인 채널은 프사에 빨간 링과 LIVE 표시가 붙고 맨 앞으로 옵니다(10분마다 확인, 최신 영상 목록에 라이브가 잡힌 경우). 구독자 수에 <b style="color:var(--live)">실시간</b>이 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
 
-<script src="config.js?v=3"></script>
-<script src="data.js?v=3"></script>
+<script src="config.js?v=4"></script>
+<script src="data.js?v=4"></script>
 <script>
 const CATS=[{id:"comedy",label:"개그"},{id:"drama",label:"숏드라마"},{id:"couple",label:"커플·로맨스"},{id:"food",label:"먹방·요리"},{id:"beauty",label:"뷰티·패션"},{id:"game",label:"게임"},{id:"music",label:"음악·댄스"},{id:"fitness",label:"운동·헬스"},{id:"travel",label:"여행"},{id:"survival",label:"생존·아웃도어"},{id:"pet",label:"반려동물"},{id:"knowledge",label:"지식·교육"},{id:"tech",label:"IT·테크·자동차"},{id:"money",label:"재테크·경제"},{id:"politics",label:"시사·정치"},{id:"celeb",label:"연예·K-POP"},{id:"horror",label:"공포·미스터리"}];
 const KEY="snshub.site.v1", CKEY="snshub.cache.v1", RKEY="snshub.resolved.v1";
@@ -239,12 +247,36 @@ async function loadLive(list,force,doSearch){
       if(n%10===0){ lsSet(CKEY,cache); render(); }
     }
     lsSet(CKEY,cache); st.textContent=`업데이트 완료 · ${new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})}`;
+    await checkLive(list,force);
   }catch(e){
     errBox.hidden=false;
     $("#errText").innerHTML=e.reason==="quotaExceeded"?"<b>오늘 API 할당량(10,000)을 다 썼습니다.</b> 한국시간 오후 4~5시쯤 초기화됩니다. 받아둔 정보는 그대로 보입니다.":e.reason==="keyInvalid"||/API key/i.test(e.message)?"<b>API 키가 잘못됐거나 제한 설정과 맞지 않습니다.</b> "+esc(e.message):"<b>불러오기 실패:</b> "+esc(e.message);
     st.textContent="";
   }finally{ loading=false; render(); }
 }
+async function checkLive(list,force){
+  if(!apiKey()) return;
+  const stale=Date.now()-10*6e4;
+  const ids=[...new Set(list.map(ytIdOf).filter(Boolean))].filter(id=>cache[id]?.vids?.length&&(force||!cache[id].lt||cache[id].lt<stale));
+  if(!ids.length) return;
+  const vmap={}; ids.forEach(id=>cache[id].vids.forEach(v=>vmap[v.id]=id));
+  const vids=Object.keys(vmap);
+  try{
+    for(let k=0;k<vids.length;k+=50){
+      const j=await yt("videos",{part:"snippet,liveStreamingDetails",id:vids.slice(k,k+50).join(","),maxResults:50});
+      const seen=new Set();
+      for(const v of j.items||[]){
+        const cid=vmap[v.id]; if(!cid) continue; seen.add(cid);
+        if(v.snippet.liveBroadcastContent==="live"&&!cache[cid]._liveSet){ cache[cid].live={id:v.id,title:v.snippet.title,viewers:+v.liveStreamingDetails?.concurrentViewers||0}; cache[cid]._liveSet=true; }
+      }
+      ids.slice(k,k+50).forEach(id=>{ if(!cache[id]._liveSet) cache[id].live=null; delete cache[id]._liveSet; cache[id].lt=Date.now(); });
+    }
+    ids.forEach(id=>{ if(cache[id]) cache[id].lt=Date.now(); });
+    lsSet(CKEY,cache); render();
+  }catch(e){ if(e.reason==="quotaExceeded"){ $("#errNotice").hidden=false; $("#errText").innerHTML="<b>오늘 API 할당량을 다 썼습니다.</b> 라이브 확인은 내일 다시 됩니다."; } }
+}
+setInterval(()=>checkLive(visible()),10*6e4);
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkLive(visible()); });
 function updateResolveRow(){
   const row=$("#resolveRow"); const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt);
   if(!apiKey()||!list.length){ row.hidden=true; return; }
@@ -263,14 +295,15 @@ function visible(){
   if(state.plat) list=list.filter(a=>state.plat==="yt"?(a.yt||ytIdOf(a)):a[state.plat]);
   if(term) list=list.filter(a=>[a.name,a.yt,a.ig,a.tt,a.desc,cache[ytIdOf(a)]?.title].join(" ").toLowerCase().includes(term));
   const subs=a=>cache[ytIdOf(a)]?.subs??-1;
-  return list.sort((a,b)=>(subs(b)-subs(a))||0);
+  const lv=a=>cache[ytIdOf(a)]?.live?1:0;
+  return list.sort((a,b)=>(lv(b)-lv(a))||(subs(b)-subs(a))||0);
 }
 function renderTabs(){
   tabs.innerHTML="";
   [{id:"fav",label:"★ 즐겨찾기"},...CATS].forEach(c=>{
     const n=c.id==="fav"?state.favs.length:accounts().filter(a=>a.cat===c.id).length;
     const b=document.createElement("button"); b.className="tab"; b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected",String(state.cat===c.id));
-    b.innerHTML=`${c.label}<small>${n}</small>`; b.onclick=()=>{state.cat=c.id;saveState();render();loadLive(visible());}; tabs.appendChild(b);
+    b.innerHTML=`${c.label}<small>${n}</small>`; b.onclick=()=>{state.cat=c.id;saveState();render();loadLive(visible());checkLive(visible());}; tabs.appendChild(b);
   });
 }
 function render(){
@@ -279,14 +312,14 @@ function render(){
   if(!list.length){ grid.innerHTML=`<p class="empty">${state.cat==="fav"?"별을 눌러 즐겨찾기를 추가하세요.":"조건에 맞는 계정이 없습니다."}</p>`; return; }
   for(const a of list){
     const id=ytIdOf(a), c=cache[id], L=links(a), fav=state.favs.includes(a.id), auto=resolved[a.id]?.auto;
-    const el=document.createElement("article"); el.className="card";
-    const subsHtml=c&&c.subs!=null?`<b>${fmtN(c.subs)}</b><span class="live">LIVE</span>`:c&&c.subs==null?`<span>구독자 비공개</span>`:a.followers?`<span>${esc(a.followers)}</span><span class="chip">조사치</span>`:``;
+    const el=document.createElement("article"); el.className="card"+(c?.live?" islive":"");
+    const subsHtml=c&&c.subs!=null?`<b>${fmtN(c.subs)}</b><span class="live">실시간</span>`:c&&c.subs==null?`<span>구독자 비공개</span>`:a.followers?`<span>${esc(a.followers)}</span><span class="chip">조사치</span>`:``;
     const ytLabel=c?.handle||a.yt||(id?"채널":"검색");
     const ytBtn=a.noyt&&!id&&!a.yt?``:`<a class="plat youtube" href="${esc(L.yt)}" target="_blank" rel="noopener"><span class="dot">YT</span><span class="h">${esc(ytLabel)}</span></a>`;
     el.innerHTML=`
       <div class="top">
-        <div class="avatar">${c?.avatar?`<img src="${esc(c.avatar)}" alt="" loading="lazy">`:esc(a.name[0])}</div>
-        <div style="min-width:0"><div class="name">${esc(c?.title||a.name)}</div><div class="subs">${subsHtml}${auto?`<span class="chip warn">자동 매칭</span>`:""}</div></div>
+        <div class="avatar${c?.live?" live":""}">${c?.avatar?`<img src="${esc(c.avatar)}" alt="" loading="lazy">`:esc(a.name[0])}</div>
+        <div style="min-width:0"><div class="name">${esc(c?.title||a.name)}${c?.live?`<a class="livebadge" href="https://www.youtube.com/watch?v=${esc(c.live.id)}" target="_blank" rel="noopener" title="${esc(c.live.title)}"><i></i>LIVE${c.live.viewers?" · "+fmtN(c.live.viewers):""}</a>`:""}</div><div class="subs">${subsHtml}${auto?`<span class="chip warn">자동 매칭</span>`:""}</div></div>
       </div>
       <div class="plats">
         ${ytBtn}
@@ -294,7 +327,7 @@ function render(){
         ${L.tt?`<a class="plat tiktok" href="${esc(L.tt)}" target="_blank" rel="noopener"><span class="dot">TT</span><span class="h">@${esc(a.tt)}</span></a>`:`<button class="plat add" type="button" data-add="tt">+ 틱톡</button>`}
       </div>
       ${a.desc?`<p class="desc">${esc(a.desc)}</p>`:""}
-      ${c?.vids?.length?`<div class="vids">${c.vids.map(v=>`<a class="vid" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener"><img src="${esc(v.thumb)}" alt="" loading="lazy"><div class="t">${esc(v.title)}</div><div class="d">${ago(v.at)}</div></a>`).join("")}</div>`:c?`<div class="vids empty">최신 영상 불러오는 중…</div>`:apiKey()?``:``}
+      ${c?.vids?.length?`<div class="vids">${c.vids.map(v=>`<a class="vid" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener"><img src="${esc(v.thumb)}" alt="" loading="lazy">${c.live&&c.live.id===v.id?`<span class="lv">LIVE</span>`:""}<div class="t">${esc(v.title)}</div><div class="d">${ago(v.at)}</div></a>`).join("")}</div>`:c?`<div class="vids empty">최신 영상 불러오는 중…</div>`:apiKey()?``:``}
       <div class="actions">
         <button class="icon" type="button" data-act="edit" aria-label="수정">✎</button>
         <button class="icon ${fav?"on":""}" type="button" data-act="fav" aria-label="즐겨찾기">${fav?"★":"☆"}</button>
@@ -354,7 +387,7 @@ $("#exportBtn").onclick=()=>{
 $("#reset").onclick=()=>{const b=$("#reset"); if(b.dataset.arm){state={cat:"comedy",plat:null,favs:[],deleted:[],added:[],edits:{}};saveState();delete b.dataset.arm;b.textContent="기본 목록으로 되돌리기";render();} else {b.dataset.arm="1";b.textContent="정말 되돌릴까요? 다시 누르면 추가·수정·삭제·즐겨찾기가 모두 초기화됩니다.";}};
 
 $("#keyNotice").hidden=!!apiKey();
-render(); loadLive(visible());
+render(); loadLive(visible()); checkLive(visible());
 </script>
 </body>
 </html>
