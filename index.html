@@ -163,8 +163,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 <p class="foot">라이브 중인 채널은 프사에 빨간 링과 LIVE 표시가 붙고 맨 앞으로 옵니다(10분마다 확인, 최신 영상 목록에 라이브가 잡힌 경우). 구독자 수에 <b style="color:var(--live)">실시간</b>이 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
 
-<script src="config.js?v=4"></script>
-<script src="data.js?v=4"></script>
+<script src="config.js?v=5"></script>
+<script src="data.js?v=5"></script>
 <script>
 const CATS=[{id:"comedy",label:"개그"},{id:"drama",label:"숏드라마"},{id:"couple",label:"커플·로맨스"},{id:"food",label:"먹방·요리"},{id:"beauty",label:"뷰티·패션"},{id:"game",label:"게임"},{id:"music",label:"음악·댄스"},{id:"fitness",label:"운동·헬스"},{id:"travel",label:"여행"},{id:"survival",label:"생존·아웃도어"},{id:"pet",label:"반려동물"},{id:"knowledge",label:"지식·교육"},{id:"tech",label:"IT·테크·자동차"},{id:"money",label:"재테크·경제"},{id:"politics",label:"시사·정치"},{id:"celeb",label:"연예·K-POP"},{id:"horror",label:"공포·미스터리"}];
 const KEY="snshub.site.v1", CKEY="snshub.cache.v1", RKEY="snshub.resolved.v1";
@@ -204,6 +204,7 @@ async function yt(path,params){
   if(!r.ok){ const reason=j.error?.errors?.[0]?.reason||""; const e=new Error(j.error?.message||r.status); e.reason=reason; throw e; }
   return j;
 }
+async function pool(items,n,fn){ let i=0; const workers=Array.from({length:Math.min(n,items.length)},async()=>{ while(i<items.length){ const it=items[i++]; try{ await fn(it); }catch(e){ if(e.reason==="quotaExceeded") throw e; } } }); await Promise.all(workers); }
 let loading=false;
 async function loadLive(list,force,doSearch){
   if(!apiKey()||loading) return; loading=true;
@@ -213,39 +214,38 @@ async function loadLive(list,force,doSearch){
     // 1) resolve channel ids
     const need=list.filter(a=>!ytIdOf(a)&&!a.noyt&&(a.yt||doSearch));
     let i=0;
-    for(const a of need){
+    await pool(need,8,async a=>{
       st.textContent=`채널 확인 중 ${++i}/${need.length}…`;
-      try{
-        let id=null;
-        if(a.yt&&/^UC[\w-]{20,}$/.test(a.yt)) id=a.yt;
-        else if(a.yt){ const j=await yt("channels",{part:"id",forHandle:a.yt.replace(/^@/,"")}); id=j.items?.[0]?.id||null; }
-        if(!id&&!a.yt){ const j=await yt("search",{part:"snippet",type:"channel",q:a.name,maxResults:1,regionCode:"KR",relevanceLanguage:"ko"}); id=j.items?.[0]?.snippet?.channelId||null; if(id) resolved[a.id]={ytId:id,auto:true}; }
-        else if(id) resolved[a.id]={ytId:id,auto:false};
-      }catch(e){ if(e.reason==="quotaExceeded") throw e; }
-    }
+      let id=null;
+      if(a.yt&&/^UC[\w-]{20,}$/.test(a.yt)) id=a.yt;
+      else if(a.yt){ const j=await yt("channels",{part:"id",forHandle:a.yt.replace(/^@/,"")}); id=j.items?.[0]?.id||null; }
+      if(!id&&!a.yt){ const j=await yt("search",{part:"snippet",type:"channel",q:a.name,maxResults:1,regionCode:"KR",relevanceLanguage:"ko"}); id=j.items?.[0]?.snippet?.channelId||null; if(id) resolved[a.id]={ytId:id,auto:true}; }
+      else if(id) resolved[a.id]={ytId:id,auto:false};
+    });
     lsSet(RKEY,resolved);
     // 2) channel stats in batches of 50
     const ids=[...new Set(list.map(ytIdOf).filter(Boolean))].filter(id=>force||!cache[id]||cache[id].t<fresh);
-    for(let k=0;k<ids.length;k+=50){
-      st.textContent=`채널 정보 받는 중 ${Math.min(k+50,ids.length)}/${ids.length}…`;
-      const j=await yt("channels",{part:"snippet,statistics,contentDetails",id:ids.slice(k,k+50).join(","),maxResults:50});
+    const batches=[]; for(let k=0;k<ids.length;k+=50) batches.push(ids.slice(k,k+50));
+    if(batches.length) st.textContent=`채널 정보 받는 중 (${ids.length}개)…`;
+    await pool(batches,4,async b=>{
+      const j=await yt("channels",{part:"snippet,statistics,contentDetails",id:b.join(","),maxResults:50});
       for(const c of j.items||[]){
         cache[c.id]=Object.assign(cache[c.id]||{},{t:Date.now(),title:c.snippet.title,handle:c.snippet.customUrl||"",avatar:c.snippet.thumbnails?.medium?.url||c.snippet.thumbnails?.default?.url||"",subs:c.statistics?.hiddenSubscriberCount?null:+c.statistics?.subscriberCount||0,uploads:c.contentDetails?.relatedPlaylists?.uploads||"",vids:cache[c.id]?.vids||null});
       }
-    }
-    render();
+    });
+    lsSet(CKEY,cache); render();
     // 3) latest videos, one call per channel
     const vidIds=[...new Set(list.map(ytIdOf).filter(Boolean))].filter(id=>cache[id]?.uploads&&(force||!cache[id].vids||cache[id].vt<fresh));
     let n=0;
-    for(const id of vidIds){
+    await pool(vidIds,8,async id=>{
       st.textContent=`최신 영상 받는 중 ${++n}/${vidIds.length}…`;
       try{
         const j=await yt("playlistItems",{part:"snippet",playlistId:cache[id].uploads,maxResults:Math.min(5,Math.max(1,window.LATEST_COUNT||3))});
         cache[id].vids=(j.items||[]).map(v=>({id:v.snippet.resourceId.videoId,title:v.snippet.title,at:v.snippet.publishedAt,thumb:v.snippet.thumbnails?.medium?.url||""}));
         cache[id].vt=Date.now();
       }catch(e){ if(e.reason==="quotaExceeded") throw e; cache[id].vids=[]; cache[id].vt=Date.now(); }
-      if(n%10===0){ lsSet(CKEY,cache); render(); }
-    }
+      if(n%30===0){ render(); }
+    });
     lsSet(CKEY,cache); st.textContent=`업데이트 완료 · ${new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})}`;
     await checkLive(list,force);
   }catch(e){
@@ -262,16 +262,16 @@ async function checkLive(list,force){
   const vmap={}; ids.forEach(id=>cache[id].vids.forEach(v=>vmap[v.id]=id));
   const vids=Object.keys(vmap);
   try{
-    for(let k=0;k<vids.length;k+=50){
-      const j=await yt("videos",{part:"snippet,liveStreamingDetails",id:vids.slice(k,k+50).join(","),maxResults:50});
-      const seen=new Set();
+    const live={};
+    const vb=[]; for(let k=0;k<vids.length;k+=50) vb.push(vids.slice(k,k+50));
+    await pool(vb,4,async b=>{
+      const j=await yt("videos",{part:"snippet,liveStreamingDetails",id:b.join(","),maxResults:50});
       for(const v of j.items||[]){
-        const cid=vmap[v.id]; if(!cid) continue; seen.add(cid);
-        if(v.snippet.liveBroadcastContent==="live"&&!cache[cid]._liveSet){ cache[cid].live={id:v.id,title:v.snippet.title,viewers:+v.liveStreamingDetails?.concurrentViewers||0}; cache[cid]._liveSet=true; }
+        const cid=vmap[v.id]; if(!cid) continue;
+        if(v.snippet.liveBroadcastContent==="live"&&!live[cid]) live[cid]={id:v.id,title:v.snippet.title,viewers:+v.liveStreamingDetails?.concurrentViewers||0};
       }
-      ids.slice(k,k+50).forEach(id=>{ if(!cache[id]._liveSet) cache[id].live=null; delete cache[id]._liveSet; cache[id].lt=Date.now(); });
-    }
-    ids.forEach(id=>{ if(cache[id]) cache[id].lt=Date.now(); });
+    });
+    ids.forEach(id=>{ cache[id].live=live[id]||null; cache[id].lt=Date.now(); });
     lsSet(CKEY,cache); render();
   }catch(e){ if(e.reason==="quotaExceeded"){ $("#errNotice").hidden=false; $("#errText").innerHTML="<b>오늘 API 할당량을 다 썼습니다.</b> 라이브 확인은 내일 다시 됩니다."; } }
 }
