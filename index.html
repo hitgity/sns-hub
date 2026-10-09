@@ -18,8 +18,9 @@
   --bg:#15140f; --surface:#1f1e18; --fg:#f0ece3; --muted:#a39e91; --line:#33312a;
   --accent:#ff5a44; --accent-fg:#1b1a17; --chip:#2a2922; --star:#f2b84b; --live:#5fcf8f; --tt:#f0ece3; color-scheme:dark } }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:0 48px;max-width:1100px;margin:0 auto}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:0 48px;max-width:none;margin:0}
 h1,h2{font-family:var(--display);font-weight:400;margin:0;letter-spacing:.01em}
 h1{font-size:34px;line-height:1.1;padding-top:22px}
 h1 span{color:var(--accent)}
@@ -28,6 +29,7 @@ header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-be
 .hbtns{display:flex;gap:6px;flex-wrap:wrap}
 .toolbar{position:sticky;top:0;z-index:5;background:var(--bg);padding-block:12px 10px;margin-top:14px;border-bottom:1px solid var(--line)}
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+@media (min-width:760px){.tabs{flex-wrap:wrap;overflow:visible}}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap}
 .tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
@@ -49,7 +51,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .notice .grow{flex:1 1 240px;min-width:0}
 .status{color:var(--muted);font-size:12.5px;margin-top:10px;min-height:1.2em}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-top:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--colw,270px),1fr));gap:12px;margin-top:14px}
+.dens{display:flex;gap:2px;margin-left:auto}
+.dens button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:600;border-radius:8px;padding:6px 8px;cursor:pointer}
+.dens button[aria-pressed="true"]{color:var(--fg);border-color:var(--fg)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:9px;min-width:0;position:relative}
 .top{display:flex;align-items:center;gap:10px}
 .avatar{flex:none;width:48px;height:48px;border-radius:50%;background:var(--chip);object-fit:cover;display:grid;place-items:center;font-weight:600;color:var(--muted);font-size:16px;overflow:hidden}
@@ -95,7 +100,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 <header>
   <div>
     <h1>숏폼 채널 <span>모음</span></h1>
-    <p class="sub">개그·시사·생존·커플·숏드라마. 유튜브 API로 프사·구독자 수·최신 영상을 열 때마다 새로 받아옵니다. 인스타·틱톡은 같은 카드에 링크로 묶여 있어요.</p>
+    <p class="sub">17개 장르, 팔로워 10만 이상 한국 계정 700여 개. 유튜브 API로 프사·구독자 수·최신 영상을 열 때마다 새로 받아옵니다. 인스타·틱톡은 같은 카드에 링크로 묶여 있어요.</p>
   </div>
   <div class="hbtns">
     <button class="btn" id="refreshBtn" type="button">새로고침</button>
@@ -119,6 +124,15 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
       <button type="button" data-p="ig" aria-pressed="false">IG</button>
       <button type="button" data-p="tt" aria-pressed="false">TikTok</button>
     </div>
+    <div class="dens" id="dens" title="카드 크기">
+      <button type="button" data-w="220" aria-pressed="false">작게</button>
+      <button type="button" data-w="270" aria-pressed="true">보통</button>
+      <button type="button" data-w="340" aria-pressed="false">크게</button>
+    </div>
+  </div>
+  <div class="row2" id="resolveRow" hidden>
+    <button class="btn sm" id="resolveBtn" type="button"></button>
+    <span class="status" style="margin:0;align-self:center" id="quotaNote"></span>
   </div>
   <div class="status" id="status"></div>
 </div>
@@ -139,19 +153,23 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 <div class="grid" id="grid"></div>
 
-<p class="foot">구독자 수에 <b style="color:var(--live)">LIVE</b>가 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. 아이디가 없는 채널은 처음 열 때 채널명으로 자동 검색해 매칭하며, 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
+<p class="foot">구독자 수에 <b style="color:var(--live)">LIVE</b>가 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
 
 <script src="config.js"></script>
 <script src="data.js"></script>
 <script>
-const CATS=[{id:"comedy",label:"개그"},{id:"politics",label:"시사·정치"},{id:"survival",label:"생존·아웃도어"},{id:"couple",label:"커플·로맨스"},{id:"drama",label:"숏드라마"}];
+const CATS=[{id:"comedy",label:"개그"},{id:"drama",label:"숏드라마"},{id:"couple",label:"커플·로맨스"},{id:"food",label:"먹방·요리"},{id:"beauty",label:"뷰티·패션"},{id:"game",label:"게임"},{id:"music",label:"음악·댄스"},{id:"fitness",label:"운동·헬스"},{id:"travel",label:"여행"},{id:"survival",label:"생존·아웃도어"},{id:"pet",label:"반려동물"},{id:"knowledge",label:"지식·교육"},{id:"tech",label:"IT·테크·자동차"},{id:"money",label:"재테크·경제"},{id:"politics",label:"시사·정치"},{id:"celeb",label:"연예·K-POP"},{id:"horror",label:"공포·미스터리"}];
 const KEY="snshub.site.v1", CKEY="snshub.cache.v1", RKEY="snshub.resolved.v1";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 const lsGet=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 
-let state=Object.assign({cat:"comedy",plat:null,favs:[],deleted:[],added:[],edits:{}},lsGet(KEY,{}));
+let state=Object.assign({cat:"comedy",plat:null,favs:[],deleted:[],added:[],edits:{},colw:270},lsGet(KEY,{}));
+let quota=lsGet("snshub.quota",{day:"",used:0});
+function quotaDay(){ const d=new Date(Date.now()-7*36e5); return d.toISOString().slice(0,10); }
+function addQuota(n){ const d=quotaDay(); if(quota.day!==d){quota={day:d,used:0};} quota.used+=n; lsSet("snshub.quota",quota); }
+function quotaUsed(){ return quota.day===quotaDay()?quota.used:0; }
 let cache=lsGet(CKEY,{});      // channelId -> {t, avatar, subs, handle, title, vids:[...]}
 let resolved=lsGet(RKEY,{});   // accountId -> {ytId, auto:true}
 const saveState=()=>lsSet(KEY,state);
@@ -173,18 +191,19 @@ function links(a){
 async function yt(path,params){
   const u=new URL("https://www.googleapis.com/youtube/v3/"+path);
   Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v)); u.searchParams.set("key",apiKey());
+  addQuota(path==="search"?100:1);
   const r=await fetch(u); const j=await r.json();
   if(!r.ok){ const reason=j.error?.errors?.[0]?.reason||""; const e=new Error(j.error?.message||r.status); e.reason=reason; throw e; }
   return j;
 }
 let loading=false;
-async function loadLive(list,force){
+async function loadLive(list,force,doSearch){
   if(!apiKey()||loading) return; loading=true;
   const st=$("#status"); const errBox=$("#errNotice"); errBox.hidden=true;
   try{
     const fresh=Date.now()-(window.CACHE_MINUTES||60)*6e4;
     // 1) resolve channel ids
-    const need=list.filter(a=>!ytIdOf(a)&&(a.yt||a.name));
+    const need=list.filter(a=>!ytIdOf(a)&&!a.noyt&&(a.yt||doSearch));
     let i=0;
     for(const a of need){
       st.textContent=`채널 확인 중 ${++i}/${need.length}…`;
@@ -226,6 +245,15 @@ async function loadLive(list,force){
     st.textContent="";
   }finally{ loading=false; render(); }
 }
+function updateResolveRow(){
+  const row=$("#resolveRow"); const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt);
+  if(!apiKey()||!list.length){ row.hidden=true; return; }
+  row.hidden=false; const cost=list.length*100, left=10000-quotaUsed();
+  $("#resolveBtn").textContent=`이 탭 채널 자동 찾기 (${list.length}개, 약 ${cost.toLocaleString()}단위)`;
+  $("#resolveBtn").disabled=left<200||loading;
+  $("#quotaNote").textContent=`오늘 사용 추정 ${quotaUsed().toLocaleString()} / 10,000`+(left<cost?" · 남은 양만큼만 찾습니다":"");
+}
+$("#resolveBtn").onclick=()=>{ const left=10000-quotaUsed(); const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt).slice(0,Math.max(0,Math.floor(left/100))); loadLive(list,false,true); };
 
 /* ---------- render ---------- */
 const grid=$("#grid"),tabs=$("#tabs"),q=$("#q");
@@ -246,7 +274,7 @@ function renderTabs(){
   });
 }
 function render(){
-  renderTabs();
+  renderTabs(); updateResolveRow();
   const list=visible(); grid.innerHTML="";
   if(!list.length){ grid.innerHTML=`<p class="empty">${state.cat==="fav"?"별을 눌러 즐겨찾기를 추가하세요.":"조건에 맞는 계정이 없습니다."}</p>`; return; }
   for(const a of list){
@@ -254,13 +282,14 @@ function render(){
     const el=document.createElement("article"); el.className="card";
     const subsHtml=c&&c.subs!=null?`<b>${fmtN(c.subs)}</b><span class="live">LIVE</span>`:c&&c.subs==null?`<span>구독자 비공개</span>`:a.followers?`<span>${esc(a.followers)}</span><span class="chip">조사치</span>`:``;
     const ytLabel=c?.handle||a.yt||(id?"채널":"검색");
+    const ytBtn=a.noyt&&!id&&!a.yt?``:`<a class="plat youtube" href="${esc(L.yt)}" target="_blank" rel="noopener"><span class="dot">YT</span><span class="h">${esc(ytLabel)}</span></a>`;
     el.innerHTML=`
       <div class="top">
         <div class="avatar">${c?.avatar?`<img src="${esc(c.avatar)}" alt="" loading="lazy">`:esc(a.name[0])}</div>
         <div style="min-width:0"><div class="name">${esc(c?.title||a.name)}</div><div class="subs">${subsHtml}${auto?`<span class="chip warn">자동 매칭</span>`:""}</div></div>
       </div>
       <div class="plats">
-        <a class="plat youtube" href="${esc(L.yt)}" target="_blank" rel="noopener"><span class="dot">YT</span><span class="h">${esc(ytLabel)}</span></a>
+        ${ytBtn}
         ${L.ig?`<a class="plat instagram" href="${esc(L.ig)}" target="_blank" rel="noopener"><span class="dot">IG</span><span class="h">@${esc(a.ig)}</span></a>`:`<button class="plat add" type="button" data-add="ig">+ 인스타</button>`}
         ${L.tt?`<a class="plat tiktok" href="${esc(L.tt)}" target="_blank" rel="noopener"><span class="dot">TT</span><span class="h">@${esc(a.tt)}</span></a>`:`<button class="plat add" type="button" data-add="tt">+ 틱톡</button>`}
       </div>
@@ -313,9 +342,12 @@ form.onsubmit=e=>{
 q.oninput=render;
 document.querySelectorAll("#pf button").forEach(b=>b.onclick=()=>{state.plat=state.plat===b.dataset.p?null:b.dataset.p;document.querySelectorAll("#pf button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.p===state.plat)));render();});
 $("#refreshBtn").onclick=()=>loadLive(visible(),true);
+function applyDens(){ document.documentElement.style.setProperty("--colw",(state.colw||270)+"px"); document.querySelectorAll("#dens button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.w===(state.colw||270)))); }
+document.querySelectorAll("#dens button").forEach(b=>b.onclick=()=>{state.colw=+b.dataset.w;saveState();applyDens();});
+applyDens();
 $("#keySave").onclick=()=>{lsSet("snshub.key",$("#keyInput").value.trim());$("#keyNotice").hidden=!!apiKey();loadLive(visible());};
 $("#exportBtn").onclick=()=>{
-  const out=accounts().map(a=>({id:a.id,cat:a.cat,name:a.name,yt:a.yt||null,ytId:a.ytId||resolved[a.id]?.ytId||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||""}));
+  const out=accounts().map(a=>({id:a.id,cat:a.cat,name:a.name,yt:a.yt||null,ytId:a.ytId||resolved[a.id]?.ytId||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||"",...(a.noyt?{noyt:true}:{})}));
   const txt="// 계정 데이터. 이 파일만 고치면 됩니다.\nwindow.ACCOUNTS="+JSON.stringify(out,null,0).replace(/\},\{/g,"},\n{")+";\n";
   const b=new Blob([txt],{type:"text/javascript"}); const u=URL.createObjectURL(b); const l=document.createElement("a"); l.href=u; l.download="data.js"; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),1e3);
 };
