@@ -4,250 +4,275 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>옆구기 · 옆동네 구경가기</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
 <style>
+/* 레이아웃: 상단 고정 바(검색·정렬) + 왼쪽 카테고리 목록 + 오른쪽 세부 탭/카드. 모바일에선 목록이 가로 스크롤 줄로 바뀜 */
 :root{
-  --bg:#f6f4ef; --surface:#fff; --fg:#1b1a17; --muted:#6b675d; --line:#e3dfd5;
-  --accent:#d6341f; --accent-fg:#fff; --chip:#eeebe3; --star:#e8a317; --live:#1f7a4d;
+  --bg:#f6f4ef; --surface:#fff; --fg:#1b1a17; --muted:#6f6a60; --line:#e4e0d6; --soft:#efece4;
+  --accent:#d6341f; --accent-fg:#fff; --accent-soft:#fbe9e5; --star:#e8a317; --ok:#1f7a4d;
   --ig:#c13584; --tt:#111; --yt:#e4201b;
   --display:"Black Han Sans","IBM Plex Sans KR",system-ui,sans-serif;
   --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
-  color-scheme:light;
+  --colw:270px; color-scheme:light;
 }
 @media (prefers-color-scheme:dark){ :root{
-  --bg:#15140f; --surface:#1f1e18; --fg:#f0ece3; --muted:#a39e91; --line:#33312a;
-  --accent:#ff5a44; --accent-fg:#1b1a17; --chip:#2a2922; --star:#f2b84b; --live:#5fcf8f; --tt:#f0ece3; color-scheme:dark } }
+  --bg:#15140f; --surface:#1e1d17; --fg:#f0ece3; --muted:#a39e91; --line:#302e27; --soft:#262520;
+  --accent:#ff5a44; --accent-fg:#1b1a17; --accent-soft:#3a221d; --star:#f2b84b; --ok:#5fcf8f; --tt:#f0ece3; color-scheme:dark } }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{margin:0}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:0 48px;max-width:none;margin:0}
-h1,h2{font-family:var(--display);font-weight:400;margin:0;letter-spacing:.01em}
-h1{font-size:34px;line-height:1.1;padding-top:22px}
-h1 span{color:var(--accent)}
-h1 small{display:block;font-family:var(--body);font-weight:500;font-size:14px;color:var(--muted);letter-spacing:0;margin-top:2px}
-.sub{color:var(--muted);margin:6px 0 0;font-size:14px;max-width:60ch}
-header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px}
-.hbtns{display:flex;gap:6px;flex-wrap:wrap}
-.toolbar{position:sticky;top:0;z-index:5;background:var(--bg);padding-block:12px 10px;margin-top:14px;border-bottom:1px solid var(--line)}
-@media (max-height:640px){.toolbar{position:static}}
-.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-@media (min-width:760px){.tabs{flex-wrap:wrap;overflow:visible}}
-.tabs::-webkit-scrollbar{display:none}
-.tab{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:6px 12px;font:inherit;font-size:13.5px;font-weight:500;cursor:pointer;white-space:nowrap}
-.tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.tab small{opacity:.65;margin-left:4px;font-variant-numeric:tabular-nums}
-.tab.all{border-color:var(--fg)}
-.subtabs{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:8px;padding:8px 10px;border:1px dashed var(--line);border-radius:12px}
-.subtabs .lbl{font-size:12px;color:var(--muted);margin-right:4px}
-.stab{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:4px 10px;font:inherit;font-size:12.5px;font-weight:500;cursor:pointer;white-space:nowrap}
-.stab[aria-selected="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
-.stab small{opacity:.7;margin-left:3px;font-variant-numeric:tabular-nums}
-.row2{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
-.search{flex:1 1 200px;min-width:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 12px}
-.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--fg);font:inherit;padding:9px 0;outline:none}
-.search:focus-within{border-color:var(--accent)}
-.pf{display:flex;gap:4px}
-.pf button,.sel{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:600;border-radius:8px;padding:6px 9px;cursor:pointer}
-.sel{color:var(--fg);padding-right:6px}
-.pf button[aria-pressed="true"]{color:var(--fg);border-color:var(--fg)}
-.btn{border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:14px;font-weight:600;border-radius:10px;padding:8px 14px;cursor:pointer}
-.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
-.btn.sm{font-size:12.5px;padding:6px 10px}
-.btn:disabled{opacity:.5;cursor:default}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:14.5px;line-height:1.5}
+button,select,input{font:inherit}
+button{cursor:pointer}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.notice{margin-top:12px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;font-size:13.5px;display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
-.notice.warn{border-color:var(--accent)}
+a{color:inherit}
+
+/* 상단 바 */
+.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:8px 16px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:8px;text-decoration:none;flex:none}
+.brand .logo{font-family:var(--display);font-size:26px;line-height:1;letter-spacing:.01em}
+.brand .logo b{color:var(--accent);font-weight:400}
+.brand .tag{font-size:12px;color:var(--muted)}
+.search{flex:1 1 220px;min-width:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 11px;height:36px}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--fg);outline:none;height:100%}
+.search:focus-within{border-color:var(--accent)}
+.ctrl{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:transparent;color:var(--muted);font-size:12.5px;font-weight:600;padding:0 10px;height:34px}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.sel{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:9px;height:36px;padding:0 8px;font-size:13px;font-weight:600}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--fg);font-size:13.5px;font-weight:600;border-radius:9px;height:36px;padding:0 13px}
+.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn.sm{height:30px;font-size:12.5px;padding:0 10px}
+.btn:disabled{opacity:.5;cursor:default}
+
+.notice{margin:12px 16px 0;border:1px solid var(--accent);background:var(--surface);border-radius:12px;padding:10px 14px;font-size:13.5px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .notice b{color:var(--accent)}
 .notice .grow{flex:1 1 240px;min-width:0}
-.status{color:var(--muted);font-size:12.5px;margin-top:10px;min-height:1.2em}
-.srcrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
-.ytmark{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--muted);font-size:12px}
-.ytmark img{height:20px;width:auto;display:block}
-.ytmark .alt{font-weight:700;color:var(--fg)}
-.legal{margin-top:16px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:12.5px;color:var(--muted);max-width:80ch;line-height:1.6}
-.legal summary{cursor:pointer;color:var(--fg);font-weight:600}
-.legal a{color:var(--accent)}
-.legal ul{padding-left:18px;margin:6px 0}
+.notice input{flex:1 1 200px;min-width:0;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--colw,270px),1fr));gap:12px;margin-top:14px}
-.dens{display:flex;gap:2px;margin-left:auto}
-.dens button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:600;border-radius:8px;padding:6px 8px;cursor:pointer}
-.dens button[aria-pressed="true"]{color:var(--fg);border-color:var(--fg)}
-.more{display:flex;justify-content:center;padding:22px 0 4px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:9px;min-width:0;position:relative}
-.top{display:flex;align-items:center;gap:10px}
-.avatar{flex:none;width:48px;height:48px;border-radius:50%;background:var(--chip);display:grid;place-items:center;font-weight:600;color:var(--muted);font-size:16px;overflow:hidden}
+/* 본문 2단 */
+.wrap{display:grid;grid-template-columns:212px minmax(0,1fr);gap:0 20px;padding:0 16px 48px}
+.side{position:sticky;top:53px;align-self:start;max-height:calc(100vh - 53px);overflow:auto;padding:14px 0;scrollbar-width:thin}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;border:0;background:transparent;color:var(--fg);text-align:left;padding:7px 10px;border-radius:9px;font-size:14px;font-weight:500}
+.nav small{color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
+.nav:hover{background:var(--soft)}
+.nav[aria-current="true"]{background:var(--fg);color:var(--bg)} .nav[aria-current="true"] small{color:var(--bg);opacity:.7}
+.nav.sep{margin-top:8px;border-top:1px solid var(--line);border-radius:0;padding-top:12px}
+.main{min-width:0;padding-top:14px}
+.subbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.subtabs{display:flex;gap:5px;flex-wrap:wrap;flex:1 1 auto}
+.stab{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:4px 11px;font-size:12.5px;font-weight:500;white-space:nowrap}
+.stab small{opacity:.65;margin-left:3px;font-variant-numeric:tabular-nums}
+.stab[aria-selected="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;min-height:22px;font-size:12.5px;color:var(--muted)}
+.meta .ytmark{margin-left:auto;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--muted)}
+.meta .ytmark img{height:18px;width:auto;display:block}
+.meta .ytmark .alt{font-weight:700;color:var(--fg)}
+.meta .err{color:var(--accent)}
+
+/* 카드 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--colw),1fr));gap:12px;margin-top:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:8px;min-width:0;position:relative;content-visibility:auto;contain-intrinsic-size:auto 300px}
+.card.islive{border-color:var(--yt)}
+.hd{display:flex;align-items:center;gap:10px}
+.avatar{flex:none;width:46px;height:46px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-weight:600;color:var(--muted);overflow:hidden}
 .avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .avatar.live{box-shadow:0 0 0 2px var(--surface),0 0 0 4.5px var(--yt)}
+.name{font-weight:600;font-size:15px;line-height:1.25;overflow-wrap:anywhere}
 .livebadge{display:inline-flex;align-items:center;gap:5px;background:var(--yt);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;border-radius:5px;padding:2px 7px 2px 6px;text-decoration:none;vertical-align:middle;margin-left:6px}
 .livebadge i{width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;animation:blink 1.1s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){.livebadge i{animation:none}}
-.card.islive{border-color:var(--yt)}
-.name{font-weight:600;font-size:15.5px;line-height:1.25;overflow-wrap:anywhere}
-.subs{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.subs b{color:var(--fg)}
-.subs .live{color:var(--live);font-weight:600;font-size:11px;letter-spacing:.04em}
-.plats{display:flex;gap:6px;flex-wrap:wrap}
-.plat{display:inline-flex;align-items:center;gap:5px;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:3px 9px 3px 4px;font-size:12.5px;font-weight:600;max-width:100%}
-.plat .dot{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:9px;font-weight:700}
+.stats{font-size:12.5px;color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.stats b{color:var(--fg)}
+.stats .ok{color:var(--ok);font-weight:600;font-size:11px}
+.chip{background:var(--soft);border-radius:6px;padding:1px 7px;font-size:11.5px;color:var(--muted)}
+.chip.warn{color:var(--accent)}
+.plats{display:flex;gap:5px;flex-wrap:wrap}
+.plat{display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 9px 2px 3px;font-size:12px;font-weight:600;max-width:100%;background:transparent;color:var(--fg)}
+.plat .dot{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:9px;font-weight:700;overflow:hidden}
 .plat.youtube .dot{background:var(--yt)} .plat.instagram .dot{background:var(--ig)} .plat.tiktok .dot{background:var(--tt);color:var(--bg)}
-.plat span.h{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:14ch}
-.plat.add{border-style:dashed;color:var(--muted);cursor:pointer;background:transparent;font:inherit;font-size:12.5px;font-weight:600}
-.desc{font-size:13.5px;margin:0;overflow-wrap:anywhere}
+.plat .h{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:14ch}
+.plat.add{border-style:dashed;color:var(--muted)}
+.desc{font-size:13px;margin:0;overflow-wrap:anywhere;color:var(--fg)}
 .vids{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
-.vid{flex:0 0 150px;text-decoration:none;color:var(--fg);min-width:0;position:relative}
-.vid img{width:150px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--chip);display:block}
+.vids.empty{color:var(--muted);font-size:12px}
+.vid{flex:0 0 148px;text-decoration:none;min-width:0;position:relative}
+.vid img{width:148px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--soft);display:block}
 .vid .t{font-size:12px;line-height:1.3;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .vid .d{font-size:11px;color:var(--muted)}
 .vid .lv{position:absolute;left:6px;top:6px;background:var(--yt);color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:1px 5px}
-.vid .vc{position:absolute;right:5px;top:62px;background:rgba(0,0,0,.72);color:#fff;font-size:10.5px;font-weight:600;border-radius:4px;padding:1px 5px;font-variant-numeric:tabular-nums}
-.vids.empty{color:var(--muted);font-size:12.5px}
-.actions{display:flex;gap:6px;margin-top:auto;padding-top:2px;align-items:center;justify-content:flex-end}
-.icon{border:1px solid var(--line);background:transparent;color:var(--muted);width:36px;height:36px;border-radius:9px;cursor:pointer;font-size:16px;display:grid;place-items:center;font-family:inherit}
+.vid .vc{position:absolute;right:5px;top:61px;background:rgba(0,0,0,.72);color:#fff;font-size:10.5px;font-weight:600;border-radius:4px;padding:1px 5px}
+.acts{display:flex;gap:5px;margin-top:auto;justify-content:flex-end}
+.icon{border:1px solid var(--line);background:transparent;color:var(--muted);width:32px;height:32px;border-radius:8px;font-size:15px;display:grid;place-items:center}
 .icon.on{color:var(--star);border-color:var(--star)}
-.chip{background:var(--chip);border-radius:6px;padding:1px 7px;font-size:12px;color:var(--muted)}
-.chip.warn{color:var(--accent)}
-.empty{grid-column:1/-1;color:var(--muted);text-align:center;padding:40px 0}
 .confirm{position:absolute;inset:0;background:var(--surface);border-radius:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;padding:16px;text-align:center;font-size:14px}
 .confirm div{display:flex;gap:8px}
-.sheet{margin-top:14px;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:16px}
-.sheet h2{font-size:22px;margin-bottom:10px}
+.empty{grid-column:1/-1;color:var(--muted);text-align:center;padding:40px 0}
+.more{display:flex;justify-content:center;padding:22px 0 4px}
+
+/* 추가·수정 폼 */
+.sheet{margin-top:12px;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:16px}
+.sheet h2{font-family:var(--display);font-weight:400;font-size:20px;margin:0 0 10px}
 .form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .form label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted);min-width:0}
-.form label.wide{grid-column:1/-1}
-.form input,.form select{font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0;width:100%}
+.form input,.form select{color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0;width:100%}
 .form .fr{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;align-items:center}
 .form .err{color:var(--accent);font-size:13px;margin-right:auto}
-.foot{margin-top:28px;color:var(--muted);font-size:12.5px;max-width:70ch;line-height:1.6}
-.foot button{background:none;border:0;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline}
-@media (max-width:480px){ .form{grid-template-columns:1fr} h1{font-size:30px} }
+
+/* 하단 */
+.legal{margin-top:28px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:12.5px;color:var(--muted);max-width:80ch;line-height:1.6}
+.legal summary{cursor:pointer;color:var(--fg);font-weight:600}
+.legal a{color:var(--accent)}
+.legal ul{padding-left:18px;margin:6px 0}
+.foot{margin-top:14px;color:var(--muted);font-size:12.5px;max-width:80ch;line-height:1.6}
+.foot button{background:none;border:0;color:var(--accent);padding:0;text-decoration:underline}
+
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr;padding:0 12px 40px}
+  .side{position:sticky;top:0;max-height:none;overflow-x:auto;overflow-y:hidden;display:flex;gap:5px;padding:8px 0;background:var(--bg);scrollbar-width:none;z-index:9;border-bottom:1px solid var(--line)}
+  .side::-webkit-scrollbar{display:none}
+  .nav{width:auto;flex:none;border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:13px;gap:5px}
+  .nav.sep{margin:0;border-top:1px solid var(--line);padding-top:5px;border-radius:999px}
+  .top{position:static;padding:10px 12px}
+  .brand .tag{display:none}
+  .main{padding-top:10px}
+  .form{grid-template-columns:1fr}
+}
+@media (max-width:560px){ .ctrl{flex:1 1 100%;justify-content:space-between} #dens,.ctrl .btn:not(.primary),.pre{display:none} .sel{height:34px} }
 </style>
 </head>
 <body>
-<header>
-  <div>
-    <h1>옆<span>구</span>기<small>옆동네 구경가기</small></h1>
-    <p class="sub">18개 장르(드라마는 로맨스·AI·방송 공식 등 9개 세부 탭), 한국 채널 790여 개를 동네 구경하듯 둘러보세요. 프사·구독자 수·최신 영상은 열 때마다 새로 받아오고, 인스타·틱톡도 같은 카드에 묶여 있어요.</p>
-  </div>
-  <div class="hbtns">
+<header class="top">
+  <a class="brand" href="#all" id="brand"><span class="logo">옆<b>구</b>기</span><span class="tag">옆동네 구경가기</span></a>
+  <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="채널, 아이디, 설명 검색" autocomplete="off"></label>
+  <div class="ctrl">
+    <select class="sel" id="sort" title="채널 정렬">
+      <option value="subs">구독자순</option><option value="views">채널 조회순</option><option value="recent">최근 업로드순</option><option value="name">이름순</option>
+    </select>
+    <div class="seg" id="vorder" title="카드 안 영상 순서"><button type="button" data-v="latest"><span class="pre">영상 </span>최신순</button><button type="button" data-v="views"><span class="pre">영상 </span>조회순</button></div>
+    <div class="seg" id="dens" title="카드 크기"><button type="button" data-w="220">작게</button><button type="button" data-w="270">보통</button><button type="button" data-w="340">크게</button></div>
     <button class="btn" id="refreshBtn" type="button">새로고침</button>
-    <button class="btn primary" id="addBtn" type="button">+ 계정 추가</button>
+    <button class="btn primary" id="addBtn" type="button">+ 추가</button>
   </div>
 </header>
 
-<div class="notice warn" id="keyNotice" hidden>
+<div class="notice" id="keyNotice" hidden>
   <div class="grow"><b>API 키가 없습니다.</b> 키가 없으면 조사 시점 수치만 보이고 프사·최신 영상은 뜨지 않아요. config.js에 넣거나 여기 붙여넣으세요(이 브라우저에만 저장).</div>
-  <input id="keyInput" placeholder="AIza..." style="flex:1 1 200px;min-width:0;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)">
-  <button class="btn sm" id="keySave" type="button">저장</button>
+  <input id="keyInput" placeholder="AIza..."><button class="btn sm" id="keySave" type="button">저장</button>
 </div>
-<div class="notice warn" id="errNotice" hidden><div class="grow" id="errText"></div></div>
+<div class="notice" id="errNotice" hidden><div class="grow" id="errText"></div></div>
 
-<div class="toolbar">
-  <div class="tabs" role="tablist" id="tabs"></div>
-  <div class="subtabs" id="subtabs" hidden></div>
-  <div class="row2">
-    <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="이름, 아이디, 설명으로 검색" autocomplete="off"></label>
-    <div class="pf" id="pf" title="플랫폼 필터">
-      <button type="button" data-p="yt" aria-pressed="false">YouTube</button>
-      <button type="button" data-p="ig" aria-pressed="false">IG</button>
-      <button type="button" data-p="tt" aria-pressed="false">TikTok</button>
+<div class="wrap">
+  <nav class="side" id="side" aria-label="카테고리"></nav>
+  <main class="main">
+    <div class="subbar">
+      <div class="subtabs" id="subtabs"></div>
+      <div class="seg" id="pf" title="플랫폼"><button type="button" data-p="yt">YouTube</button><button type="button" data-p="ig">IG</button><button type="button" data-p="tt">TikTok</button></div>
     </div>
-    <select class="sel" id="sort" title="채널 정렬">
-      <option value="subs">구독자순</option>
-      <option value="views">채널 조회순</option>
-      <option value="recent">최근 업로드순</option>
-      <option value="name">이름순</option>
-    </select>
-    <div class="pf" id="vorder" title="카드 안 영상 순서">
-      <button type="button" data-v="latest" aria-pressed="true">영상 최신순</button>
-      <button type="button" data-v="views" aria-pressed="false">영상 조회순</button>
+    <div class="meta">
+      <span id="status"></span><span id="quotaNote"></span>
+      <button class="btn sm" id="resolveBtn" type="button" hidden></button>
+      <a class="ytmark" href="https://www.youtube.com" target="_blank" rel="noopener" title="YouTube"><span class="alt" id="ytmarkImg">YouTube</span><span>채널·영상 데이터 제공</span></a>
     </div>
-    <div class="dens" id="dens" title="카드 크기">
-      <button type="button" data-w="220" aria-pressed="false">작게</button>
-      <button type="button" data-w="270" aria-pressed="true">보통</button>
-      <button type="button" data-w="340" aria-pressed="false">크게</button>
-    </div>
-  </div>
-  <div class="row2" id="resolveRow" hidden>
-    <button class="btn sm" id="resolveBtn" type="button"></button>
-    <span class="status" style="margin:0" id="quotaNote"></span>
-  </div>
-  <div class="srcrow"><div class="status" id="status" style="margin:0"></div>
-    <a class="ytmark" href="https://www.youtube.com" target="_blank" rel="noopener" title="YouTube" style="margin-left:auto"><span class="alt" id="ytmarkImg">YouTube</span><span>채널·영상 데이터 제공</span></a>
-  </div>
+
+    <section class="sheet" id="sheet" hidden>
+      <h2 id="sheetTitle">계정 추가</h2>
+      <form class="form" id="form">
+        <input type="hidden" id="f-id">
+        <label>이름 <input id="f-name" required placeholder="예: 숏박스"></label>
+        <label>카테고리 <select id="f-cat"></select></label>
+        <label>세부 분류 <select id="f-sub"></select></label>
+        <label>유튜브 @핸들 또는 채널 ID <input id="f-yt" placeholder="@shortbox 또는 UC..."></label>
+        <label>인스타 아이디 <input id="f-ig" placeholder="nerd_ult"></label>
+        <label>틱톡 아이디 <input id="f-tt" placeholder="ox_zung"></label>
+        <label style="grid-column:1/-1">한 줄 설명 <input id="f-desc" placeholder="어떤 콘텐츠인지"></label>
+        <div class="fr"><span class="err" id="f-err"></span><button class="btn" type="button" id="cancel">취소</button><button class="btn primary" type="submit">저장</button></div>
+      </form>
+    </section>
+
+    <div class="grid" id="grid"></div>
+    <div class="more" id="more" hidden><button class="btn" id="moreBtn" type="button">더 보기</button></div>
+
+    <details class="legal" id="legal">
+      <summary>이용 안내 · 개인정보 · 출처</summary>
+      <ul>
+        <li>이 사이트는 <b>YouTube API 서비스</b>를 사용해 채널 프로필·구독자 수·조회수·최신 영상 정보를 가져옵니다. 이 사이트를 이용하면 <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube 서비스 약관</a>에 동의하는 것으로 봅니다. 구글의 개인정보 처리 방식은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>을 따릅니다.</li>
+        <li>이 사이트는 서버가 없고 회원가입·쿠키·방문 기록 수집을 하지 않습니다. 즐겨찾기, 정렬 설정, 직접 추가한 계정, 받아온 채널 정보(최대 60분 보관)는 <b>내 브라우저 안(localStorage)에만</b> 저장되며 운영자에게 전송되지 않습니다. 브라우저의 사이트 데이터를 지우거나 아래 "기본 목록으로 되돌리기"를 누르면 삭제됩니다.</li>
+        <li>YouTube에서 받아온 데이터는 가공 없이 표시하며 60분 뒤 새로 받아옵니다. 프로필·썸네일을 누르면 YouTube의 해당 채널·영상으로 이동합니다.</li>
+        <li>채널 설명과 "조사치" 숫자, 세부 분류는 언론 기사·공개 랭킹 사이트를 바탕으로 운영자가 정리한 것으로, 시점에 따라 실제와 다를 수 있습니다. 시사·정치의 성향 분류(진보·보수·언론)는 보도와 채널 자기소개를 기준으로 한 것이며 운영자의 평가가 아닙니다.</li>
+        <li>인스타그램·틱톡은 공개 프로필로 연결되는 링크만 제공합니다. YouTube, Instagram, TikTok은 각 회사의 상표입니다. 이 사이트는 각 플랫폼과 제휴·후원 관계가 없습니다.</li>
+        <li>본인 채널의 삭제·수정을 원하는 운영자는 저장소 이슈로 알려주시면 반영합니다.</li>
+      </ul>
+    </details>
+    <p class="foot">라이브 중인 채널은 프사에 빨간 링과 LIVE 표시가 붙고 맨 앞으로 옵니다(10분마다 확인). 구독자 수 옆 <b style="color:var(--ok)">실시간</b>은 지금 받아온 값, "조사치"는 기사 기준 수치입니다. "영상 조회순"은 각 채널의 최근 영상 10개 안에서의 순서입니다. 아이디가 없는 채널은 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
+  </main>
 </div>
 
-<section class="sheet" id="sheet" hidden>
-  <h2 id="sheetTitle">계정 추가</h2>
-  <form class="form" id="form">
-    <input type="hidden" id="f-id">
-    <label>이름 <input id="f-name" required placeholder="예: 숏박스"></label>
-    <label>카테고리 <select id="f-cat"></select></label>
-    <label id="f-sub-wrap" hidden>세부 분류 <select id="f-sub"></select></label>
-    <label>유튜브 @핸들 또는 채널 ID <input id="f-yt" placeholder="@shortbox 또는 UC..."></label>
-    <label>인스타 아이디 <input id="f-ig" placeholder="nerd_ult"></label>
-    <label>틱톡 아이디 <input id="f-tt" placeholder="ox_zung"></label>
-    <label>한 줄 설명 <input id="f-desc" placeholder="어떤 콘텐츠인지"></label>
-    <div class="fr"><span class="err" id="f-err"></span><button class="btn" type="button" id="cancel">취소</button><button class="btn primary" type="submit">저장</button></div>
-  </form>
-</section>
-
-<div class="grid" id="grid"></div>
-<div class="more" id="more" hidden><button class="btn" id="moreBtn" type="button">더 보기</button></div>
-
-<p class="foot">라이브 중인 채널은 프사에 빨간 링과 LIVE 표시가 붙고 맨 앞으로 옵니다(10분마다 확인). 구독자 수에 <b style="color:var(--live)">실시간</b>이 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. "영상 조회순"은 각 채널의 최근 영상 10개 안에서 조회수 순입니다. 드라마의 AI 드라마 탭은 신생 장르라 1만 이상도 넣었습니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
-
-<details class="legal" id="legal">
-  <summary>이용 안내 · 개인정보 · 출처</summary>
-  <ul>
-    <li>이 사이트는 <b>YouTube API 서비스</b>를 사용해 채널 프로필·구독자 수·조회수·최신 영상 정보를 가져옵니다. 이 사이트를 이용하면 <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube 서비스 약관</a>에 동의하는 것으로 봅니다. 구글의 개인정보 처리 방식은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>을 따릅니다.</li>
-    <li>이 사이트는 서버가 없고 회원가입·쿠키·방문 기록 수집을 하지 않습니다. 즐겨찾기, 정렬 설정, 직접 추가한 계정, 받아온 채널 정보(최대 60분 보관)는 <b>내 브라우저 안(localStorage)에만</b> 저장되며 운영자에게 전송되지 않습니다. 브라우저의 사이트 데이터를 지우거나 아래 "기본 목록으로 되돌리기"를 누르면 삭제됩니다.</li>
-    <li>YouTube에서 받아온 데이터는 가공 없이 표시하며 60분 뒤 새로 받아옵니다. 프로필·썸네일을 누르면 YouTube의 해당 채널·영상으로 이동합니다.</li>
-    <li>채널 설명과 "조사치" 숫자는 언론 기사·공개 랭킹 사이트를 바탕으로 운영자가 정리한 것으로, 시점에 따라 실제와 다를 수 있습니다. 시사·정치 탭의 성향 표기(진보·보수·언론)는 보도와 채널 자기소개를 기준으로 한 분류이며 운영자의 평가가 아닙니다.</li>
-    <li>인스타그램·틱톡은 공개 프로필로 연결되는 링크만 제공합니다. YouTube, Instagram, TikTok은 각 회사의 상표입니다. 이 사이트는 각 플랫폼과 제휴·후원 관계가 없습니다.</li>
-    <li>본인 채널의 삭제·수정을 원하는 운영자는 저장소 이슈로 알려주시면 반영합니다.</li>
-  </ul>
-</details>
-<script src="config.js?v=9"></script>
-<script src="data.js?v=9"></script>
+<script src="config.js?v=10"></script>
+<script src="data.js?v=10"></script>
 <script>
-const DSUBS=[{id:"romance",label:"로맨스·로판"},{id:"genre",label:"사극·판타지·스릴러"},{id:"ai",label:"AI 드라마"},{id:"school",label:"학원·청춘"},{id:"daily",label:"공감·상황극"},{id:"prod",label:"제작 채널"},{id:"platform",label:"숏드라마 플랫폼"},{id:"official",label:"방송·OTT 공식"},{id:"review",label:"리뷰·요약"}];
-const CATS=[{id:"comedy",label:"개그"},{id:"drama",label:"드라마",subs:DSUBS},{id:"couple",label:"커플·로맨스"},{id:"food",label:"먹방·요리"},{id:"beauty",label:"뷰티·패션"},{id:"game",label:"게임"},{id:"music",label:"음악·댄스"},{id:"fitness",label:"운동·헬스"},{id:"travel",label:"여행"},{id:"survival",label:"생존·아웃도어"},{id:"pet",label:"반려동물"},{id:"knowledge",label:"지식·교육"},{id:"tech",label:"IT·테크·자동차"},{id:"money",label:"재테크·경제"},{id:"politics",label:"시사·정치"},{id:"celeb",label:"연예·K-POP"},{id:"horror",label:"공포·미스터리"}];
-const KEY="snshub.site.v1", CKEY="snshub.cache.v2", RKEY="snshub.resolved.v1";
-const PAGE=60;                                   // 한 번에 그리는 카드 수
-const VN=Math.min(20,Math.max(1,+window.VIDEOS_PER_CHANNEL||10)); // 채널당 받아올 최근 영상 수
+/* ---------- 분류 체계 ---------- */
+const TAX={
+ comedy:["개그",[["sketch","스케치·콩트"],["prank","몰카·리액션"],["character","캐릭터·상황극"],["meme","틱톡·밈"],["comedian","개그맨 채널"],["show","코미디 쇼·토크"],["dub","더빙·애니"]]],
+ drama:["드라마",[["romance","로맨스·로판"],["genre","사극·판타지·스릴러"],["ai","AI 드라마"],["school","학원·청춘"],["daily","공감·상황극"],["prod","웹드라마 제작"],["platform","숏드라마 플랫폼"],["official","방송·OTT 공식"],["review","리뷰·요약"]]],
+ couple:["커플·로맨스",[["intl","국제커플"],["daily","커플 일상"],["fun","커플 코미디·몰카"],["married","부부·신혼"]]],
+ food:["먹방·요리",[["mukbang","먹방"],["asmr","ASMR 먹방"],["recipe","집밥·레시피"],["baking","베이킹·디저트"],["review","맛집·리뷰"],["street","길거리·제조 과정"]]],
+ beauty:["뷰티·패션",[["makeup","메이크업"],["skincare","스킨케어·성분"],["fashion","패션·룩북"],["men","남성 뷰티·패션"],["social","틱톡·인스타 뷰티"]]],
+ game:["게임",[["minecraft","마인크래프트"],["lol","롤·TFT"],["streamer","종합 스트리머"],["mobile","모바일·캐주얼"],["etc","FPS·스타·기타"]]],
+ music:["음악·댄스",[["vocal","보컬 커버"],["dance","댄스 스튜디오·크루"],["tiktok","틱톡 댄서"],["instrument","악기·클래식"]]],
+ fitness:["운동·헬스",[["gym","헬스·보디빌딩"],["home","홈트·다이어트"],["calisthenics","맨몸운동"],["yoga","요가·스트레칭"],["variety","운동 예능"]]],
+ travel:["여행",[["world","세계여행"],["domestic","국내여행"],["tips","여행 정보·팁"],["insta","인스타 여행"]]],
+ survival:["생존·아웃도어",[["camping","캠핑·차박"],["fishing","낚시"],["bushcraft","생존·부시크래프트"],["touring","바이크·오지 투어"]]],
+ pet:["반려동물",[["dog","강아지"],["cat","고양이"],["exotic","이색동물"],["training","훈련·수의"],["official","동물 방송 공식"],["rescue","구조·보호"]]],
+ knowledge:["지식·교육",[["science","과학·우주"],["history","역사·인문"],["english","영어·언어"],["study","공부·입시"],["trivia","잡학·상식"]]],
+ tech:["IT·테크·자동차",[["gadget","IT 기기 리뷰"],["pc","PC·하드웨어"],["ai","코딩·AI"],["car","자동차"]]],
+ money:["재테크·경제",[["stock","주식·투자"],["realestate","부동산"],["brokerage","증권사·경제 방송"],["saving","짠테크·절약"],["biz","창업·자기계발"]]],
+ politics:["시사·정치",[["news","언론사 뉴스"],["explainer","시사·경제 해설"],["progressive","진보"],["conservative","보수"],["politician","정치인"]]],
+ celeb:["연예·K-POP",[["issue","연예 이슈"],["reaction","예능·드라마 리액션"],["kpop","K-POP"]]],
+ horror:["공포·미스터리",[["radio","괴담·공포 라디오"],["crime","미제사건·범죄"],["mystery","미스터리 탐구"],["anime","공포 애니·게임"]]]
+};
+const CATS=Object.entries(TAX).map(([id,[label,subs]])=>({id,label,subs:subs.map(([sid,sl])=>({id:sid,label:sl}))}));
+const catOf=id=>CATS.find(c=>c.id===id);
+
+/* ---------- 상태 ---------- */
+const KEY="snshub.site.v1", CKEY="snshub.cache.v3", RKEY="snshub.resolved.v1";
+const PAGE=60, VN=Math.min(20,Math.max(1,+window.VIDEOS_PER_CHANNEL||10));
 const $=s=>document.querySelector(s);
-// 공식 로고 파일(yt-logo.png, yt-icon.png)이 저장소에 있으면 쓰고, 없으면 글자로 표시 (한 번만 확인)
-let HAS_ICON=false;
-{ const i=new Image(); i.onload=()=>{HAS_ICON=true; render();}; i.src="yt-icon.png";
-  const l=new Image(); l.onload=()=>{ l.alt="YouTube"; $("#ytmarkImg").replaceWith(l); }; l.src="yt-logo.png"; }
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 const lsGet=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-
 let state=Object.assign({cat:"comedy",sub:null,plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270},lsGet(KEY,{}));
-const catOf=id=>CATS.find(c=>c.id===id);
 { const [h0,hs]=location.hash.slice(1).split("-"); if(h0&&(h0==="all"||h0==="fav"||catOf(h0))){ state.cat=h0; state.sub=(catOf(h0)?.subs||[]).some(x=>x.id===hs)?hs:null; } }
-let quota=lsGet("snshub.quota",{day:"",used:0});
-function quotaDay(){ const d=new Date(Date.now()-7*36e5); return d.toISOString().slice(0,10); }
-function addQuota(n){ const d=quotaDay(); if(quota.day!==d){quota={day:d,used:0};} quota.used+=n; lsSet("snshub.quota",quota); }
-function quotaUsed(){ return quota.day===quotaDay()?quota.used:0; }
-let cache=lsGet(CKEY,{});      // channelId -> {t, title, handle, avatar, subs, views, uploads, vids:[{id,title,at,thumb,views}], vt, vn, live, lt}
-let resolved=lsGet(RKEY,{});   // accountId -> {ytId, auto} 또는 {ytId:null, failed:ts}
 const saveState=()=>lsSet(KEY,state);
-let shown=PAGE;
-const resetPage=()=>{ shown=PAGE; };
+let cache=lsGet(CKEY,{});     // channelId -> {t,title,handle,avatar,subs,views,uploads,vids:[{id,title,at,views}],vt,vn,live,lt}
+let resolved=lsGet(RKEY,{});  // accountId -> {ytId,auto} | {ytId:null,failed}
+let saveT=0; const saveCache=()=>{ clearTimeout(saveT); saveT=setTimeout(()=>lsSet(CKEY,cache),1200); };
+addEventListener("pagehide",()=>{ clearTimeout(saveT); lsSet(CKEY,cache); });
+let quota=lsGet("snshub.quota",{day:"",used:0});
+const quotaDay=()=>new Date(Date.now()-7*36e5).toISOString().slice(0,10);
+function addQuota(n){ const d=quotaDay(); if(quota.day!==d) quota={day:d,used:0}; quota.used+=n; lsSet("snshub.quota",quota); }
+const quotaUsed=()=>quota.day===quotaDay()?quota.used:0;
+let shown=PAGE; const resetPage=()=>{ shown=PAGE; };
+let HAS_ICON=false;
+{ const i=new Image(); i.onload=()=>{HAS_ICON=true; scheduleRender();}; i.src="yt-icon.png";
+  const l=new Image(); l.onload=()=>{ l.alt="YouTube"; $("#ytmarkImg").replaceWith(l); }; l.src="yt-logo.png"; }
 
-function apiKey(){ return (window.YT_API_KEY||"").trim() || (lsGet("snshub.key","")||"").trim(); }
+const apiKey=()=>(window.YT_API_KEY||"").trim()||(lsGet("snshub.key","")||"").trim();
 function parseF(s){ if(!s) return 0; const m=String(s).replace(/,/g,"").match(/([\d.]+)\s*(억|만|천)?/); if(!m) return 0; const u=m[2]; return Math.round(parseFloat(m[1])*(u==="억"?1e8:u==="만"?1e4:u==="천"?1e3:1)); }
+let ACC=null; const invalidate=()=>{ACC=null;};
 function accounts(){
+  if(ACC) return ACC;
   const base=(window.ACCOUNTS||[]).map(a=>Object.assign({},a,state.edits[a.id]||{}));
-  return base.concat(state.added).filter(a=>!state.deleted.includes(a.id)).map(a=>(a.fn=parseF(a.followers),a));
+  ACC=base.concat(state.added).filter(a=>!state.deleted.includes(a.id)).map(a=>(a.fn=parseF(a.followers),a)); return ACC;
 }
-function ytIdOf(a){ return a.ytId || (resolved[a.id]&&resolved[a.id].ytId) || null; }
+const ytIdOf=a=>a.ytId||(resolved[a.id]&&resolved[a.id].ytId)||null;
 function fmtN(n){ n=+n; if(!n) return ""; if(n>=1e8) return (n/1e8).toFixed(n>=1e9?0:1).replace(/\.0$/,"")+"억"; if(n>=1e4){ const m=n/1e4; return (m>=100?Math.round(m).toLocaleString():m.toFixed(1).replace(/\.0$/,""))+"만"; } return n.toLocaleString(); }
 function ago(iso){ const d=(Date.now()-new Date(iso))/864e5; if(d<1) return "오늘"; if(d<30) return Math.floor(d)+"일 전"; if(d<365) return Math.floor(d/30)+"개월 전"; return Math.floor(d/365)+"년 전"; }
+const thumb=id=>`https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
 function links(a){
   const yt=a.yt?`https://www.youtube.com/${a.yt.startsWith("@")?a.yt:"@"+a.yt}`:ytIdOf(a)?`https://www.youtube.com/channel/${ytIdOf(a)}`:`https://www.youtube.com/results?search_query=${encodeURIComponent(a.name)}`;
   return {yt, ig:a.ig?`https://www.instagram.com/${a.ig}/`:null, tt:a.tt?`https://www.tiktok.com/@${a.tt}`:null};
@@ -259,20 +284,20 @@ async function yt(path,params){
   Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v)); u.searchParams.set("key",apiKey());
   addQuota(path==="search"?100:1);
   const r=await fetch(u); const j=await r.json();
-  if(!r.ok){ const reason=j.error?.errors?.[0]?.reason||""; const e=new Error(j.error?.message||r.status); e.reason=reason; throw e; }
+  if(!r.ok){ const e=new Error(j.error?.message||r.status); e.reason=j.error?.errors?.[0]?.reason||""; throw e; }
   return j;
 }
-async function pool(items,n,fn){ let i=0; const workers=Array.from({length:Math.min(n,items.length)},async()=>{ while(i<items.length){ const it=items[i++]; try{ await fn(it); }catch(e){ if(e.reason==="quotaExceeded") throw e; } } }); await Promise.all(workers); }
+async function pool(items,n,fn){ let i=0; await Promise.all(Array.from({length:Math.min(n,items.length)},async()=>{ while(i<items.length){ const it=items[i++]; try{ await fn(it); }catch(e){ if(e.reason==="quotaExceeded") throw e; } } })); }
 function showErr(e){
   $("#errNotice").hidden=false;
   $("#errText").innerHTML=e.reason==="quotaExceeded"?"<b>오늘 API 할당량(10,000)을 다 썼습니다.</b> 한국시간 오후 4~5시쯤 초기화됩니다. 받아둔 정보는 그대로 보입니다.":e.reason==="keyInvalid"||/API key/i.test(e.message)?"<b>API 키가 잘못됐거나 제한 설정과 맞지 않습니다.</b> "+esc(e.message):"<b>불러오기 실패:</b> "+esc(e.message);
 }
-// 영상 통계(조회수)와 라이브 여부를 한 번에. perChannel: 채널당 확인할 최신 영상 수
+// 영상 조회수 + 라이브 여부 (50개씩 1단위)
 async function fetchVideoStats(ids,perChannel){
   const vmap={};
   ids.forEach(id=>{ const c=cache[id]; if(!c?.vids) return; c.vids.slice(0,perChannel).forEach(v=>vmap[v.id]=id); if(c.live?.id) vmap[c.live.id]=id; });
   const vids=Object.keys(vmap); if(!vids.length){ ids.forEach(id=>{ if(cache[id]) cache[id].lt=Date.now(); }); return; }
-  const live={}; const vb=[]; for(let k=0;k<vids.length;k+=50) vb.push(vids.slice(k,k+50));
+  const live={}, vb=[]; for(let k=0;k<vids.length;k+=50) vb.push(vids.slice(k,k+50));
   await pool(vb,4,async b=>{
     const j=await yt("videos",{part:"snippet,statistics,liveStreamingDetails",id:b.join(","),maxResults:50});
     for(const v of j.items||[]){
@@ -287,11 +312,9 @@ let loading=false, queued=null;
 async function loadLive(list,force,doSearch){
   if(!apiKey()) return;
   if(loading){ queued={list,force,doSearch:doSearch||queued?.doSearch}; return; }
-  loading=true;
-  const st=$("#status"); $("#errNotice").hidden=true;
+  loading=true; const st=$("#status"); $("#errNotice").hidden=true;
   try{
     const now=Date.now(), fresh=now-Math.min(+window.CACHE_MINUTES||60,43200)*6e4, retry=now-6*36e5; // 캐시 상한 30일(YouTube API 정책)
-    // 1) 채널 ID 확인 (핸들은 1단위, 이름 검색은 100단위라 버튼 눌렀을 때만)
     const need=list.filter(a=>!ytIdOf(a)&&!a.noyt&&(a.yt||doSearch)&&!(resolved[a.id]?.failed>retry));
     let i=0;
     await pool(need,8,async a=>{
@@ -303,64 +326,45 @@ async function loadLive(list,force,doSearch){
       else resolved[a.id]=id?{ytId:id,auto:false}:{ytId:null,failed:Date.now()};
     });
     lsSet(RKEY,resolved);
-    // 2) 채널 정보 (50개씩 1단위)
     const all=[...new Set(list.map(ytIdOf).filter(Boolean))];
     const ids=all.filter(id=>force||!cache[id]||cache[id].t<fresh);
     const batches=[]; for(let k=0;k<ids.length;k+=50) batches.push(ids.slice(k,k+50));
     if(batches.length) st.textContent=`채널 정보 받는 중 (${ids.length}개)…`;
     await pool(batches,4,async b=>{
       const j=await yt("channels",{part:"snippet,statistics,contentDetails",id:b.join(","),maxResults:50});
-      for(const c of j.items||[]){
-        cache[c.id]=Object.assign(cache[c.id]||{},{t:Date.now(),title:c.snippet.title,handle:c.snippet.customUrl||"",avatar:c.snippet.thumbnails?.medium?.url||c.snippet.thumbnails?.default?.url||"",subs:c.statistics?.hiddenSubscriberCount?null:+c.statistics?.subscriberCount||0,views:+c.statistics?.viewCount||0,uploads:c.contentDetails?.relatedPlaylists?.uploads||"",vids:cache[c.id]?.vids||null});
-      }
+      for(const c of j.items||[]) cache[c.id]=Object.assign(cache[c.id]||{},{t:Date.now(),title:c.snippet.title,handle:c.snippet.customUrl||"",avatar:c.snippet.thumbnails?.medium?.url||c.snippet.thumbnails?.default?.url||"",subs:c.statistics?.hiddenSubscriberCount?null:+c.statistics?.subscriberCount||0,views:+c.statistics?.viewCount||0,uploads:c.contentDetails?.relatedPlaylists?.uploads||"",vids:cache[c.id]?.vids||null});
     });
-    lsSet(CKEY,cache); render();
-    // 3) 최근 영상 (채널당 1단위) + 조회수·라이브 (50개씩 1단위)
+    saveCache(); scheduleRender();
     const vidIds=all.filter(id=>cache[id]?.uploads&&(force||!cache[id].vids||cache[id].vt<fresh||cache[id].vn!==VN));
     let n=0;
     await pool(vidIds,8,async id=>{
       st.textContent=`최신 영상 받는 중 ${++n}/${vidIds.length}…`;
       try{
         const j=await yt("playlistItems",{part:"snippet",playlistId:cache[id].uploads,maxResults:VN});
-        cache[id].vids=(j.items||[]).map(v=>({id:v.snippet.resourceId.videoId,title:v.snippet.title,at:v.snippet.publishedAt,thumb:v.snippet.thumbnails?.medium?.url||""}));
+        cache[id].vids=(j.items||[]).map(v=>({id:v.snippet.resourceId.videoId,title:v.snippet.title,at:v.snippet.publishedAt}));
       }catch(e){ if(e.reason==="quotaExceeded") throw e; cache[id].vids=[]; }
       cache[id].vt=Date.now(); cache[id].vn=VN;
     });
-    if(vidIds.length){ st.textContent=`조회수·라이브 확인 중…`; await fetchVideoStats(vidIds,VN); }
-    lsSet(CKEY,cache);
+    if(vidIds.length){ st.textContent="조회수·라이브 확인 중…"; await fetchVideoStats(vidIds,VN); }
+    saveCache();
     st.textContent=`업데이트 완료 · ${new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})}`;
     await checkLive(list,force);
   }catch(e){ showErr(e); st.textContent=""; }
-  finally{
-    loading=false; render();
-    if(queued){ const qd=queued; queued=null; loadLive(qd.list,qd.force,qd.doSearch); }
-  }
+  finally{ loading=false; scheduleRender(); if(queued){ const qd=queued; queued=null; loadLive(qd.list,qd.force,qd.doSearch); } }
 }
-// 라이브 재확인: 채널당 최신 2개만 (50채널에 1단위 정도)
-async function checkLive(list,force){
+async function checkLive(list,force){ // 라이브 재확인: 채널당 최신 2개만
   if(!apiKey()) return;
   const stale=Date.now()-10*6e4;
   const ids=[...new Set(list.map(ytIdOf).filter(Boolean))].filter(id=>cache[id]?.vids?.length&&(force||!cache[id].lt||cache[id].lt<stale));
   if(!ids.length) return;
-  try{ await fetchVideoStats(ids,2); lsSet(CKEY,cache); render(); }
-  catch(e){ if(e.reason==="quotaExceeded") showErr(e); }
+  try{ await fetchVideoStats(ids,2); saveCache(); scheduleRender(); }catch(e){ if(e.reason==="quotaExceeded") showErr(e); }
 }
 setInterval(()=>{ if(!document.hidden) checkLive(shownList()); },10*6e4);
 document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkLive(shownList()); });
 
-function updateResolveRow(){
-  const row=$("#resolveRow"); const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt);
-  if(!apiKey()||!list.length){ row.hidden=true; return; }
-  row.hidden=false; const cost=list.length*100, left=10000-quotaUsed();
-  $("#resolveBtn").textContent=`이 탭 채널 자동 찾기 (${list.length}개, 약 ${cost.toLocaleString()}단위)`;
-  $("#resolveBtn").disabled=left<200||loading;
-  $("#quotaNote").textContent=`오늘 사용 추정 ${quotaUsed().toLocaleString()} / 10,000`+(left<cost?" · 남은 양만큼만 찾습니다":"");
-}
-$("#resolveBtn").onclick=()=>{ const left=10000-quotaUsed(); const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt).slice(0,Math.max(0,Math.floor(left/100))); loadLive(list,false,true); };
-
-/* ---------- 목록·정렬 ---------- */
-const grid=$("#grid"),tabs=$("#tabs"),q=$("#q");
-function baseList(){ // 카테고리 제외, 플랫폼 필터+검색만 적용 (탭 숫자와 카드 수가 같은 기준을 쓰도록)
+/* ---------- 목록 ---------- */
+const grid=$("#grid"), q=$("#q");
+function baseList(){ // 플랫폼 필터 + 검색만 적용 (카테고리 숫자와 카드 수가 같은 기준)
   const term=q.value.trim().toLowerCase();
   let list=accounts();
   if(state.plat) list=list.filter(a=>state.plat==="yt"?!a.noyt:!!a[state.plat]);
@@ -368,140 +372,154 @@ function baseList(){ // 카테고리 제외, 플랫폼 필터+검색만 적용 (
   return list;
 }
 const inCat=(a,cat)=>cat==="all"?true:cat==="fav"?state.favs.includes(a.id):a.cat===cat;
-const inSub=a=>!state.sub||!catOf(state.cat)?.subs||a.sub===state.sub;
-function visible(){
-  const list=baseList().filter(a=>inCat(a,state.cat)&&inSub(a));
+const inSub=a=>!state.sub||!catOf(state.cat)||a.sub===state.sub;
+function visible(base){
+  const list=(base||baseList()).filter(a=>inCat(a,state.cat)&&inSub(a));
   const C=a=>cache[ytIdOf(a)];
   const subs=a=>{ const c=C(a); return c&&c.subs!=null?c.subs:(a.fn||0); };
-  const views=a=>C(a)?.views||0;
-  const recent=a=>{ const v=C(a)?.vids?.[0]; return v?Date.parse(v.at)||0:0; };
-  const lv=a=>C(a)?.live?1:0;
-  const k=state.sort;
+  const views=a=>C(a)?.views||0, recent=a=>{ const v=C(a)?.vids?.[0]; return v?Date.parse(v.at)||0:0; }, lv=a=>C(a)?.live?1:0, k=state.sort;
   return list.sort((a,b)=>(lv(b)-lv(a))||(k==="views"?views(b)-views(a):k==="recent"?recent(b)-recent(a):k==="name"?a.name.localeCompare(b.name,"ko"):subs(b)-subs(a))||subs(b)-subs(a));
 }
 const shownList=()=>visible().slice(0,shown);
-function renderTabs(){
-  const base=baseList(); tabs.innerHTML="";
-  [{id:"all",label:"전체"},{id:"fav",label:"★ 즐겨찾기"},...CATS].forEach(c=>{
-    const n=base.filter(a=>inCat(a,c.id)).length;
-    const b=document.createElement("button"); b.className="tab"+(c.id==="all"?" all":""); b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected",String(state.cat===c.id));
-    b.innerHTML=`${c.label}<small>${n}</small>`; b.onclick=()=>goCat(c.id); tabs.appendChild(b);
-  });
-  const subs=catOf(state.cat)?.subs, sb=$("#subtabs"); sb.innerHTML="";
-  if(!subs){ sb.hidden=true; return; } sb.hidden=false;
-  const inc=base.filter(a=>inCat(a,state.cat));
-  sb.insertAdjacentHTML("beforeend",`<span class="lbl">세부</span>`);
-  [{id:null,label:"전체"},...subs].forEach(x=>{
-    const n=x.id?inc.filter(a=>a.sub===x.id).length:inc.length;
-    const b=document.createElement("button"); b.className="stab"; b.type="button"; b.setAttribute("aria-selected",String((state.sub||null)===x.id));
+
+/* ---------- 렌더 ---------- */
+let raf=0; const scheduleRender=()=>{ if(!raf) raf=requestAnimationFrame(()=>{raf=0;render();}); };
+function renderNav(base){
+  const side=$("#side"); side.innerHTML="";
+  const mk=(id,label,n,cls="")=>{ const b=document.createElement("button"); b.type="button"; b.className="nav "+cls; b.setAttribute("aria-current",String(state.cat===id)); b.innerHTML=`<span>${label}</span><small>${n}</small>`; b.onclick=()=>goCat(id); side.appendChild(b); };
+  mk("all","전체",base.length); mk("fav","★ 즐겨찾기",base.filter(a=>state.favs.includes(a.id)).length);
+  CATS.forEach((c,i)=>mk(c.id,c.label,base.filter(a=>a.cat===c.id).length,i===0?"sep":""));
+}
+function renderSubs(base){
+  const sb=$("#subtabs"), c=catOf(state.cat); sb.innerHTML="";
+  if(!c){ return; }
+  const inc=base.filter(a=>a.cat===c.id);
+  [{id:null,label:"전체"},...c.subs].forEach(x=>{
+    const n=x.id?inc.filter(a=>a.sub===x.id).length:inc.length; if(x.id&&!n) return;
+    const b=document.createElement("button"); b.type="button"; b.className="stab"; b.setAttribute("aria-selected",String((state.sub||null)===x.id));
     b.innerHTML=`${x.label}<small>${n}</small>`; b.onclick=()=>goSub(x.id); sb.appendChild(b);
   });
 }
-function goSub(id){ state.sub=id; saveState(); history.replaceState(null,"","#"+state.cat+(id?"-"+id:"")); resetPage(); render(); loadLive(shownList()); checkLive(shownList()); }
-function goCat(id){ state.cat=id; state.sub=null; saveState(); history.replaceState(null,"","#"+id); resetPage(); render(); loadLive(shownList()); checkLive(shownList()); window.scrollTo({top:Math.min(window.scrollY,$(".toolbar").offsetTop),behavior:"instant"}); }
+function updateMeta(){
+  const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt), rb=$("#resolveBtn"), qn=$("#quotaNote");
+  if(!apiKey()||!list.length){ rb.hidden=true; qn.textContent=""; return; }
+  const cost=list.length*100, left=10000-quotaUsed();
+  rb.hidden=false; rb.textContent=`채널 자동 찾기 (${list.length}개 · ${cost.toLocaleString()}단위)`; rb.disabled=left<200||loading;
+  qn.textContent=`오늘 사용 ${quotaUsed().toLocaleString()} / 10,000`+(left<cost?" · 남은 만큼만":"");
+}
+$("#resolveBtn").onclick=()=>{ const left=10000-quotaUsed(); const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt).slice(0,Math.max(0,Math.floor(left/100))); loadLive(list,false,true); };
 function videoList(c){
   if(!c?.vids?.length) return [];
-  let v=c.vids.slice();
-  if(state.vorder==="views") v.sort((a,b)=>(b.views||0)-(a.views||0));
+  let v=c.vids.slice(); if(state.vorder==="views") v.sort((a,b)=>(b.views||0)-(a.views||0));
   if(c.live){ const i=v.findIndex(x=>x.id===c.live.id); if(i>0){ const [l]=v.splice(i,1); v.unshift(l); } }
   return v;
 }
-function render(){
-  renderTabs(); updateResolveRow();
-  const all=visible(), list=all.slice(0,shown); grid.innerHTML="";
-  const more=$("#more"); more.hidden=all.length<=shown; $("#moreBtn").textContent=`더 보기 (${Math.min(shown,all.length)} / ${all.length})`;
-  if(!all.length){ grid.innerHTML=`<p class="empty">${state.cat==="fav"?"별을 눌러 즐겨찾기를 추가하세요.":"조건에 맞는 계정이 없습니다."}</p>`; return; }
-  for(const a of list){
-    const id=ytIdOf(a), c=cache[id], L=links(a), fav=state.favs.includes(a.id), auto=resolved[a.id]?.auto;
-    const el=document.createElement("article"); el.className="card"+(c?.live?" islive":"");
-    const subsHtml=c&&c.subs!=null?`<b>${fmtN(c.subs)}</b><span class="live">실시간</span>`:c&&c.subs==null?`<span>구독자 비공개</span>`:a.followers?`<span>${esc(a.followers)}</span><span class="chip">조사치</span>`:``;
-    const viewsHtml=c?.views?`<span class="chip">조회 ${fmtN(c.views)}</span>`:``;
-    const ytLabel=c?.handle||a.yt||(id?"채널":"검색");
-    const ytBtn=a.noyt&&!id&&!a.yt?``:`<a class="plat youtube" href="${esc(L.yt)}" target="_blank" rel="noopener"><span class="dot">${HAS_ICON?`<img src="yt-icon.png" alt="YouTube" style="width:18px;height:18px;display:block;border-radius:50%">`:"YT"}</span><span class="h">${esc(ytLabel)}</span></a>`;
-    const vids=videoList(c);
-    const vidsHtml=vids.length?`<div class="vids">${vids.map(v=>`<a class="vid" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener"><img src="${esc(v.thumb)}" alt="" loading="lazy">${c.live&&c.live.id===v.id?`<span class="lv">LIVE</span>`:v.views?`<span class="vc">${fmtN(v.views)}회</span>`:""}<div class="t">${esc(v.title)}</div><div class="d">${ago(v.at)}</div></a>`).join("")}</div>`
-      :c&&Array.isArray(c.vids)?`<div class="vids empty">올라온 영상이 없어요</div>`:c?`<div class="vids empty">최신 영상 불러오는 중…</div>`:``;
-    el.innerHTML=`
-      <div class="top">
-        <div class="avatar${c?.live?" live":""}">${c?.avatar?`<img src="${esc(c.avatar)}" alt="" loading="lazy">`:esc(a.name[0])}</div>
-        <div style="min-width:0"><div class="name">${esc(c?.title||a.name)}${c?.live?`<a class="livebadge" href="https://www.youtube.com/watch?v=${esc(c.live.id)}" target="_blank" rel="noopener" title="${esc(c.live.title)}"><i></i>LIVE${c.live.viewers?" · "+fmtN(c.live.viewers):""}</a>`:""}</div><div class="subs">${subsHtml}${viewsHtml}${auto?`<span class="chip warn">자동 매칭</span>`:""}</div></div>
-      </div>
-      <div class="plats">
-        ${ytBtn}
-        ${L.ig?`<a class="plat instagram" href="${esc(L.ig)}" target="_blank" rel="noopener"><span class="dot">IG</span><span class="h">@${esc(a.ig)}</span></a>`:`<button class="plat add" type="button" data-add="ig">+ 인스타</button>`}
-        ${L.tt?`<a class="plat tiktok" href="${esc(L.tt)}" target="_blank" rel="noopener"><span class="dot">TT</span><span class="h">@${esc(a.tt)}</span></a>`:`<button class="plat add" type="button" data-add="tt">+ 틱톡</button>`}
-      </div>
-      ${a.desc?`<p class="desc">${esc(a.desc)}</p>`:""}
-      ${vidsHtml}
-      <div class="actions">
-        <button class="icon" type="button" data-act="edit" aria-label="수정">✎</button>
-        <button class="icon ${fav?"on":""}" type="button" data-act="fav" aria-label="즐겨찾기">${fav?"★":"☆"}</button>
-        <button class="icon" type="button" data-act="del" aria-label="삭제">✕</button>
-      </div>`;
-    el.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>openForm(a,b.dataset.add));
-    el.querySelector('[data-act="edit"]').onclick=()=>openForm(a);
-    el.querySelector('[data-act="fav"]').onclick=()=>{state.favs=fav?state.favs.filter(x=>x!==a.id):[...state.favs,a.id];saveState();render();};
-    el.querySelector('[data-act="del"]').onclick=()=>{
-      const cf=document.createElement("div"); cf.className="confirm";
-      cf.innerHTML=`<span><b>${esc(a.name)}</b> 카드를 삭제할까요?</span><div><button class="btn" type="button">취소</button><button class="btn primary" type="button">삭제</button></div>`;
-      cf.querySelectorAll("button")[0].onclick=()=>cf.remove();
-      cf.querySelectorAll("button")[1].onclick=()=>{state.deleted.push(a.id);state.added=state.added.filter(x=>x.id!==a.id);state.favs=state.favs.filter(x=>x!==a.id);saveState();render();};
-      el.appendChild(cf);
-    };
-    grid.appendChild(el);
-  }
+const els=new Map();
+const sigOf=(a,c,fav)=>[a.name,a.desc,a.ig,a.tt,a.yt,ytIdOf(a),fav?1:0,resolved[a.id]?.auto?1:0,c?.t,c?.vt,c?.lt,c?.live?.id,c?.live?.viewers,c?.subs,c?.views,state.vorder,HAS_ICON?1:0].join("|");
+function fillCard(el,a,c,fav){
+  const id=ytIdOf(a), L=links(a), auto=resolved[a.id]?.auto;
+  el.className="card"+(c?.live?" islive":"");
+  const subsHtml=c&&c.subs!=null?`<b>${fmtN(c.subs)}</b><span class="ok">실시간</span>`:c&&c.subs==null?`<span>구독자 비공개</span>`:a.followers?`<span>${esc(a.followers)}</span><span class="chip">조사치</span>`:``;
+  const ytLabel=c?.handle||a.yt||(id?"채널":"검색");
+  const ytBtn=a.noyt&&!id&&!a.yt?``:`<a class="plat youtube" href="${esc(L.yt)}" target="_blank" rel="noopener"><span class="dot">${HAS_ICON?`<img src="yt-icon.png" alt="YouTube" width="18" height="18">`:"YT"}</span><span class="h">${esc(ytLabel)}</span></a>`;
+  const vids=videoList(c);
+  const vidsHtml=vids.length?`<div class="vids">${vids.map(v=>`<a class="vid" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener"><img src="${thumb(v.id)}" alt="" loading="lazy" width="148" height="83">${c.live&&c.live.id===v.id?`<span class="lv">LIVE</span>`:v.views?`<span class="vc">${fmtN(v.views)}회</span>`:""}<div class="t">${esc(v.title)}</div><div class="d">${ago(v.at)}</div></a>`).join("")}</div>`
+    :c&&Array.isArray(c.vids)?`<div class="vids empty">올라온 영상이 없어요</div>`:c?`<div class="vids empty">최신 영상 불러오는 중…</div>`:``;
+  el.innerHTML=`
+    <div class="hd">
+      <div class="avatar${c?.live?" live":""}">${c?.avatar?`<img src="${esc(c.avatar)}" alt="" loading="lazy" width="46" height="46">`:esc(a.name[0])}</div>
+      <div style="min-width:0"><div class="name">${esc(c?.title||a.name)}${c?.live?`<a class="livebadge" href="https://www.youtube.com/watch?v=${esc(c.live.id)}" target="_blank" rel="noopener" title="${esc(c.live.title)}"><i></i>LIVE${c.live.viewers?" · "+fmtN(c.live.viewers):""}</a>`:""}</div>
+      <div class="stats">${subsHtml}${c?.views?`<span class="chip">조회 ${fmtN(c.views)}</span>`:""}${auto?`<span class="chip warn">자동 매칭</span>`:""}</div></div>
+    </div>
+    <div class="plats">${ytBtn}
+      ${L.ig?`<a class="plat instagram" href="${esc(L.ig)}" target="_blank" rel="noopener"><span class="dot">IG</span><span class="h">@${esc(a.ig)}</span></a>`:`<button class="plat add" type="button" data-add="ig">+ 인스타</button>`}
+      ${L.tt?`<a class="plat tiktok" href="${esc(L.tt)}" target="_blank" rel="noopener"><span class="dot">TT</span><span class="h">@${esc(a.tt)}</span></a>`:`<button class="plat add" type="button" data-add="tt">+ 틱톡</button>`}
+    </div>
+    ${a.desc?`<p class="desc">${esc(a.desc)}</p>`:""}
+    ${vidsHtml}
+    <div class="acts">
+      <button class="icon" type="button" data-act="edit" aria-label="수정">✎</button>
+      <button class="icon ${fav?"on":""}" type="button" data-act="fav" aria-label="즐겨찾기">${fav?"★":"☆"}</button>
+      <button class="icon" type="button" data-act="del" aria-label="삭제">✕</button>
+    </div>`;
+  el.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>openForm(a,b.dataset.add));
+  el.querySelector('[data-act="edit"]').onclick=()=>openForm(a);
+  el.querySelector('[data-act="fav"]').onclick=()=>{ state.favs=fav?state.favs.filter(x=>x!==a.id):[...state.favs,a.id]; saveState(); render(); };
+  el.querySelector('[data-act="del"]').onclick=()=>{
+    const cf=document.createElement("div"); cf.className="confirm";
+    cf.innerHTML=`<span><b>${esc(a.name)}</b> 카드를 삭제할까요?</span><div><button class="btn" type="button">취소</button><button class="btn primary" type="button">삭제</button></div>`;
+    cf.querySelectorAll("button")[0].onclick=()=>cf.remove();
+    cf.querySelectorAll("button")[1].onclick=()=>{ state.deleted.push(a.id); state.added=state.added.filter(x=>x.id!==a.id); state.favs=state.favs.filter(x=>x!==a.id); saveState(); invalidate(); render(); };
+    el.appendChild(cf);
+  };
 }
+function render(){
+  const base=baseList(); renderNav(base); renderSubs(base); updateMeta();
+  const all=visible(base), list=all.slice(0,shown);
+  $("#more").hidden=all.length<=shown; $("#moreBtn").textContent=`더 보기 (${Math.min(shown,all.length)} / ${all.length})`;
+  if(!all.length){ els.clear(); grid.innerHTML=`<p class="empty">${state.cat==="fav"?"별을 눌러 즐겨찾기를 추가하세요.":"조건에 맞는 계정이 없습니다."}</p>`; return; }
+  const frag=document.createDocumentFragment(), keep=new Set();
+  for(const a of list){
+    const c=cache[ytIdOf(a)], fav=state.favs.includes(a.id), sig=sigOf(a,c,fav);
+    let el=els.get(a.id); if(!el){ el=document.createElement("article"); els.set(a.id,el); }
+    if(el.dataset.sig!==sig){ fillCard(el,a,c,fav); el.dataset.sig=sig; }
+    frag.appendChild(el); keep.add(a.id);
+  }
+  for(const [id,el] of els) if(!keep.has(id)){ el.remove(); els.delete(id); }
+  grid.replaceChildren(frag);
+}
+function setHash(){ history.replaceState(null,"","#"+state.cat+(state.sub?"-"+state.sub:"")); }
+function goCat(id){ state.cat=id; state.sub=null; saveState(); setHash(); resetPage(); render(); loadLive(shownList()); checkLive(shownList()); if(innerWidth>900) scrollTo({top:0}); }
+function goSub(id){ state.sub=id; saveState(); setHash(); resetPage(); render(); loadLive(shownList()); checkLive(shownList()); }
 function loadMore(){ if(visible().length<=shown) return; shown+=PAGE; render(); loadLive(shownList()); }
 $("#moreBtn").onclick=loadMore;
-if("IntersectionObserver" in window){ new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)&&!$("#more").hidden) loadMore(); },{rootMargin:"600px"}).observe($("#more")); }
+if("IntersectionObserver" in window) new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)&&!$("#more").hidden) loadMore(); },{rootMargin:"600px"}).observe($("#more"));
+$("#brand").onclick=e=>{ e.preventDefault(); goCat("all"); };
 
-/* ---------- form ---------- */
-const sheet=$("#sheet"),form=$("#form"),fcat=$("#f-cat");
-CATS.forEach(c=>{const o=document.createElement("option");o.value=c.id;o.textContent=c.label;fcat.appendChild(o);});
-const fsub=$("#f-sub"); DSUBS.forEach(x=>{const o=document.createElement("option");o.value=x.id;o.textContent=x.label;fsub.appendChild(o);});
-function syncSub(){ $("#f-sub-wrap").hidden=!catOf(fcat.value)?.subs; }
-fcat.onchange=syncSub;
+/* ---------- 폼 ---------- */
+const sheet=$("#sheet"), form=$("#form"), fcat=$("#f-cat"), fsub=$("#f-sub");
+CATS.forEach(c=>{ const o=document.createElement("option"); o.value=c.id; o.textContent=c.label; fcat.appendChild(o); });
+function syncSub(keep){ const c=catOf(fcat.value); const cur=keep||fsub.value; fsub.innerHTML=""; c.subs.forEach(x=>{ const o=document.createElement("option"); o.value=x.id; o.textContent=x.label; fsub.appendChild(o); }); if(c.subs.some(x=>x.id===cur)) fsub.value=cur; }
+fcat.onchange=()=>syncSub();
 function openForm(a,focus){
   sheet.hidden=false; $("#sheetTitle").textContent=a?"계정 수정":"계정 추가"; $("#f-err").textContent="";
-  $("#f-id").value=a?a.id:""; $("#f-name").value=a?a.name:""; fcat.value=a?a.cat:(CATS.some(c=>c.id===state.cat)?state.cat:"comedy");
-  fsub.value=a?.sub||(state.sub||"daily"); syncSub();
+  $("#f-id").value=a?a.id:""; $("#f-name").value=a?a.name:"";
+  fcat.value=a?a.cat:(catOf(state.cat)?state.cat:"comedy"); syncSub(a?a.sub:(state.sub||undefined));
   $("#f-yt").value=a?(a.yt||a.ytId||resolved[a.id]?.ytId||""):""; $("#f-ig").value=a?.ig||""; $("#f-tt").value=a?.tt||""; $("#f-desc").value=a?.desc||"";
   sheet.scrollIntoView({block:"nearest"}); (focus==="ig"?$("#f-ig"):focus==="tt"?$("#f-tt"):$("#f-name")).focus();
 }
 $("#addBtn").onclick=()=>openForm(null);
-$("#cancel").onclick=()=>{sheet.hidden=true;form.reset();};
+$("#cancel").onclick=()=>{ sheet.hidden=true; form.reset(); };
 form.onsubmit=e=>{
   e.preventDefault();
   const id=$("#f-id").value, name=$("#f-name").value.trim(), ytv=$("#f-yt").value.trim().replace(/^https?:\/\/(www\.)?youtube\.com\//,"").replace(/\/$/,"");
   const ig=$("#f-ig").value.trim().replace(/^@/,"").replace(/^https?:\/\/(www\.)?instagram\.com\//,"").replace(/\/$/,""), tt=$("#f-tt").value.trim().replace(/^https?:\/\/(www\.)?tiktok\.com\//,"").replace(/^@/,"").replace(/\/$/,"");
-  if(!name){$("#f-err").textContent="이름을 입력하세요.";return;}
-  if(!ytv&&!ig&&!tt){$("#f-err").textContent="유튜브·인스타·틱톡 중 하나는 필요합니다.";return;}
+  if(!name){ $("#f-err").textContent="이름을 입력하세요."; return; }
+  if(!ytv&&!ig&&!tt){ $("#f-err").textContent="유튜브·인스타·틱톡 중 하나는 필요합니다."; return; }
   const isId=/^UC[\w-]{20,}$/.test(ytv.replace(/^channel\//,""));
-  const patch={name,cat:fcat.value,yt:isId?null:(ytv?(ytv.startsWith("@")?ytv:"@"+ytv):null),ytId:isId?ytv.replace(/^channel\//,""):null,ig:ig||null,tt:tt||null,desc:$("#f-desc").value.trim(),noyt:!ytv&&!isId?true:undefined,sub:catOf(fcat.value)?.subs?fsub.value:undefined};
-  if(id){ const addedIdx=state.added.findIndex(x=>x.id===id); if(addedIdx>=0) Object.assign(state.added[addedIdx],patch); else state.edits[id]=Object.assign(state.edits[id]||{},patch); delete resolved[id]; lsSet(RKEY,resolved); }
+  const patch={name,cat:fcat.value,sub:fsub.value,yt:isId?null:(ytv?(ytv.startsWith("@")?ytv:"@"+ytv):null),ytId:isId?ytv.replace(/^channel\//,""):null,ig:ig||null,tt:tt||null,desc:$("#f-desc").value.trim(),noyt:!ytv&&!isId?true:undefined};
+  if(id){ const k=state.added.findIndex(x=>x.id===id); if(k>=0) Object.assign(state.added[k],patch); else state.edits[id]=Object.assign(state.edits[id]||{},patch); delete resolved[id]; lsSet(RKEY,resolved); }
   else state.added.unshift(Object.assign({id:"u"+Date.now(),followers:""},patch));
-  if(state.cat!=="all"&&state.cat!=="fav") state.cat=patch.cat;
-  saveState(); form.reset(); sheet.hidden=true; render(); loadLive(shownList());
+  if(state.cat!=="all"&&state.cat!=="fav"){ state.cat=patch.cat; state.sub=patch.sub; setHash(); }
+  saveState(); invalidate(); form.reset(); sheet.hidden=true; render(); loadLive(shownList());
 };
 
-/* ---------- misc ---------- */
+/* ---------- 컨트롤 ---------- */
 let qt; q.oninput=()=>{ resetPage(); render(); clearTimeout(qt); qt=setTimeout(()=>loadLive(shownList()),400); };
-document.querySelectorAll("#pf button").forEach(b=>b.onclick=()=>{state.plat=state.plat===b.dataset.p?null:b.dataset.p;document.querySelectorAll("#pf button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.p===state.plat)));saveState();resetPage();render();loadLive(shownList());});
-document.querySelectorAll("#pf button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.p===state.plat)));
+const seg=(sel,key,attr,after)=>{ const bs=document.querySelectorAll(sel+" button"); const sync=()=>bs.forEach(b=>b.setAttribute("aria-pressed",String(b.dataset[attr]===String(state[key])))); bs.forEach(b=>b.onclick=()=>{ state[key]=key==="plat"&&state.plat===b.dataset[attr]?null:(key==="colw"?+b.dataset[attr]:b.dataset[attr]); saveState(); sync(); after(); }); sync(); return sync; };
+const syncPf=seg("#pf","plat","p",()=>{ resetPage(); render(); loadLive(shownList()); });
+const syncVo=seg("#vorder","vorder","v",()=>render());
+const applyDens=()=>document.documentElement.style.setProperty("--colw",(state.colw||270)+"px");
+const syncDens=seg("#dens","colw","w",applyDens); applyDens();
 const sortSel=$("#sort"); sortSel.value=state.sort||"subs"; sortSel.onchange=()=>{ state.sort=sortSel.value; saveState(); resetPage(); render(); loadLive(shownList()); };
-function applyVorder(){ document.querySelectorAll("#vorder button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===(state.vorder||"latest")))); }
-document.querySelectorAll("#vorder button").forEach(b=>b.onclick=()=>{ state.vorder=b.dataset.v; saveState(); applyVorder(); render(); }); applyVorder();
 $("#refreshBtn").onclick=()=>loadLive(shownList(),true);
-function applyDens(){ document.documentElement.style.setProperty("--colw",(state.colw||270)+"px"); document.querySelectorAll("#dens button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.w===(state.colw||270)))); }
-document.querySelectorAll("#dens button").forEach(b=>b.onclick=()=>{state.colw=+b.dataset.w;saveState();applyDens();});
-applyDens();
-$("#keySave").onclick=()=>{lsSet("snshub.key",$("#keyInput").value.trim());$("#keyNotice").hidden=!!apiKey();loadLive(shownList());};
+$("#keySave").onclick=()=>{ lsSet("snshub.key",$("#keyInput").value.trim()); $("#keyNotice").hidden=!!apiKey(); loadLive(shownList()); };
 $("#exportBtn").onclick=()=>{
-  const out=accounts().map(a=>({id:a.id,cat:a.cat,name:a.name,yt:a.yt||null,ytId:a.ytId||resolved[a.id]?.ytId||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||"",...(a.sub?{sub:a.sub}:{}),...(a.noyt?{noyt:true}:{})}));
-  const txt="// 계정 데이터. 이 파일만 고치면 됩니다.\nwindow.ACCOUNTS="+JSON.stringify(out,null,0).replace(/\},\{/g,"},\n{")+";\n";
-  const b=new Blob([txt],{type:"text/javascript"}); const u=URL.createObjectURL(b); const l=document.createElement("a"); l.href=u; l.download="data.js"; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),1e3);
+  const out=accounts().map(a=>({id:a.id,cat:a.cat,sub:a.sub||null,name:a.name,yt:a.yt||null,ytId:a.ytId||resolved[a.id]?.ytId||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||"",...(a.noyt?{noyt:true}:{})}));
+  const txt="// 계정 데이터. 이 파일만 고치면 됩니다. sub = 세부 분류(index.html의 TAX 참고)\nwindow.ACCOUNTS=[\n"+out.map(o=>JSON.stringify(o)).join(",\n")+"\n];\n";
+  const b=new Blob([txt],{type:"text/javascript"}), u=URL.createObjectURL(b), l=document.createElement("a"); l.href=u; l.download="data.js"; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),1e3);
 };
-$("#reset").onclick=()=>{const b=$("#reset"); if(b.dataset.arm){state={cat:"comedy",sub:null,plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270};saveState();delete b.dataset.arm;b.textContent="기본 목록으로 되돌리기";applyDens();applyVorder();sortSel.value="subs";resetPage();render();} else {b.dataset.arm="1";b.textContent="정말 되돌릴까요? 다시 누르면 추가·수정·삭제·즐겨찾기가 모두 초기화됩니다.";}};
+$("#reset").onclick=()=>{ const b=$("#reset"); if(b.dataset.arm){ state={cat:"comedy",sub:null,plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270}; saveState(); invalidate(); delete b.dataset.arm; b.textContent="기본 목록으로 되돌리기"; syncPf(); syncVo(); syncDens(); applyDens(); sortSel.value="subs"; resetPage(); render(); } else { b.dataset.arm="1"; b.textContent="정말 되돌릴까요? 다시 누르면 추가·수정·삭제·즐겨찾기가 모두 초기화됩니다."; } };
 
 $("#keyNotice").hidden=!!apiKey();
 render(); loadLive(shownList()); checkLive(shownList());
