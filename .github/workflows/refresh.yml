@@ -1,0 +1,46 @@
+name: refresh
+
+# 20분마다 실행. 스크립트가 마지막 전체 갱신이 4시간 지났으면 전체 갱신, 아니면 라이브만 확인.
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "full = 전체 갱신, live = 라이브만, auto = 자동 판단"
+        default: "full"
+      search_count:
+        description: "이름으로 찾을 채널 수 (채널당 100단위, 하루 남은 할당량 안에서)"
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: fetch from YouTube API
+        run: node scripts/refresh.mjs
+        env:
+          YT_API_KEY: ${{ secrets.AIzaSyB2IbRtK2HEbHT5V8eyycE0ZPQCwQxoTm4 }}
+          MODE: ${{ github.event.inputs.mode || 'auto' }}
+          SEARCH_COUNT: ${{ github.event.inputs.search_count || '0' }}
+      - name: commit live.json
+        run: |
+          git config user.name "refresh-bot"
+          git config user.email "refresh-bot@users.noreply.github.com"
+          git add live.json ids.json
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "refresh $(date -u +%FT%TZ)"
+          # 그 사이 사람이 data.js 등을 올렸을 수 있으니 먼저 받아서 얹고 push
+          git pull --rebase origin "$GITHUB_REF_NAME" || { git rebase --abort; echo "rebase failed"; exit 1; }
+          git push
