@@ -37,6 +37,11 @@ header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-be
 .tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .tab small{opacity:.65;margin-left:4px;font-variant-numeric:tabular-nums}
 .tab.all{border-color:var(--fg)}
+.subtabs{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-top:8px;padding:8px 10px;border:1px dashed var(--line);border-radius:12px}
+.subtabs .lbl{font-size:12px;color:var(--muted);margin-right:4px}
+.stab{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:4px 10px;font:inherit;font-size:12.5px;font-weight:500;cursor:pointer;white-space:nowrap}
+.stab[aria-selected="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.stab small{opacity:.7;margin-left:3px;font-variant-numeric:tabular-nums}
 .row2{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
 .search{flex:1 1 200px;min-width:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 12px}
 .search input{flex:1;min-width:0;border:0;background:transparent;color:var(--fg);font:inherit;padding:9px 0;outline:none}
@@ -55,6 +60,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .notice b{color:var(--accent)}
 .notice .grow{flex:1 1 240px;min-width:0}
 .status{color:var(--muted);font-size:12.5px;margin-top:10px;min-height:1.2em}
+.srcrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.ytmark{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--muted);font-size:12px}
+.ytmark img{height:20px;width:auto;display:block}
+.ytmark .alt{font-weight:700;color:var(--fg)}
+.legal{margin-top:16px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:12.5px;color:var(--muted);max-width:80ch;line-height:1.6}
+.legal summary{cursor:pointer;color:var(--fg);font-weight:600}
+.legal a{color:var(--accent)}
+.legal ul{padding-left:18px;margin:6px 0}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--colw,270px),1fr));gap:12px;margin-top:14px}
 .dens{display:flex;gap:2px;margin-left:auto}
@@ -115,7 +128,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 <header>
   <div>
     <h1>옆<span>구</span>기<small>옆동네 구경가기</small></h1>
-    <p class="sub">17개 장르, 팔로워 10만 이상 한국 채널 700여 개를 동네 구경하듯 둘러보세요. 프사·구독자 수·최신 영상은 열 때마다 새로 받아오고, 인스타·틱톡도 같은 카드에 묶여 있어요.</p>
+    <p class="sub">18개 장르(드라마는 로맨스·AI·방송 공식 등 9개 세부 탭), 한국 채널 790여 개를 동네 구경하듯 둘러보세요. 프사·구독자 수·최신 영상은 열 때마다 새로 받아오고, 인스타·틱톡도 같은 카드에 묶여 있어요.</p>
   </div>
   <div class="hbtns">
     <button class="btn" id="refreshBtn" type="button">새로고침</button>
@@ -132,6 +145,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 
 <div class="toolbar">
   <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="subtabs" id="subtabs" hidden></div>
   <div class="row2">
     <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="이름, 아이디, 설명으로 검색" autocomplete="off"></label>
     <div class="pf" id="pf" title="플랫폼 필터">
@@ -159,7 +173,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
     <button class="btn sm" id="resolveBtn" type="button"></button>
     <span class="status" style="margin:0" id="quotaNote"></span>
   </div>
-  <div class="status" id="status"></div>
+  <div class="srcrow"><div class="status" id="status" style="margin:0"></div>
+    <a class="ytmark" href="https://www.youtube.com" target="_blank" rel="noopener" title="YouTube" style="margin-left:auto"><span class="alt" id="ytmarkImg">YouTube</span><span>채널·영상 데이터 제공</span></a>
+  </div>
 </div>
 
 <section class="sheet" id="sheet" hidden>
@@ -168,6 +184,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
     <input type="hidden" id="f-id">
     <label>이름 <input id="f-name" required placeholder="예: 숏박스"></label>
     <label>카테고리 <select id="f-cat"></select></label>
+    <label id="f-sub-wrap" hidden>세부 분류 <select id="f-sub"></select></label>
     <label>유튜브 @핸들 또는 채널 ID <input id="f-yt" placeholder="@shortbox 또는 UC..."></label>
     <label>인스타 아이디 <input id="f-ig" placeholder="nerd_ult"></label>
     <label>틱톡 아이디 <input id="f-tt" placeholder="ox_zung"></label>
@@ -179,22 +196,39 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 <div class="grid" id="grid"></div>
 <div class="more" id="more" hidden><button class="btn" id="moreBtn" type="button">더 보기</button></div>
 
-<p class="foot">라이브 중인 채널은 프사에 빨간 링과 LIVE 표시가 붙고 맨 앞으로 옵니다(10분마다 확인). 구독자 수에 <b style="color:var(--live)">실시간</b>이 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. "영상 조회순"은 각 채널의 최근 영상 10개 안에서 조회수 순입니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
+<p class="foot">라이브 중인 채널은 프사에 빨간 링과 LIVE 표시가 붙고 맨 앞으로 옵니다(10분마다 확인). 구독자 수에 <b style="color:var(--live)">실시간</b>이 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. "영상 조회순"은 각 채널의 최근 영상 10개 안에서 조회수 순입니다. 드라마의 AI 드라마 탭은 신생 장르라 1만 이상도 넣었습니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
 
-<script src="config.js?v=7"></script>
-<script src="data.js?v=7"></script>
+<details class="legal" id="legal">
+  <summary>이용 안내 · 개인정보 · 출처</summary>
+  <ul>
+    <li>이 사이트는 <b>YouTube API 서비스</b>를 사용해 채널 프로필·구독자 수·조회수·최신 영상 정보를 가져옵니다. 이 사이트를 이용하면 <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube 서비스 약관</a>에 동의하는 것으로 봅니다. 구글의 개인정보 처리 방식은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>을 따릅니다.</li>
+    <li>이 사이트는 서버가 없고 회원가입·쿠키·방문 기록 수집을 하지 않습니다. 즐겨찾기, 정렬 설정, 직접 추가한 계정, 받아온 채널 정보(최대 60분 보관)는 <b>내 브라우저 안(localStorage)에만</b> 저장되며 운영자에게 전송되지 않습니다. 브라우저의 사이트 데이터를 지우거나 아래 "기본 목록으로 되돌리기"를 누르면 삭제됩니다.</li>
+    <li>YouTube에서 받아온 데이터는 가공 없이 표시하며 60분 뒤 새로 받아옵니다. 프로필·썸네일을 누르면 YouTube의 해당 채널·영상으로 이동합니다.</li>
+    <li>채널 설명과 "조사치" 숫자는 언론 기사·공개 랭킹 사이트를 바탕으로 운영자가 정리한 것으로, 시점에 따라 실제와 다를 수 있습니다. 시사·정치 탭의 성향 표기(진보·보수·언론)는 보도와 채널 자기소개를 기준으로 한 분류이며 운영자의 평가가 아닙니다.</li>
+    <li>인스타그램·틱톡은 공개 프로필로 연결되는 링크만 제공합니다. YouTube, Instagram, TikTok은 각 회사의 상표입니다. 이 사이트는 각 플랫폼과 제휴·후원 관계가 없습니다.</li>
+    <li>본인 채널의 삭제·수정을 원하는 운영자는 저장소 이슈로 알려주시면 반영합니다.</li>
+  </ul>
+</details>
+<script src="config.js?v=9"></script>
+<script src="data.js?v=9"></script>
 <script>
-const CATS=[{id:"comedy",label:"개그"},{id:"drama",label:"숏드라마"},{id:"couple",label:"커플·로맨스"},{id:"food",label:"먹방·요리"},{id:"beauty",label:"뷰티·패션"},{id:"game",label:"게임"},{id:"music",label:"음악·댄스"},{id:"fitness",label:"운동·헬스"},{id:"travel",label:"여행"},{id:"survival",label:"생존·아웃도어"},{id:"pet",label:"반려동물"},{id:"knowledge",label:"지식·교육"},{id:"tech",label:"IT·테크·자동차"},{id:"money",label:"재테크·경제"},{id:"politics",label:"시사·정치"},{id:"celeb",label:"연예·K-POP"},{id:"horror",label:"공포·미스터리"}];
+const DSUBS=[{id:"romance",label:"로맨스·로판"},{id:"genre",label:"사극·판타지·스릴러"},{id:"ai",label:"AI 드라마"},{id:"school",label:"학원·청춘"},{id:"daily",label:"공감·상황극"},{id:"prod",label:"제작 채널"},{id:"platform",label:"숏드라마 플랫폼"},{id:"official",label:"방송·OTT 공식"},{id:"review",label:"리뷰·요약"}];
+const CATS=[{id:"comedy",label:"개그"},{id:"drama",label:"드라마",subs:DSUBS},{id:"couple",label:"커플·로맨스"},{id:"food",label:"먹방·요리"},{id:"beauty",label:"뷰티·패션"},{id:"game",label:"게임"},{id:"music",label:"음악·댄스"},{id:"fitness",label:"운동·헬스"},{id:"travel",label:"여행"},{id:"survival",label:"생존·아웃도어"},{id:"pet",label:"반려동물"},{id:"knowledge",label:"지식·교육"},{id:"tech",label:"IT·테크·자동차"},{id:"money",label:"재테크·경제"},{id:"politics",label:"시사·정치"},{id:"celeb",label:"연예·K-POP"},{id:"horror",label:"공포·미스터리"}];
 const KEY="snshub.site.v1", CKEY="snshub.cache.v2", RKEY="snshub.resolved.v1";
 const PAGE=60;                                   // 한 번에 그리는 카드 수
 const VN=Math.min(20,Math.max(1,+window.VIDEOS_PER_CHANNEL||10)); // 채널당 받아올 최근 영상 수
 const $=s=>document.querySelector(s);
+// 공식 로고 파일(yt-logo.png, yt-icon.png)이 저장소에 있으면 쓰고, 없으면 글자로 표시 (한 번만 확인)
+let HAS_ICON=false;
+{ const i=new Image(); i.onload=()=>{HAS_ICON=true; render();}; i.src="yt-icon.png";
+  const l=new Image(); l.onload=()=>{ l.alt="YouTube"; $("#ytmarkImg").replaceWith(l); }; l.src="yt-logo.png"; }
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 const lsGet=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 
-let state=Object.assign({cat:"comedy",plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270},lsGet(KEY,{}));
-const h0=location.hash.slice(1); if(h0&&(h0==="all"||h0==="fav"||CATS.some(c=>c.id===h0))) state.cat=h0;
+let state=Object.assign({cat:"comedy",sub:null,plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270},lsGet(KEY,{}));
+const catOf=id=>CATS.find(c=>c.id===id);
+{ const [h0,hs]=location.hash.slice(1).split("-"); if(h0&&(h0==="all"||h0==="fav"||catOf(h0))){ state.cat=h0; state.sub=(catOf(h0)?.subs||[]).some(x=>x.id===hs)?hs:null; } }
 let quota=lsGet("snshub.quota",{day:"",used:0});
 function quotaDay(){ const d=new Date(Date.now()-7*36e5); return d.toISOString().slice(0,10); }
 function addQuota(n){ const d=quotaDay(); if(quota.day!==d){quota={day:d,used:0};} quota.used+=n; lsSet("snshub.quota",quota); }
@@ -256,7 +290,7 @@ async function loadLive(list,force,doSearch){
   loading=true;
   const st=$("#status"); $("#errNotice").hidden=true;
   try{
-    const now=Date.now(), fresh=now-(window.CACHE_MINUTES||60)*6e4, retry=now-6*36e5;
+    const now=Date.now(), fresh=now-Math.min(+window.CACHE_MINUTES||60,43200)*6e4, retry=now-6*36e5; // 캐시 상한 30일(YouTube API 정책)
     // 1) 채널 ID 확인 (핸들은 1단위, 이름 검색은 100단위라 버튼 눌렀을 때만)
     const need=list.filter(a=>!ytIdOf(a)&&!a.noyt&&(a.yt||doSearch)&&!(resolved[a.id]?.failed>retry));
     let i=0;
@@ -334,8 +368,9 @@ function baseList(){ // 카테고리 제외, 플랫폼 필터+검색만 적용 (
   return list;
 }
 const inCat=(a,cat)=>cat==="all"?true:cat==="fav"?state.favs.includes(a.id):a.cat===cat;
+const inSub=a=>!state.sub||!catOf(state.cat)?.subs||a.sub===state.sub;
 function visible(){
-  const list=baseList().filter(a=>inCat(a,state.cat));
+  const list=baseList().filter(a=>inCat(a,state.cat)&&inSub(a));
   const C=a=>cache[ytIdOf(a)];
   const subs=a=>{ const c=C(a); return c&&c.subs!=null?c.subs:(a.fn||0); };
   const views=a=>C(a)?.views||0;
@@ -352,8 +387,18 @@ function renderTabs(){
     const b=document.createElement("button"); b.className="tab"+(c.id==="all"?" all":""); b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected",String(state.cat===c.id));
     b.innerHTML=`${c.label}<small>${n}</small>`; b.onclick=()=>goCat(c.id); tabs.appendChild(b);
   });
+  const subs=catOf(state.cat)?.subs, sb=$("#subtabs"); sb.innerHTML="";
+  if(!subs){ sb.hidden=true; return; } sb.hidden=false;
+  const inc=base.filter(a=>inCat(a,state.cat));
+  sb.insertAdjacentHTML("beforeend",`<span class="lbl">세부</span>`);
+  [{id:null,label:"전체"},...subs].forEach(x=>{
+    const n=x.id?inc.filter(a=>a.sub===x.id).length:inc.length;
+    const b=document.createElement("button"); b.className="stab"; b.type="button"; b.setAttribute("aria-selected",String((state.sub||null)===x.id));
+    b.innerHTML=`${x.label}<small>${n}</small>`; b.onclick=()=>goSub(x.id); sb.appendChild(b);
+  });
 }
-function goCat(id){ state.cat=id; saveState(); history.replaceState(null,"","#"+id); resetPage(); render(); loadLive(shownList()); checkLive(shownList()); window.scrollTo({top:Math.min(window.scrollY,$(".toolbar").offsetTop),behavior:"instant"}); }
+function goSub(id){ state.sub=id; saveState(); history.replaceState(null,"","#"+state.cat+(id?"-"+id:"")); resetPage(); render(); loadLive(shownList()); checkLive(shownList()); }
+function goCat(id){ state.cat=id; state.sub=null; saveState(); history.replaceState(null,"","#"+id); resetPage(); render(); loadLive(shownList()); checkLive(shownList()); window.scrollTo({top:Math.min(window.scrollY,$(".toolbar").offsetTop),behavior:"instant"}); }
 function videoList(c){
   if(!c?.vids?.length) return [];
   let v=c.vids.slice();
@@ -372,7 +417,7 @@ function render(){
     const subsHtml=c&&c.subs!=null?`<b>${fmtN(c.subs)}</b><span class="live">실시간</span>`:c&&c.subs==null?`<span>구독자 비공개</span>`:a.followers?`<span>${esc(a.followers)}</span><span class="chip">조사치</span>`:``;
     const viewsHtml=c?.views?`<span class="chip">조회 ${fmtN(c.views)}</span>`:``;
     const ytLabel=c?.handle||a.yt||(id?"채널":"검색");
-    const ytBtn=a.noyt&&!id&&!a.yt?``:`<a class="plat youtube" href="${esc(L.yt)}" target="_blank" rel="noopener"><span class="dot">YT</span><span class="h">${esc(ytLabel)}</span></a>`;
+    const ytBtn=a.noyt&&!id&&!a.yt?``:`<a class="plat youtube" href="${esc(L.yt)}" target="_blank" rel="noopener"><span class="dot">${HAS_ICON?`<img src="yt-icon.png" alt="YouTube" style="width:18px;height:18px;display:block;border-radius:50%">`:"YT"}</span><span class="h">${esc(ytLabel)}</span></a>`;
     const vids=videoList(c);
     const vidsHtml=vids.length?`<div class="vids">${vids.map(v=>`<a class="vid" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener"><img src="${esc(v.thumb)}" alt="" loading="lazy">${c.live&&c.live.id===v.id?`<span class="lv">LIVE</span>`:v.views?`<span class="vc">${fmtN(v.views)}회</span>`:""}<div class="t">${esc(v.title)}</div><div class="d">${ago(v.at)}</div></a>`).join("")}</div>`
       :c&&Array.isArray(c.vids)?`<div class="vids empty">올라온 영상이 없어요</div>`:c?`<div class="vids empty">최신 영상 불러오는 중…</div>`:``;
@@ -413,9 +458,13 @@ if("IntersectionObserver" in window){ new IntersectionObserver(es=>{ if(es.some(
 /* ---------- form ---------- */
 const sheet=$("#sheet"),form=$("#form"),fcat=$("#f-cat");
 CATS.forEach(c=>{const o=document.createElement("option");o.value=c.id;o.textContent=c.label;fcat.appendChild(o);});
+const fsub=$("#f-sub"); DSUBS.forEach(x=>{const o=document.createElement("option");o.value=x.id;o.textContent=x.label;fsub.appendChild(o);});
+function syncSub(){ $("#f-sub-wrap").hidden=!catOf(fcat.value)?.subs; }
+fcat.onchange=syncSub;
 function openForm(a,focus){
   sheet.hidden=false; $("#sheetTitle").textContent=a?"계정 수정":"계정 추가"; $("#f-err").textContent="";
   $("#f-id").value=a?a.id:""; $("#f-name").value=a?a.name:""; fcat.value=a?a.cat:(CATS.some(c=>c.id===state.cat)?state.cat:"comedy");
+  fsub.value=a?.sub||(state.sub||"daily"); syncSub();
   $("#f-yt").value=a?(a.yt||a.ytId||resolved[a.id]?.ytId||""):""; $("#f-ig").value=a?.ig||""; $("#f-tt").value=a?.tt||""; $("#f-desc").value=a?.desc||"";
   sheet.scrollIntoView({block:"nearest"}); (focus==="ig"?$("#f-ig"):focus==="tt"?$("#f-tt"):$("#f-name")).focus();
 }
@@ -428,7 +477,7 @@ form.onsubmit=e=>{
   if(!name){$("#f-err").textContent="이름을 입력하세요.";return;}
   if(!ytv&&!ig&&!tt){$("#f-err").textContent="유튜브·인스타·틱톡 중 하나는 필요합니다.";return;}
   const isId=/^UC[\w-]{20,}$/.test(ytv.replace(/^channel\//,""));
-  const patch={name,cat:fcat.value,yt:isId?null:(ytv?(ytv.startsWith("@")?ytv:"@"+ytv):null),ytId:isId?ytv.replace(/^channel\//,""):null,ig:ig||null,tt:tt||null,desc:$("#f-desc").value.trim(),noyt:!ytv&&!isId?true:undefined};
+  const patch={name,cat:fcat.value,yt:isId?null:(ytv?(ytv.startsWith("@")?ytv:"@"+ytv):null),ytId:isId?ytv.replace(/^channel\//,""):null,ig:ig||null,tt:tt||null,desc:$("#f-desc").value.trim(),noyt:!ytv&&!isId?true:undefined,sub:catOf(fcat.value)?.subs?fsub.value:undefined};
   if(id){ const addedIdx=state.added.findIndex(x=>x.id===id); if(addedIdx>=0) Object.assign(state.added[addedIdx],patch); else state.edits[id]=Object.assign(state.edits[id]||{},patch); delete resolved[id]; lsSet(RKEY,resolved); }
   else state.added.unshift(Object.assign({id:"u"+Date.now(),followers:""},patch));
   if(state.cat!=="all"&&state.cat!=="fav") state.cat=patch.cat;
@@ -448,11 +497,11 @@ document.querySelectorAll("#dens button").forEach(b=>b.onclick=()=>{state.colw=+
 applyDens();
 $("#keySave").onclick=()=>{lsSet("snshub.key",$("#keyInput").value.trim());$("#keyNotice").hidden=!!apiKey();loadLive(shownList());};
 $("#exportBtn").onclick=()=>{
-  const out=accounts().map(a=>({id:a.id,cat:a.cat,name:a.name,yt:a.yt||null,ytId:a.ytId||resolved[a.id]?.ytId||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||"",...(a.noyt?{noyt:true}:{})}));
+  const out=accounts().map(a=>({id:a.id,cat:a.cat,name:a.name,yt:a.yt||null,ytId:a.ytId||resolved[a.id]?.ytId||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||"",...(a.sub?{sub:a.sub}:{}),...(a.noyt?{noyt:true}:{})}));
   const txt="// 계정 데이터. 이 파일만 고치면 됩니다.\nwindow.ACCOUNTS="+JSON.stringify(out,null,0).replace(/\},\{/g,"},\n{")+";\n";
   const b=new Blob([txt],{type:"text/javascript"}); const u=URL.createObjectURL(b); const l=document.createElement("a"); l.href=u; l.download="data.js"; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),1e3);
 };
-$("#reset").onclick=()=>{const b=$("#reset"); if(b.dataset.arm){state={cat:"comedy",plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270};saveState();delete b.dataset.arm;b.textContent="기본 목록으로 되돌리기";applyDens();applyVorder();sortSel.value="subs";resetPage();render();} else {b.dataset.arm="1";b.textContent="정말 되돌릴까요? 다시 누르면 추가·수정·삭제·즐겨찾기가 모두 초기화됩니다.";}};
+$("#reset").onclick=()=>{const b=$("#reset"); if(b.dataset.arm){state={cat:"comedy",sub:null,plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270};saveState();delete b.dataset.arm;b.textContent="기본 목록으로 되돌리기";applyDens();applyVorder();sortSel.value="subs";resetPage();render();} else {b.dataset.arm="1";b.textContent="정말 되돌릴까요? 다시 누르면 추가·수정·삭제·즐겨찾기가 모두 초기화됩니다.";}};
 
 $("#keyNotice").hidden=!!apiKey();
 render(); loadLive(shownList()); checkLive(shownList());

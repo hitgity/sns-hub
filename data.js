@@ -1,4 +1,5 @@
 // 계정 데이터. 이 파일만 고치면 됩니다.
+// sub: 드라마 세부 분류(romance·genre·ai·school·daily·prod·platform·official·review)
 // yt: 유튜브 @핸들, ytId: 채널 ID(UC...), ig: 인스타 아이디, tt: 틱톡 아이디, followers: 조사 시점 수치(API 연결 전 표시용)
 window.ACCOUNTS=[
 {
@@ -956,7 +957,7 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 99만",
-"desc": "김세의 대표의 시사 폭로 채널 · 보수"
+"desc": "김세의 대표의 시사 채널 · 보수"
 },
 {
 "id": "d87",
@@ -1924,7 +1925,7 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 92.4만",
-"desc": "20대 동갑 커플 일상 (2023년 결별 발표, 활동 중단 가능)"
+"desc": "20대 동갑 커플 일상·연애 콘텐츠"
 },
 {
 "id": "d175",
@@ -2100,7 +2101,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 372만",
-"desc": "플레이타운 산하 웹드라마, 학원물·직장물"
+"desc": "플레이타운 산하 웹드라마, 학원물·직장물",
+"sub": "school"
 },
 {
 "id": "d191",
@@ -2111,7 +2113,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 331만",
-"desc": "10대의 사랑·우정·학교 이슈 웹드라마"
+"desc": "10대의 사랑·우정·학교 이슈 웹드라마",
+"sub": "school"
 },
 {
 "id": "d192",
@@ -2122,7 +2125,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 239만",
-"desc": "에이틴·연애플레이리스트 등 로맨스 웹드라마"
+"desc": "에이틴·연애플레이리스트 등 로맨스 웹드라마",
+"sub": "romance"
 },
 {
 "id": "d193",
@@ -2133,7 +2137,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 230만",
-"desc": "배우 3인의 공감형 상황극 스케치 드라마, 반전 엔딩"
+"desc": "배우 3인의 공감형 상황극 스케치 드라마, 반전 엔딩",
+"sub": "daily"
 },
 {
 "id": "d194",
@@ -2144,7 +2149,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 183만",
-"desc": "CJ ENM tvN D의 Z세대 타깃 디지털 웹드라마"
+"desc": "CJ ENM tvN D의 Z세대 타깃 디지털 웹드라마",
+"sub": "prod"
 },
 {
 "id": "d195",
@@ -2155,7 +2161,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 173만",
-"desc": "와이낫미디어 운영, 일진에게 찍혔을 때 등 로맨스 웹드라마"
+"desc": "와이낫미디어 운영, 일진에게 찍혔을 때 등 로맨스 웹드라마",
+"sub": "prod"
 },
 {
 "id": "d196",
@@ -2166,7 +2173,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 151만",
-"desc": "페이크다큐·웹드라마 형식의 풍자 코미디"
+"desc": "페이크다큐·웹드라마 형식의 풍자 코미디",
+"sub": "daily"
 },
 {
 "id": "d197",
@@ -2177,7 +2185,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 143만",
-"desc": "학생·커플·친구 일상의 캐릭터 에피소드, '맑눈광' 배출"
+"desc": "학생·커플·친구 일상의 캐릭터 에피소드, '맑눈광' 배출",
+"sub": "daily"
 },
 {
 "id": "d198",
@@ -2188,7 +2197,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 125만",
-"desc": "'우당탕탕 알바 공감', '빌런' 시리즈 1인 공감 상황극"
+"desc": "'우당탕탕 알바 공감', '빌런' 시리즈 1인 공감 상황극",
+"sub": "daily"
 },
 {
 "id": "d199",
@@ -2199,7 +2209,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 120만",
-"desc": "20대 일상·연애 세계관 연결형 옴니버스 드라마"
+"desc": "20대 일상·연애 세계관 연결형 옴니버스 드라마",
+"sub": "daily"
 },
 {
 "id": "d200",
@@ -2210,7 +2221,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 81.7만",
-"desc": "10대·대학생·직장인 대상 웹드라마 제작사"
+"desc": "10대·대학생·직장인 대상 웹드라마 제작사",
+"sub": "prod"
 },
 {
 "id": "d201",
@@ -2221,7 +2233,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 49.9만",
-"desc": "플레이타운 브랜드, 10~20대 현실 연애 웹드라마"
+"desc": "플레이타운 브랜드, 10~20대 현실 연애 웹드라마",
+"sub": "romance"
 },
 {
 "id": "d202",
@@ -2232,7 +2245,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 48.9만",
-"desc": "'폭스클럽' 모큐멘터리 등 드라마형 코미디"
+"desc": "'폭스클럽' 모큐멘터리 등 드라마형 코미디",
+"sub": "daily"
 },
 {
 "id": "d203",
@@ -2243,7 +2257,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 42.7만",
-"desc": "'좋아해요' 시리즈 스케치 코미디·드라마"
+"desc": "'좋아해요' 시리즈 스케치 코미디·드라마",
+"sub": "daily"
 },
 {
 "id": "d204",
@@ -2254,7 +2269,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 38.5만",
-"desc": "구독자 사연 기반 웹드라마 (2024년 이후 휴식)"
+"desc": "구독자 사연 기반 웹드라마 (2024년 이후 휴식)",
+"sub": "prod"
 },
 {
 "id": "d205",
@@ -2265,7 +2281,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 36.2만",
-"desc": "치즈필름에서 독립한 세 친구의 웹드라마·쇼츠"
+"desc": "치즈필름에서 독립한 세 친구의 웹드라마·쇼츠",
+"sub": "school"
 },
 {
 "id": "d206",
@@ -2276,7 +2293,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 30만",
-"desc": "학교 배경 성장·연애 웹드라마"
+"desc": "학교 배경 성장·연애 웹드라마",
+"sub": "school"
 },
 {
 "id": "d207",
@@ -2287,7 +2305,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 21만",
-"desc": "삼각관계 로맨스 등 TV급 웹드라마"
+"desc": "삼각관계 로맨스 등 TV급 웹드라마",
+"sub": "romance"
 },
 {
 "id": "d208",
@@ -2298,7 +2317,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 12만",
-"desc": "쉐어하우스 대학생 3인의 일상 웹드라마"
+"desc": "쉐어하우스 대학생 3인의 일상 웹드라마",
+"sub": "daily"
 },
 {
 "id": "d209",
@@ -2309,7 +2329,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 12만",
-"desc": "코미디언 출연 스케치형 웹드라마"
+"desc": "코미디언 출연 스케치형 웹드라마",
+"sub": "daily"
 },
 {
 "id": "d210",
@@ -2320,7 +2341,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 11만",
-"desc": "로맨스 웹드라마"
+"desc": "로맨스 웹드라마",
+"sub": "romance"
 },
 {
 "id": "d211",
@@ -2331,7 +2353,8 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "",
-"desc": "퀴어·GL 소재 웹드라마, '여자에게 설레는 편' 1,000만 뷰"
+"desc": "퀴어·GL 소재 웹드라마, '여자에게 설레는 편' 1,000만 뷰",
+"sub": "romance"
 },
 {
 "id": "d212",
@@ -2342,29 +2365,32 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "",
-"desc": "웹드라마 제작 스튜디오"
+"desc": "웹드라마 제작 스튜디오",
+"sub": "prod"
 },
 {
 "id": "d213",
 "cat": "drama",
 "name": "비글루 Vigloo",
-"yt": null,
+"yt": "@ViglooKorea",
 "ytId": null,
-"ig": null,
-"tt": null,
-"followers": "",
-"desc": "스푼랩스의 세로형 숏드라마 플랫폼"
+"ig": "vigloo_korea",
+"tt": "vigloo_official",
+"followers": "약 18만 (IG)",
+"desc": "스푼랩스의 세로형 숏드라마 플랫폼, 한국 공식 계정",
+"sub": "platform"
 },
 {
 "id": "d214",
 "cat": "drama",
 "name": "탑릴스 TopReels",
-"yt": null,
+"yt": "@top_reels_app",
 "ytId": null,
-"ig": null,
-"tt": null,
-"followers": "",
-"desc": "한국 숏드라마 플랫폼"
+"ig": "topreels_kr",
+"tt": "topreels_kr",
+"followers": "약 2.2만",
+"desc": "국내 최초 숏폼 드라마 플랫폼(폭스미디어) 공식 계정",
+"sub": "platform"
 },
 {
 "id": "d215",
@@ -7686,7 +7712,7 @@ window.ACCOUNTS=[
 "ig": null,
 "tt": null,
 "followers": "약 103만",
-"desc": "연예·스포츠·사회 이슈 해설 (논란 있음, 2026 복귀)"
+"desc": "연예·스포츠·사회 이슈 해설"
 },
 {
 "id": "d694",
@@ -7852,5 +7878,981 @@ window.ACCOUNTS=[
 "tt": null,
 "followers": "약 10만",
 "desc": "일본 미제·기묘한 범죄 사건, 괴담"
+},
+{
+"id": "d709",
+"cat": "drama",
+"sub": "romance",
+"name": "딩고 스토리 Dingo Story",
+"yt": "@dingostory",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "메이크어스의 로맨스·청춘 웹드라마 채널 ('수고했어 오늘도', '썸남' 시리즈)"
+},
+{
+"id": "d710",
+"cat": "drama",
+"sub": "genre",
+"name": "영찍남",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": "ycn_videographer",
+"followers": "약 79만 (TikTok)",
+"desc": "'좀비 서울'·'야간 학교' 등 시리즈형 스릴러·좀비 숏필름 (2024 틱톡어워즈 올해의 영상)"
+},
+{
+"id": "d711",
+"cat": "drama",
+"sub": "genre",
+"name": "숏폼드라마",
+"yt": "@숏폼드라마-v4t",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "재벌·복수·회귀 세로 숏드라마 공식 배급 채널"
+},
+{
+"id": "d712",
+"cat": "drama",
+"sub": "genre",
+"name": "뇽씨네",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "공포·미스터리 소재 웹드라마 채널 (더팩트 웹드라마 주요 채널)"
+},
+{
+"id": "d713",
+"cat": "drama",
+"sub": "genre",
+"name": "한세연",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "호러 웹드라마 제작 채널"
+},
+{
+"id": "d714",
+"cat": "drama",
+"sub": "ai",
+"name": "훈작가의 숏드라마",
+"yt": null,
+"ytId": "UCqttFyZf9qFyrtujfWtbgig",
+"ig": null,
+"tt": null,
+"followers": "약 22.2만",
+"desc": "실화 기반 사연·권선징악(사이다) 세로 숏드라마, AI 제작"
+},
+{
+"id": "d715",
+"cat": "drama",
+"sub": "ai",
+"name": "정서불안 김햄찌",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 20.1만",
+"desc": "AI 생성 햄스터 직장인 브이로그·시트콤, 영상당 평균 118만뷰"
+},
+{
+"id": "d716",
+"cat": "drama",
+"sub": "ai",
+"name": "몽땅거침없이순풍감자별",
+"yt": null,
+"ytId": null,
+"ig": "koreansitcom",
+"tt": null,
+"followers": "약 6.7만 (IG)",
+"desc": "2000년대 한국 시트콤·로코 감성 AI 숏드라마, 최고 411만뷰",
+"noyt": true
+},
+{
+"id": "d717",
+"cat": "drama",
+"sub": "ai",
+"name": "맞짱말고막장",
+"yt": null,
+"ytId": "UCHAytPL7ck2qPpqGCqDelKw",
+"ig": null,
+"tt": null,
+"followers": "약 6.2만",
+"desc": "복수·사이다 전개의 생성형 AI 막장 숏드라마"
+},
+{
+"id": "d718",
+"cat": "drama",
+"sub": "ai",
+"name": "Late Blue Night",
+"yt": "@latebluenight",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 6.2만",
+"desc": "조선 배경 AI 사극 BL 드라마 '침향', 누적 약 750만뷰"
+},
+{
+"id": "d719",
+"cat": "drama",
+"sub": "ai",
+"name": "노점프스케어",
+"yt": null,
+"ytId": null,
+"ig": "no.jumpscares",
+"tt": null,
+"followers": "약 4.5만 (IG)",
+"desc": "한국 무속·민속 설화 기반 AI 호러 숏드라마, 최고 177만뷰",
+"noyt": true
+},
+{
+"id": "d720",
+"cat": "drama",
+"sub": "ai",
+"name": "ODD:ONE STUDIO",
+"yt": "@oddonestudio",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 1.6만",
+"desc": "현대물 AI BL 드라마·AI 보이그룹 제작소, 매주 목 9시 공개"
+},
+{
+"id": "d721",
+"cat": "drama",
+"sub": "ai",
+"name": "심연의 군주",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 1.2만",
+"desc": "AI 제작 판타지 숏드라마 채널"
+},
+{
+"id": "d722",
+"cat": "drama",
+"sub": "ai",
+"name": "AI 설렘극장",
+"yt": null,
+"ytId": "UCeX3TeJ5XD4ydeRfoE6ZxMw",
+"ig": null,
+"tt": null,
+"followers": "약 9.6천",
+"desc": "시네마틱 여성향 로맨스 AI 숏드라마"
+},
+{
+"id": "d723",
+"cat": "drama",
+"sub": "ai",
+"name": "별빛 숏드라마",
+"yt": null,
+"ytId": "UCWZTJ325Wvh6tGF4HTAT0dQ",
+"ig": null,
+"tt": null,
+"followers": "약 7.5천",
+"desc": "재회·계약결혼·회귀 여성향 로맨스 AI 숏드라마"
+},
+{
+"id": "d724",
+"cat": "drama",
+"sub": "ai",
+"name": "STEELCUT",
+"yt": null,
+"ytId": null,
+"ig": "steelcut.studio",
+"tt": null,
+"followers": "",
+"desc": "B급 감성 AI 숏드라마·광고 제작 스튜디오, '빙의는 했는데 얼굴이 따라왔습니다' 169만뷰",
+"noyt": true
+},
+{
+"id": "d725",
+"cat": "drama",
+"sub": "ai",
+"name": "함반",
+"yt": null,
+"ytId": null,
+"ig": "mu7fox",
+"tt": null,
+"followers": "",
+"desc": "임성한 작가 말투를 재현한 90~2000년대 아침드라마 패러디 AI 드라마",
+"noyt": true
+},
+{
+"id": "d726",
+"cat": "drama",
+"sub": "school",
+"name": "웃소 Wootso",
+"yt": "@Wootso",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 205만",
+"desc": "고등학생 공감 상황극·단체 콘텐츠 크리에이터 그룹"
+},
+{
+"id": "d727",
+"cat": "drama",
+"sub": "school",
+"name": "밍꼬발랄",
+"yt": "@mingggo2055",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 97.4만",
+"desc": "1인 다역 학교·일상 공감 상황극 (2025년 활동 종료 선언)"
+},
+{
+"id": "d728",
+"cat": "drama",
+"sub": "school",
+"name": "급식걸즈",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 64.6만",
+"desc": "콩트에서 드라마형 스토리로 발전한 급식왕 계열 여고생 우정 채널"
+},
+{
+"id": "d729",
+"cat": "drama",
+"sub": "school",
+"name": "레블 ReBL ASMR",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 36만",
+"desc": "과목별 선생님 등 학교 상황극을 ASMR 형식으로 연기"
+},
+{
+"id": "d730",
+"cat": "drama",
+"sub": "daily",
+"name": "빵먹다살찐떡",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 132만",
+"desc": "혼자 온 가족 구성원을 연기하는 가족 상황극 숏폼"
+},
+{
+"id": "d731",
+"cat": "drama",
+"sub": "daily",
+"name": "티키틱 TIKITIK",
+"yt": "@tikitik_official",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 68만",
+"desc": "음악·웹드라마·뮤지컬 숏필름 제작 크루"
+},
+{
+"id": "d732",
+"cat": "drama",
+"sub": "daily",
+"name": "엄은향",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 62만",
+"desc": "'드라마 vs 현실' 등 드라마·영화 클리셰 패러디 연기"
+},
+{
+"id": "d733",
+"cat": "drama",
+"sub": "daily",
+"name": "이과장",
+"yt": "@managerlee",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 59.7만",
+"desc": "중소기업 직장 웹드라마 '좋좋소' 제작, 직장·가족 일상"
+},
+{
+"id": "d734",
+"cat": "drama",
+"sub": "daily",
+"name": "뭐랭하맨",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 44.7만",
+"desc": "제주 사투리, 육지인 vs 도민 시선 대비 상황극"
+},
+{
+"id": "d735",
+"cat": "drama",
+"sub": "daily",
+"name": "예예 yehyeh",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 41.1만",
+"desc": "알바·커플·가족 등 일상 페르소나 1인 상황극과 하이틴 클리셰 패러디"
+},
+{
+"id": "d736",
+"cat": "drama",
+"sub": "daily",
+"name": "명예영국인 world",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 36.3만",
+"desc": "런던 거주 '영국병' 한국 여성 페르소나 상황극"
+},
+{
+"id": "d737",
+"cat": "drama",
+"sub": "daily",
+"name": "엄지렐라 Umjirella",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 35.4만",
+"desc": "개그우먼 엄지윤의 '엄지훈남' 캐릭터 상황극"
+},
+{
+"id": "d738",
+"cat": "drama",
+"sub": "daily",
+"name": "유말랑",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 23.7만",
+"desc": "알바·일상 썰을 내레이션과 연기로 풀어내는 숏폼"
+},
+{
+"id": "d739",
+"cat": "drama",
+"sub": "prod",
+"name": "72초TV",
+"yt": null,
+"ytId": "UC4u2X5QolYdz4faUfKRm3_w",
+"ig": null,
+"tt": null,
+"followers": "약 16.2만",
+"desc": "초압축 웹드라마·시트콤·호러 시리즈 제작사 ('두여자', '바나나 액츄얼리')"
+},
+{
+"id": "d740",
+"cat": "drama",
+"sub": "prod",
+"name": "스튜디오 다이아 RED Q",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "웹드라마 제작 스튜디오 (RED Q 시리즈)"
+},
+{
+"id": "d741",
+"cat": "drama",
+"sub": "platform",
+"name": "펄스픽 PULSEPICK",
+"yt": "@pulsepick_kr",
+"ytId": null,
+"ig": "pulsepick_kr",
+"tt": "pulsepick_kr",
+"followers": "약 3.4천 (TikTok)",
+"desc": "디앤씨미디어 계열 숏폼 드라마 플랫폼 공식 계정"
+},
+{
+"id": "d742",
+"cat": "drama",
+"sub": "platform",
+"name": "숏챠 Shortcha",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "왓챠의 숏드라마 플랫폼"
+},
+{
+"id": "d743",
+"cat": "drama",
+"sub": "platform",
+"name": "릴숏 ReelShort",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "글로벌 숏드라마 앱, 한국어 콘텐츠 제공"
+},
+{
+"id": "d744",
+"cat": "drama",
+"sub": "platform",
+"name": "드라마박스 DramaBox",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "글로벌 숏드라마 앱, 한국어 더빙·자막 콘텐츠"
+},
+{
+"id": "d745",
+"cat": "drama",
+"sub": "official",
+"name": "tvN DRAMA",
+"yt": "@tvNDRAMA",
+"ytId": "UC9w-h_ciMmX64TcLRcb1xPg",
+"ig": "tvn_drama",
+"tt": null,
+"followers": "약 748만",
+"desc": "tvN 드라마 공식 채널"
+},
+{
+"id": "d746",
+"cat": "drama",
+"sub": "official",
+"name": "SBS Drama",
+"yt": null,
+"ytId": "UC6erIDuvbOaAO-OT5rB2Xew",
+"ig": null,
+"tt": null,
+"followers": "약 704만",
+"desc": "SBS 드라마 공식 채널"
+},
+{
+"id": "d747",
+"cat": "drama",
+"sub": "official",
+"name": "MBCdrama",
+"yt": "@MBCdrama",
+"ytId": "UC7lb15P-Hux7A5gBuhCxtuQ",
+"ig": null,
+"tt": null,
+"followers": "약 533만",
+"desc": "MBC 드라마 공식 채널"
+},
+{
+"id": "d748",
+"cat": "drama",
+"sub": "official",
+"name": "KBS Drama",
+"yt": "@KBSDrama",
+"ytId": "UChpjIaEgwtDZtmWEkzFulSA",
+"ig": null,
+"tt": null,
+"followers": "약 435만",
+"desc": "KBS 드라마 공식 채널"
+},
+{
+"id": "d749",
+"cat": "drama",
+"sub": "official",
+"name": "옛드 : 옛날 드라마",
+"yt": null,
+"ytId": "UCG5bAssl2H0wjLG4BEv5ScQ",
+"ig": null,
+"tt": null,
+"followers": "약 433만",
+"desc": "MBC 옛날 드라마 공식 아카이브 '드라맛집'"
+},
+{
+"id": "d750",
+"cat": "drama",
+"sub": "official",
+"name": "넷플릭스 코리아",
+"yt": "@NetflixKorea",
+"ytId": "UCiEEF51uRAeZeCo8CJFhGWw",
+"ig": "netflixkr",
+"tt": "netflixkr",
+"followers": "약 319만",
+"desc": "넷플릭스 코리아 공식 채널"
+},
+{
+"id": "d751",
+"cat": "drama",
+"sub": "official",
+"name": "SBS Catch",
+"yt": "@SBScatch",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 122만",
+"desc": "SBS 드라마 명장면 클립 채널"
+},
+{
+"id": "d752",
+"cat": "drama",
+"sub": "official",
+"name": "티빙 TVING",
+"yt": null,
+"ytId": "UCNIiH_4ArJNd_cDZApZ7AFg",
+"ig": "tving.official",
+"tt": "tving.official",
+"followers": "약 120만",
+"desc": "티빙 공식 채널"
+},
+{
+"id": "d753",
+"cat": "drama",
+"sub": "official",
+"name": "KBS 드라마 클래식",
+"yt": "@KBSDramaClassic",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 117만",
+"desc": "KBS 옛 드라마 아카이브 채널"
+},
+{
+"id": "d754",
+"cat": "drama",
+"sub": "official",
+"name": "JTBC Drama",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "JTBC 드라마 공식 채널"
+},
+{
+"id": "d755",
+"cat": "drama",
+"sub": "official",
+"name": "ENA",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "ENA 채널 공식 (이상한 변호사 우영우 등)"
+},
+{
+"id": "d756",
+"cat": "drama",
+"sub": "official",
+"name": "쿠팡플레이",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "쿠팡플레이 공식 채널"
+},
+{
+"id": "d757",
+"cat": "drama",
+"sub": "official",
+"name": "웨이브 Wavve",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "웨이브 공식 채널"
+},
+{
+"id": "d758",
+"cat": "drama",
+"sub": "official",
+"name": "디즈니+ 코리아",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "디즈니플러스 코리아 공식 채널"
+},
+{
+"id": "d759",
+"cat": "drama",
+"sub": "official",
+"name": "스튜디오드래곤",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "스튜디오드래곤 공식 채널"
+},
+{
+"id": "d760",
+"cat": "drama",
+"sub": "official",
+"name": "왓챠 WATCHA",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "",
+"desc": "왓챠 공식 채널"
+},
+{
+"id": "d761",
+"cat": "drama",
+"sub": "review",
+"name": "지무비 G Movie",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 417만",
+"desc": "영화·드라마 리뷰 1위급 채널, 유머러스한 결말 포함 리뷰"
+},
+{
+"id": "d762",
+"cat": "drama",
+"sub": "review",
+"name": "고몽",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 252만",
+"desc": "영화·드라마·예능·애니 리뷰, 문화 콘텐츠 해설"
+},
+{
+"id": "d763",
+"cat": "drama",
+"sub": "review",
+"name": "김시선",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 204만",
+"desc": "영화·드라마 분석 리뷰, 넷플릭스 웰메이드 작품 추천"
+},
+{
+"id": "d764",
+"cat": "drama",
+"sub": "review",
+"name": "어퍼컷 Tube",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 155만",
+"desc": "미드·해외 드라마와 영화 리뷰·요약"
+},
+{
+"id": "d765",
+"cat": "drama",
+"sub": "review",
+"name": "달빛뮤즈",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 125만",
+"desc": "숨은 명작 영화·드라마 결말 포함 리뷰"
+},
+{
+"id": "d766",
+"cat": "drama",
+"sub": "review",
+"name": "B Man 삐맨",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 119만",
+"desc": "마블·DC 영화·드라마 분석과 비하인드 해설"
+},
+{
+"id": "d767",
+"cat": "drama",
+"sub": "review",
+"name": "드림텔러",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 113만",
+"desc": "차분한 해설의 영화·드라마 리뷰"
+},
+{
+"id": "d768",
+"cat": "drama",
+"sub": "review",
+"name": "빨강도깨비",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 100만",
+"desc": "영화 제작 기법·비하인드 분석 리뷰"
+},
+{
+"id": "d769",
+"cat": "drama",
+"sub": "review",
+"name": "구불",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 100만",
+"desc": "병맛 영화·드라마 리뷰"
+},
+{
+"id": "d770",
+"cat": "drama",
+"sub": "review",
+"name": "이동진의 파이아키아",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 80.8만",
+"desc": "평론가 이동진의 영화·드라마 해설"
+},
+{
+"id": "d771",
+"cat": "drama",
+"sub": "review",
+"name": "UTZI웃지",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 75만",
+"desc": "역사·문화·과학 배경을 곁들인 영화 리뷰"
+},
+{
+"id": "d772",
+"cat": "drama",
+"sub": "review",
+"name": "띵잘",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 74만",
+"desc": "띵작 추천 영화·드라마 리뷰"
+},
+{
+"id": "d773",
+"cat": "drama",
+"sub": "review",
+"name": "홍시네마",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 68만",
+"desc": "영화·드라마 리뷰"
+},
+{
+"id": "d774",
+"cat": "drama",
+"sub": "review",
+"name": "캡틴라미",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 55.3만",
+"desc": "영화 리뷰"
+},
+{
+"id": "d775",
+"cat": "drama",
+"sub": "review",
+"name": "기무리뷰",
+"yt": "@kimmureview",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 52.5만",
+"desc": "공포·고어·병맛 영화 리뷰, '조심조심!' 경고로 유명"
+},
+{
+"id": "d776",
+"cat": "drama",
+"sub": "review",
+"name": "천재이승국",
+"yt": "@GeniusSKLee",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 49.8만",
+"desc": "영화 리뷰·배우 인터뷰 중심 영화 덕후 채널"
+},
+{
+"id": "d777",
+"cat": "drama",
+"sub": "review",
+"name": "민호타우르스",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 42.3만",
+"desc": "영화·드라마 요약 리뷰"
+},
+{
+"id": "d778",
+"cat": "drama",
+"sub": "review",
+"name": "백수골방",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 41.6만",
+"desc": "영화·애니 리뷰·분석"
+},
+{
+"id": "d779",
+"cat": "drama",
+"sub": "review",
+"name": "라이너의 컬쳐쇼크",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 32.5만",
+"desc": "영화 리뷰 중심 문화 이야기"
+},
+{
+"id": "d780",
+"cat": "drama",
+"sub": "review",
+"name": "리씨네",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 32.1만",
+"desc": "시리즈 리뷰로 급성장한 영화 리뷰 채널"
+},
+{
+"id": "d781",
+"cat": "drama",
+"sub": "review",
+"name": "거의없다",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 31만",
+"desc": "망작 중심 '영화걸작선' 리뷰"
+},
+{
+"id": "d782",
+"cat": "drama",
+"sub": "review",
+"name": "발없는새",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 23.9만",
+"desc": "마블·할리우드 영화 리뷰"
+},
+{
+"id": "d783",
+"cat": "drama",
+"sub": "review",
+"name": "햄릿 TUBE",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 21.7만",
+"desc": "영화 리뷰"
+},
+{
+"id": "d784",
+"cat": "drama",
+"sub": "review",
+"name": "신기누설",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 19.3만",
+"desc": "영화·드라마 리뷰"
+},
+{
+"id": "d785",
+"cat": "drama",
+"sub": "review",
+"name": "하씨네",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 19만",
+"desc": "공포·스릴러 중심 영화 리뷰"
+},
+{
+"id": "d786",
+"cat": "drama",
+"sub": "review",
+"name": "요약왕 두억시니",
+"yt": "@dooksini",
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 16만",
+"desc": "전직 독립영화 감독의 영화 요약 채널"
+},
+{
+"id": "d787",
+"cat": "drama",
+"sub": "review",
+"name": "영화미슐랭",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 15.4만",
+"desc": "영화 장면을 자막·내레이션 쇼츠로 재가공"
+},
+{
+"id": "d788",
+"cat": "drama",
+"sub": "review",
+"name": "씨네모리",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 14.9만",
+"desc": "전쟁·근현대사 영화 리뷰"
+},
+{
+"id": "d789",
+"cat": "drama",
+"sub": "review",
+"name": "영사관",
+"yt": null,
+"ytId": null,
+"ig": null,
+"tt": null,
+"followers": "약 14.3만",
+"desc": "영화 옥에 티·비하인드 해설"
 }
 ];
