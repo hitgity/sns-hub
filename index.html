@@ -29,22 +29,26 @@ h1 small{display:block;font-family:var(--body);font-weight:500;font-size:14px;co
 header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px}
 .hbtns{display:flex;gap:6px;flex-wrap:wrap}
 .toolbar{position:sticky;top:0;z-index:5;background:var(--bg);padding-block:12px 10px;margin-top:14px;border-bottom:1px solid var(--line)}
+@media (max-height:640px){.toolbar{position:static}}
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 @media (min-width:760px){.tabs{flex-wrap:wrap;overflow:visible}}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap}
+.tab{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:6px 12px;font:inherit;font-size:13.5px;font-weight:500;cursor:pointer;white-space:nowrap}
 .tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .tab small{opacity:.65;margin-left:4px;font-variant-numeric:tabular-nums}
-.row2{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.tab.all{border-color:var(--fg)}
+.row2{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
 .search{flex:1 1 200px;min-width:0;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:0 12px}
 .search input{flex:1;min-width:0;border:0;background:transparent;color:var(--fg);font:inherit;padding:9px 0;outline:none}
 .search:focus-within{border-color:var(--accent)}
 .pf{display:flex;gap:4px}
-.pf button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:600;border-radius:8px;padding:6px 9px;cursor:pointer}
+.pf button,.sel{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:600;border-radius:8px;padding:6px 9px;cursor:pointer}
+.sel{color:var(--fg);padding-right:6px}
 .pf button[aria-pressed="true"]{color:var(--fg);border-color:var(--fg)}
 .btn{border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:14px;font-weight:600;border-radius:10px;padding:8px 14px;cursor:pointer}
 .btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .btn.sm{font-size:12.5px;padding:6px 10px}
+.btn:disabled{opacity:.5;cursor:default}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .notice{margin-top:12px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;font-size:13.5px;display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
 .notice.warn{border-color:var(--accent)}
@@ -56,20 +60,20 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .dens{display:flex;gap:2px;margin-left:auto}
 .dens button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:600;border-radius:8px;padding:6px 8px;cursor:pointer}
 .dens button[aria-pressed="true"]{color:var(--fg);border-color:var(--fg)}
+.more{display:flex;justify-content:center;padding:22px 0 4px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:9px;min-width:0;position:relative}
 .top{display:flex;align-items:center;gap:10px}
-.avatar{flex:none;width:48px;height:48px;border-radius:50%;background:var(--chip);object-fit:cover;display:grid;place-items:center;font-weight:600;color:var(--muted);font-size:16px;overflow:hidden}
+.avatar{flex:none;width:48px;height:48px;border-radius:50%;background:var(--chip);display:grid;place-items:center;font-weight:600;color:var(--muted);font-size:16px;overflow:hidden}
 .avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .avatar.live{box-shadow:0 0 0 2px var(--surface),0 0 0 4.5px var(--yt)}
 .livebadge{display:inline-flex;align-items:center;gap:5px;background:var(--yt);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;border-radius:5px;padding:2px 7px 2px 6px;text-decoration:none;vertical-align:middle;margin-left:6px}
 .livebadge i{width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;animation:blink 1.1s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){.livebadge i{animation:none}}
-.vid .lv{position:absolute;left:6px;top:6px;background:var(--yt);color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:1px 5px}
-.vid{position:relative}
 .card.islive{border-color:var(--yt)}
 .name{font-weight:600;font-size:15.5px;line-height:1.25;overflow-wrap:anywhere}
 .subs{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.subs b{color:var(--fg)}
 .subs .live{color:var(--live);font-weight:600;font-size:11px;letter-spacing:.04em}
 .plats{display:flex;gap:6px;flex-wrap:wrap}
 .plat{display:inline-flex;align-items:center;gap:5px;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:3px 9px 3px 4px;font-size:12.5px;font-weight:600;max-width:100%}
@@ -79,10 +83,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .plat.add{border-style:dashed;color:var(--muted);cursor:pointer;background:transparent;font:inherit;font-size:12.5px;font-weight:600}
 .desc{font-size:13.5px;margin:0;overflow-wrap:anywhere}
 .vids{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
-.vid{flex:0 0 150px;text-decoration:none;color:var(--fg);min-width:0}
+.vid{flex:0 0 150px;text-decoration:none;color:var(--fg);min-width:0;position:relative}
 .vid img{width:150px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--chip);display:block}
 .vid .t{font-size:12px;line-height:1.3;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .vid .d{font-size:11px;color:var(--muted)}
+.vid .lv{position:absolute;left:6px;top:6px;background:var(--yt);color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:1px 5px}
+.vid .vc{position:absolute;right:5px;top:62px;background:rgba(0,0,0,.72);color:#fff;font-size:10.5px;font-weight:600;border-radius:4px;padding:1px 5px;font-variant-numeric:tabular-nums}
 .vids.empty{color:var(--muted);font-size:12.5px}
 .actions{display:flex;gap:6px;margin-top:auto;padding-top:2px;align-items:center;justify-content:flex-end}
 .icon{border:1px solid var(--line);background:transparent;color:var(--muted);width:36px;height:36px;border-radius:9px;cursor:pointer;font-size:16px;display:grid;place-items:center;font-family:inherit}
@@ -128,10 +134,20 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   <div class="tabs" role="tablist" id="tabs"></div>
   <div class="row2">
     <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="이름, 아이디, 설명으로 검색" autocomplete="off"></label>
-    <div class="pf" id="pf">
+    <div class="pf" id="pf" title="플랫폼 필터">
       <button type="button" data-p="yt" aria-pressed="false">YouTube</button>
       <button type="button" data-p="ig" aria-pressed="false">IG</button>
       <button type="button" data-p="tt" aria-pressed="false">TikTok</button>
+    </div>
+    <select class="sel" id="sort" title="채널 정렬">
+      <option value="subs">구독자순</option>
+      <option value="views">채널 조회순</option>
+      <option value="recent">최근 업로드순</option>
+      <option value="name">이름순</option>
+    </select>
+    <div class="pf" id="vorder" title="카드 안 영상 순서">
+      <button type="button" data-v="latest" aria-pressed="true">영상 최신순</button>
+      <button type="button" data-v="views" aria-pressed="false">영상 조회순</button>
     </div>
     <div class="dens" id="dens" title="카드 크기">
       <button type="button" data-w="220" aria-pressed="false">작게</button>
@@ -141,7 +157,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   </div>
   <div class="row2" id="resolveRow" hidden>
     <button class="btn sm" id="resolveBtn" type="button"></button>
-    <span class="status" style="margin:0;align-self:center" id="quotaNote"></span>
+    <span class="status" style="margin:0" id="quotaNote"></span>
   </div>
   <div class="status" id="status"></div>
 </div>
@@ -161,35 +177,42 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 </section>
 
 <div class="grid" id="grid"></div>
+<div class="more" id="more" hidden><button class="btn" id="moreBtn" type="button">더 보기</button></div>
 
-<p class="foot">라이브 중인 채널은 프사에 빨간 링과 LIVE 표시가 붙고 맨 앞으로 옵니다(10분마다 확인, 최신 영상 목록에 라이브가 잡힌 경우). 구독자 수에 <b style="color:var(--live)">실시간</b>이 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
+<p class="foot">라이브 중인 채널은 프사에 빨간 링과 LIVE 표시가 붙고 맨 앞으로 옵니다(10분마다 확인). 구독자 수에 <b style="color:var(--live)">실시간</b>이 붙은 건 지금 유튜브 API에서 받아온 값이고, 없는 건 조사 시점(2026년 10월, 일부 2022~2025년 기사) 수치입니다. "영상 조회순"은 각 채널의 최근 영상 10개 안에서 조회수 순입니다. 아이디가 없는 채널은 탭 위의 "채널 자동 찾기" 버튼을 눌렀을 때만 채널명으로 검색합니다(채널당 100단위, 하루 약 90개). 잘못 잡히면 카드의 ✎로 고치세요. 추가·수정·삭제·즐겨찾기는 이 브라우저에만 저장됩니다. <button type="button" id="exportBtn">수정한 내용을 data.js로 내보내기</button> · <button type="button" id="reset">기본 목록으로 되돌리기</button></p>
 
-<script src="config.js?v=6"></script>
-<script src="data.js?v=6"></script>
+<script src="config.js?v=7"></script>
+<script src="data.js?v=7"></script>
 <script>
 const CATS=[{id:"comedy",label:"개그"},{id:"drama",label:"숏드라마"},{id:"couple",label:"커플·로맨스"},{id:"food",label:"먹방·요리"},{id:"beauty",label:"뷰티·패션"},{id:"game",label:"게임"},{id:"music",label:"음악·댄스"},{id:"fitness",label:"운동·헬스"},{id:"travel",label:"여행"},{id:"survival",label:"생존·아웃도어"},{id:"pet",label:"반려동물"},{id:"knowledge",label:"지식·교육"},{id:"tech",label:"IT·테크·자동차"},{id:"money",label:"재테크·경제"},{id:"politics",label:"시사·정치"},{id:"celeb",label:"연예·K-POP"},{id:"horror",label:"공포·미스터리"}];
-const KEY="snshub.site.v1", CKEY="snshub.cache.v1", RKEY="snshub.resolved.v1";
+const KEY="snshub.site.v1", CKEY="snshub.cache.v2", RKEY="snshub.resolved.v1";
+const PAGE=60;                                   // 한 번에 그리는 카드 수
+const VN=Math.min(20,Math.max(1,+window.VIDEOS_PER_CHANNEL||10)); // 채널당 받아올 최근 영상 수
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 const lsGet=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 
-let state=Object.assign({cat:"comedy",plat:null,favs:[],deleted:[],added:[],edits:{},colw:270},lsGet(KEY,{}));
+let state=Object.assign({cat:"comedy",plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270},lsGet(KEY,{}));
+const h0=location.hash.slice(1); if(h0&&(h0==="all"||h0==="fav"||CATS.some(c=>c.id===h0))) state.cat=h0;
 let quota=lsGet("snshub.quota",{day:"",used:0});
 function quotaDay(){ const d=new Date(Date.now()-7*36e5); return d.toISOString().slice(0,10); }
 function addQuota(n){ const d=quotaDay(); if(quota.day!==d){quota={day:d,used:0};} quota.used+=n; lsSet("snshub.quota",quota); }
 function quotaUsed(){ return quota.day===quotaDay()?quota.used:0; }
-let cache=lsGet(CKEY,{});      // channelId -> {t, avatar, subs, handle, title, vids:[...]}
-let resolved=lsGet(RKEY,{});   // accountId -> {ytId, auto:true}
+let cache=lsGet(CKEY,{});      // channelId -> {t, title, handle, avatar, subs, views, uploads, vids:[{id,title,at,thumb,views}], vt, vn, live, lt}
+let resolved=lsGet(RKEY,{});   // accountId -> {ytId, auto} 또는 {ytId:null, failed:ts}
 const saveState=()=>lsSet(KEY,state);
+let shown=PAGE;
+const resetPage=()=>{ shown=PAGE; };
 
 function apiKey(){ return (window.YT_API_KEY||"").trim() || (lsGet("snshub.key","")||"").trim(); }
+function parseF(s){ if(!s) return 0; const m=String(s).replace(/,/g,"").match(/([\d.]+)\s*(억|만|천)?/); if(!m) return 0; const u=m[2]; return Math.round(parseFloat(m[1])*(u==="억"?1e8:u==="만"?1e4:u==="천"?1e3:1)); }
 function accounts(){
   const base=(window.ACCOUNTS||[]).map(a=>Object.assign({},a,state.edits[a.id]||{}));
-  return base.concat(state.added).filter(a=>!state.deleted.includes(a.id));
+  return base.concat(state.added).filter(a=>!state.deleted.includes(a.id)).map(a=>(a.fn=parseF(a.followers),a));
 }
 function ytIdOf(a){ return a.ytId || (resolved[a.id]&&resolved[a.id].ytId) || null; }
-function fmtN(n){ n=+n; if(!n) return ""; if(n>=1e8) return (n/1e8).toFixed(1).replace(/\.0$/,"")+"억"; if(n>=1e4) return (n/1e4).toFixed(n>=1e6?0:1).replace(/\.0$/,"")+"만"; return n.toLocaleString(); }
+function fmtN(n){ n=+n; if(!n) return ""; if(n>=1e8) return (n/1e8).toFixed(n>=1e9?0:1).replace(/\.0$/,"")+"억"; if(n>=1e4){ const m=n/1e4; return (m>=100?Math.round(m).toLocaleString():m.toFixed(1).replace(/\.0$/,""))+"만"; } return n.toLocaleString(); }
 function ago(iso){ const d=(Date.now()-new Date(iso))/864e5; if(d<1) return "오늘"; if(d<30) return Math.floor(d)+"일 전"; if(d<365) return Math.floor(d/30)+"개월 전"; return Math.floor(d/365)+"년 전"; }
 function links(a){
   const yt=a.yt?`https://www.youtube.com/${a.yt.startsWith("@")?a.yt:"@"+a.yt}`:ytIdOf(a)?`https://www.youtube.com/channel/${ytIdOf(a)}`:`https://www.youtube.com/results?search_query=${encodeURIComponent(a.name)}`;
@@ -206,78 +229,91 @@ async function yt(path,params){
   return j;
 }
 async function pool(items,n,fn){ let i=0; const workers=Array.from({length:Math.min(n,items.length)},async()=>{ while(i<items.length){ const it=items[i++]; try{ await fn(it); }catch(e){ if(e.reason==="quotaExceeded") throw e; } } }); await Promise.all(workers); }
-let loading=false;
+function showErr(e){
+  $("#errNotice").hidden=false;
+  $("#errText").innerHTML=e.reason==="quotaExceeded"?"<b>오늘 API 할당량(10,000)을 다 썼습니다.</b> 한국시간 오후 4~5시쯤 초기화됩니다. 받아둔 정보는 그대로 보입니다.":e.reason==="keyInvalid"||/API key/i.test(e.message)?"<b>API 키가 잘못됐거나 제한 설정과 맞지 않습니다.</b> "+esc(e.message):"<b>불러오기 실패:</b> "+esc(e.message);
+}
+// 영상 통계(조회수)와 라이브 여부를 한 번에. perChannel: 채널당 확인할 최신 영상 수
+async function fetchVideoStats(ids,perChannel){
+  const vmap={};
+  ids.forEach(id=>{ const c=cache[id]; if(!c?.vids) return; c.vids.slice(0,perChannel).forEach(v=>vmap[v.id]=id); if(c.live?.id) vmap[c.live.id]=id; });
+  const vids=Object.keys(vmap); if(!vids.length){ ids.forEach(id=>{ if(cache[id]) cache[id].lt=Date.now(); }); return; }
+  const live={}; const vb=[]; for(let k=0;k<vids.length;k+=50) vb.push(vids.slice(k,k+50));
+  await pool(vb,4,async b=>{
+    const j=await yt("videos",{part:"snippet,statistics,liveStreamingDetails",id:b.join(","),maxResults:50});
+    for(const v of j.items||[]){
+      const cid=vmap[v.id]; if(!cid) continue;
+      const rec=(cache[cid].vids||[]).find(x=>x.id===v.id); if(rec) rec.views=+v.statistics?.viewCount||0;
+      if(v.snippet.liveBroadcastContent==="live"&&!live[cid]) live[cid]={id:v.id,title:v.snippet.title,viewers:+v.liveStreamingDetails?.concurrentViewers||0};
+    }
+  });
+  ids.forEach(id=>{ if(cache[id]){ cache[id].live=live[id]||null; cache[id].lt=Date.now(); } });
+}
+let loading=false, queued=null;
 async function loadLive(list,force,doSearch){
-  if(!apiKey()||loading) return; loading=true;
-  const st=$("#status"); const errBox=$("#errNotice"); errBox.hidden=true;
+  if(!apiKey()) return;
+  if(loading){ queued={list,force,doSearch:doSearch||queued?.doSearch}; return; }
+  loading=true;
+  const st=$("#status"); $("#errNotice").hidden=true;
   try{
-    const fresh=Date.now()-(window.CACHE_MINUTES||60)*6e4;
-    // 1) resolve channel ids
-    const need=list.filter(a=>!ytIdOf(a)&&!a.noyt&&(a.yt||doSearch));
+    const now=Date.now(), fresh=now-(window.CACHE_MINUTES||60)*6e4, retry=now-6*36e5;
+    // 1) 채널 ID 확인 (핸들은 1단위, 이름 검색은 100단위라 버튼 눌렀을 때만)
+    const need=list.filter(a=>!ytIdOf(a)&&!a.noyt&&(a.yt||doSearch)&&!(resolved[a.id]?.failed>retry));
     let i=0;
     await pool(need,8,async a=>{
       st.textContent=`채널 확인 중 ${++i}/${need.length}…`;
       let id=null;
       if(a.yt&&/^UC[\w-]{20,}$/.test(a.yt)) id=a.yt;
       else if(a.yt){ const j=await yt("channels",{part:"id",forHandle:a.yt.replace(/^@/,"")}); id=j.items?.[0]?.id||null; }
-      if(!id&&!a.yt){ const j=await yt("search",{part:"snippet",type:"channel",q:a.name,maxResults:1,regionCode:"KR",relevanceLanguage:"ko"}); id=j.items?.[0]?.snippet?.channelId||null; if(id) resolved[a.id]={ytId:id,auto:true}; }
-      else if(id) resolved[a.id]={ytId:id,auto:false};
+      if(!id&&!a.yt){ const j=await yt("search",{part:"snippet",type:"channel",q:a.name,maxResults:1,regionCode:"KR",relevanceLanguage:"ko"}); id=j.items?.[0]?.snippet?.channelId||null; resolved[a.id]=id?{ytId:id,auto:true}:{ytId:null,failed:Date.now()}; }
+      else resolved[a.id]=id?{ytId:id,auto:false}:{ytId:null,failed:Date.now()};
     });
     lsSet(RKEY,resolved);
-    // 2) channel stats in batches of 50
-    const ids=[...new Set(list.map(ytIdOf).filter(Boolean))].filter(id=>force||!cache[id]||cache[id].t<fresh);
+    // 2) 채널 정보 (50개씩 1단위)
+    const all=[...new Set(list.map(ytIdOf).filter(Boolean))];
+    const ids=all.filter(id=>force||!cache[id]||cache[id].t<fresh);
     const batches=[]; for(let k=0;k<ids.length;k+=50) batches.push(ids.slice(k,k+50));
     if(batches.length) st.textContent=`채널 정보 받는 중 (${ids.length}개)…`;
     await pool(batches,4,async b=>{
       const j=await yt("channels",{part:"snippet,statistics,contentDetails",id:b.join(","),maxResults:50});
       for(const c of j.items||[]){
-        cache[c.id]=Object.assign(cache[c.id]||{},{t:Date.now(),title:c.snippet.title,handle:c.snippet.customUrl||"",avatar:c.snippet.thumbnails?.medium?.url||c.snippet.thumbnails?.default?.url||"",subs:c.statistics?.hiddenSubscriberCount?null:+c.statistics?.subscriberCount||0,uploads:c.contentDetails?.relatedPlaylists?.uploads||"",vids:cache[c.id]?.vids||null});
+        cache[c.id]=Object.assign(cache[c.id]||{},{t:Date.now(),title:c.snippet.title,handle:c.snippet.customUrl||"",avatar:c.snippet.thumbnails?.medium?.url||c.snippet.thumbnails?.default?.url||"",subs:c.statistics?.hiddenSubscriberCount?null:+c.statistics?.subscriberCount||0,views:+c.statistics?.viewCount||0,uploads:c.contentDetails?.relatedPlaylists?.uploads||"",vids:cache[c.id]?.vids||null});
       }
     });
     lsSet(CKEY,cache); render();
-    // 3) latest videos, one call per channel
-    const vidIds=[...new Set(list.map(ytIdOf).filter(Boolean))].filter(id=>cache[id]?.uploads&&(force||!cache[id].vids||cache[id].vt<fresh));
+    // 3) 최근 영상 (채널당 1단위) + 조회수·라이브 (50개씩 1단위)
+    const vidIds=all.filter(id=>cache[id]?.uploads&&(force||!cache[id].vids||cache[id].vt<fresh||cache[id].vn!==VN));
     let n=0;
     await pool(vidIds,8,async id=>{
       st.textContent=`최신 영상 받는 중 ${++n}/${vidIds.length}…`;
       try{
-        const j=await yt("playlistItems",{part:"snippet",playlistId:cache[id].uploads,maxResults:Math.min(5,Math.max(1,window.LATEST_COUNT||3))});
+        const j=await yt("playlistItems",{part:"snippet",playlistId:cache[id].uploads,maxResults:VN});
         cache[id].vids=(j.items||[]).map(v=>({id:v.snippet.resourceId.videoId,title:v.snippet.title,at:v.snippet.publishedAt,thumb:v.snippet.thumbnails?.medium?.url||""}));
-        cache[id].vt=Date.now();
-      }catch(e){ if(e.reason==="quotaExceeded") throw e; cache[id].vids=[]; cache[id].vt=Date.now(); }
-      if(n%30===0){ render(); }
+      }catch(e){ if(e.reason==="quotaExceeded") throw e; cache[id].vids=[]; }
+      cache[id].vt=Date.now(); cache[id].vn=VN;
     });
-    lsSet(CKEY,cache); st.textContent=`업데이트 완료 · ${new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})}`;
+    if(vidIds.length){ st.textContent=`조회수·라이브 확인 중…`; await fetchVideoStats(vidIds,VN); }
+    lsSet(CKEY,cache);
+    st.textContent=`업데이트 완료 · ${new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})}`;
     await checkLive(list,force);
-  }catch(e){
-    errBox.hidden=false;
-    $("#errText").innerHTML=e.reason==="quotaExceeded"?"<b>오늘 API 할당량(10,000)을 다 썼습니다.</b> 한국시간 오후 4~5시쯤 초기화됩니다. 받아둔 정보는 그대로 보입니다.":e.reason==="keyInvalid"||/API key/i.test(e.message)?"<b>API 키가 잘못됐거나 제한 설정과 맞지 않습니다.</b> "+esc(e.message):"<b>불러오기 실패:</b> "+esc(e.message);
-    st.textContent="";
-  }finally{ loading=false; render(); }
+  }catch(e){ showErr(e); st.textContent=""; }
+  finally{
+    loading=false; render();
+    if(queued){ const qd=queued; queued=null; loadLive(qd.list,qd.force,qd.doSearch); }
+  }
 }
+// 라이브 재확인: 채널당 최신 2개만 (50채널에 1단위 정도)
 async function checkLive(list,force){
   if(!apiKey()) return;
   const stale=Date.now()-10*6e4;
   const ids=[...new Set(list.map(ytIdOf).filter(Boolean))].filter(id=>cache[id]?.vids?.length&&(force||!cache[id].lt||cache[id].lt<stale));
   if(!ids.length) return;
-  const vmap={}; ids.forEach(id=>cache[id].vids.forEach(v=>vmap[v.id]=id));
-  const vids=Object.keys(vmap);
-  try{
-    const live={};
-    const vb=[]; for(let k=0;k<vids.length;k+=50) vb.push(vids.slice(k,k+50));
-    await pool(vb,4,async b=>{
-      const j=await yt("videos",{part:"snippet,liveStreamingDetails",id:b.join(","),maxResults:50});
-      for(const v of j.items||[]){
-        const cid=vmap[v.id]; if(!cid) continue;
-        if(v.snippet.liveBroadcastContent==="live"&&!live[cid]) live[cid]={id:v.id,title:v.snippet.title,viewers:+v.liveStreamingDetails?.concurrentViewers||0};
-      }
-    });
-    ids.forEach(id=>{ cache[id].live=live[id]||null; cache[id].lt=Date.now(); });
-    lsSet(CKEY,cache); render();
-  }catch(e){ if(e.reason==="quotaExceeded"){ $("#errNotice").hidden=false; $("#errText").innerHTML="<b>오늘 API 할당량을 다 썼습니다.</b> 라이브 확인은 내일 다시 됩니다."; } }
+  try{ await fetchVideoStats(ids,2); lsSet(CKEY,cache); render(); }
+  catch(e){ if(e.reason==="quotaExceeded") showErr(e); }
 }
-setInterval(()=>checkLive(visible()),10*6e4);
-document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkLive(visible()); });
+setInterval(()=>{ if(!document.hidden) checkLive(shownList()); },10*6e4);
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkLive(shownList()); });
+
 function updateResolveRow(){
   const row=$("#resolveRow"); const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt);
   if(!apiKey()||!list.length){ row.hidden=true; return; }
@@ -288,39 +324,62 @@ function updateResolveRow(){
 }
 $("#resolveBtn").onclick=()=>{ const left=10000-quotaUsed(); const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt).slice(0,Math.max(0,Math.floor(left/100))); loadLive(list,false,true); };
 
-/* ---------- render ---------- */
+/* ---------- 목록·정렬 ---------- */
 const grid=$("#grid"),tabs=$("#tabs"),q=$("#q");
-function visible(){
+function baseList(){ // 카테고리 제외, 플랫폼 필터+검색만 적용 (탭 숫자와 카드 수가 같은 기준을 쓰도록)
   const term=q.value.trim().toLowerCase();
-  let list=accounts().filter(a=>state.cat==="fav"?state.favs.includes(a.id):a.cat===state.cat);
-  if(state.plat) list=list.filter(a=>state.plat==="yt"?(a.yt||ytIdOf(a)):a[state.plat]);
+  let list=accounts();
+  if(state.plat) list=list.filter(a=>state.plat==="yt"?!a.noyt:!!a[state.plat]);
   if(term) list=list.filter(a=>[a.name,a.yt,a.ig,a.tt,a.desc,cache[ytIdOf(a)]?.title].join(" ").toLowerCase().includes(term));
-  const subs=a=>cache[ytIdOf(a)]?.subs??-1;
-  const lv=a=>cache[ytIdOf(a)]?.live?1:0;
-  return list.sort((a,b)=>(lv(b)-lv(a))||(subs(b)-subs(a))||0);
+  return list;
 }
+const inCat=(a,cat)=>cat==="all"?true:cat==="fav"?state.favs.includes(a.id):a.cat===cat;
+function visible(){
+  const list=baseList().filter(a=>inCat(a,state.cat));
+  const C=a=>cache[ytIdOf(a)];
+  const subs=a=>{ const c=C(a); return c&&c.subs!=null?c.subs:(a.fn||0); };
+  const views=a=>C(a)?.views||0;
+  const recent=a=>{ const v=C(a)?.vids?.[0]; return v?Date.parse(v.at)||0:0; };
+  const lv=a=>C(a)?.live?1:0;
+  const k=state.sort;
+  return list.sort((a,b)=>(lv(b)-lv(a))||(k==="views"?views(b)-views(a):k==="recent"?recent(b)-recent(a):k==="name"?a.name.localeCompare(b.name,"ko"):subs(b)-subs(a))||subs(b)-subs(a));
+}
+const shownList=()=>visible().slice(0,shown);
 function renderTabs(){
-  tabs.innerHTML="";
-  [{id:"fav",label:"★ 즐겨찾기"},...CATS].forEach(c=>{
-    const n=c.id==="fav"?state.favs.length:accounts().filter(a=>a.cat===c.id).length;
-    const b=document.createElement("button"); b.className="tab"; b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected",String(state.cat===c.id));
-    b.innerHTML=`${c.label}<small>${n}</small>`; b.onclick=()=>{state.cat=c.id;saveState();render();loadLive(visible());checkLive(visible());}; tabs.appendChild(b);
+  const base=baseList(); tabs.innerHTML="";
+  [{id:"all",label:"전체"},{id:"fav",label:"★ 즐겨찾기"},...CATS].forEach(c=>{
+    const n=base.filter(a=>inCat(a,c.id)).length;
+    const b=document.createElement("button"); b.className="tab"+(c.id==="all"?" all":""); b.type="button"; b.setAttribute("role","tab"); b.setAttribute("aria-selected",String(state.cat===c.id));
+    b.innerHTML=`${c.label}<small>${n}</small>`; b.onclick=()=>goCat(c.id); tabs.appendChild(b);
   });
+}
+function goCat(id){ state.cat=id; saveState(); history.replaceState(null,"","#"+id); resetPage(); render(); loadLive(shownList()); checkLive(shownList()); window.scrollTo({top:Math.min(window.scrollY,$(".toolbar").offsetTop),behavior:"instant"}); }
+function videoList(c){
+  if(!c?.vids?.length) return [];
+  let v=c.vids.slice();
+  if(state.vorder==="views") v.sort((a,b)=>(b.views||0)-(a.views||0));
+  if(c.live){ const i=v.findIndex(x=>x.id===c.live.id); if(i>0){ const [l]=v.splice(i,1); v.unshift(l); } }
+  return v;
 }
 function render(){
   renderTabs(); updateResolveRow();
-  const list=visible(); grid.innerHTML="";
-  if(!list.length){ grid.innerHTML=`<p class="empty">${state.cat==="fav"?"별을 눌러 즐겨찾기를 추가하세요.":"조건에 맞는 계정이 없습니다."}</p>`; return; }
+  const all=visible(), list=all.slice(0,shown); grid.innerHTML="";
+  const more=$("#more"); more.hidden=all.length<=shown; $("#moreBtn").textContent=`더 보기 (${Math.min(shown,all.length)} / ${all.length})`;
+  if(!all.length){ grid.innerHTML=`<p class="empty">${state.cat==="fav"?"별을 눌러 즐겨찾기를 추가하세요.":"조건에 맞는 계정이 없습니다."}</p>`; return; }
   for(const a of list){
     const id=ytIdOf(a), c=cache[id], L=links(a), fav=state.favs.includes(a.id), auto=resolved[a.id]?.auto;
     const el=document.createElement("article"); el.className="card"+(c?.live?" islive":"");
     const subsHtml=c&&c.subs!=null?`<b>${fmtN(c.subs)}</b><span class="live">실시간</span>`:c&&c.subs==null?`<span>구독자 비공개</span>`:a.followers?`<span>${esc(a.followers)}</span><span class="chip">조사치</span>`:``;
+    const viewsHtml=c?.views?`<span class="chip">조회 ${fmtN(c.views)}</span>`:``;
     const ytLabel=c?.handle||a.yt||(id?"채널":"검색");
     const ytBtn=a.noyt&&!id&&!a.yt?``:`<a class="plat youtube" href="${esc(L.yt)}" target="_blank" rel="noopener"><span class="dot">YT</span><span class="h">${esc(ytLabel)}</span></a>`;
+    const vids=videoList(c);
+    const vidsHtml=vids.length?`<div class="vids">${vids.map(v=>`<a class="vid" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener"><img src="${esc(v.thumb)}" alt="" loading="lazy">${c.live&&c.live.id===v.id?`<span class="lv">LIVE</span>`:v.views?`<span class="vc">${fmtN(v.views)}회</span>`:""}<div class="t">${esc(v.title)}</div><div class="d">${ago(v.at)}</div></a>`).join("")}</div>`
+      :c&&Array.isArray(c.vids)?`<div class="vids empty">올라온 영상이 없어요</div>`:c?`<div class="vids empty">최신 영상 불러오는 중…</div>`:``;
     el.innerHTML=`
       <div class="top">
         <div class="avatar${c?.live?" live":""}">${c?.avatar?`<img src="${esc(c.avatar)}" alt="" loading="lazy">`:esc(a.name[0])}</div>
-        <div style="min-width:0"><div class="name">${esc(c?.title||a.name)}${c?.live?`<a class="livebadge" href="https://www.youtube.com/watch?v=${esc(c.live.id)}" target="_blank" rel="noopener" title="${esc(c.live.title)}"><i></i>LIVE${c.live.viewers?" · "+fmtN(c.live.viewers):""}</a>`:""}</div><div class="subs">${subsHtml}${auto?`<span class="chip warn">자동 매칭</span>`:""}</div></div>
+        <div style="min-width:0"><div class="name">${esc(c?.title||a.name)}${c?.live?`<a class="livebadge" href="https://www.youtube.com/watch?v=${esc(c.live.id)}" target="_blank" rel="noopener" title="${esc(c.live.title)}"><i></i>LIVE${c.live.viewers?" · "+fmtN(c.live.viewers):""}</a>`:""}</div><div class="subs">${subsHtml}${viewsHtml}${auto?`<span class="chip warn">자동 매칭</span>`:""}</div></div>
       </div>
       <div class="plats">
         ${ytBtn}
@@ -328,7 +387,7 @@ function render(){
         ${L.tt?`<a class="plat tiktok" href="${esc(L.tt)}" target="_blank" rel="noopener"><span class="dot">TT</span><span class="h">@${esc(a.tt)}</span></a>`:`<button class="plat add" type="button" data-add="tt">+ 틱톡</button>`}
       </div>
       ${a.desc?`<p class="desc">${esc(a.desc)}</p>`:""}
-      ${c?.vids?.length?`<div class="vids">${c.vids.map(v=>`<a class="vid" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener"><img src="${esc(v.thumb)}" alt="" loading="lazy">${c.live&&c.live.id===v.id?`<span class="lv">LIVE</span>`:""}<div class="t">${esc(v.title)}</div><div class="d">${ago(v.at)}</div></a>`).join("")}</div>`:c?`<div class="vids empty">최신 영상 불러오는 중…</div>`:apiKey()?``:``}
+      ${vidsHtml}
       <div class="actions">
         <button class="icon" type="button" data-act="edit" aria-label="수정">✎</button>
         <button class="icon ${fav?"on":""}" type="button" data-act="fav" aria-label="즐겨찾기">${fav?"★":"☆"}</button>
@@ -347,13 +406,16 @@ function render(){
     grid.appendChild(el);
   }
 }
+function loadMore(){ if(visible().length<=shown) return; shown+=PAGE; render(); loadLive(shownList()); }
+$("#moreBtn").onclick=loadMore;
+if("IntersectionObserver" in window){ new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)&&!$("#more").hidden) loadMore(); },{rootMargin:"600px"}).observe($("#more")); }
 
 /* ---------- form ---------- */
 const sheet=$("#sheet"),form=$("#form"),fcat=$("#f-cat");
 CATS.forEach(c=>{const o=document.createElement("option");o.value=c.id;o.textContent=c.label;fcat.appendChild(o);});
 function openForm(a,focus){
   sheet.hidden=false; $("#sheetTitle").textContent=a?"계정 수정":"계정 추가"; $("#f-err").textContent="";
-  $("#f-id").value=a?a.id:""; $("#f-name").value=a?a.name:""; fcat.value=a?a.cat:(state.cat==="fav"?"comedy":state.cat);
+  $("#f-id").value=a?a.id:""; $("#f-name").value=a?a.name:""; fcat.value=a?a.cat:(CATS.some(c=>c.id===state.cat)?state.cat:"comedy");
   $("#f-yt").value=a?(a.yt||a.ytId||resolved[a.id]?.ytId||""):""; $("#f-ig").value=a?.ig||""; $("#f-tt").value=a?.tt||""; $("#f-desc").value=a?.desc||"";
   sheet.scrollIntoView({block:"nearest"}); (focus==="ig"?$("#f-ig"):focus==="tt"?$("#f-tt"):$("#f-name")).focus();
 }
@@ -366,29 +428,34 @@ form.onsubmit=e=>{
   if(!name){$("#f-err").textContent="이름을 입력하세요.";return;}
   if(!ytv&&!ig&&!tt){$("#f-err").textContent="유튜브·인스타·틱톡 중 하나는 필요합니다.";return;}
   const isId=/^UC[\w-]{20,}$/.test(ytv.replace(/^channel\//,""));
-  const patch={name,cat:fcat.value,yt:isId?null:(ytv?(ytv.startsWith("@")?ytv:"@"+ytv):null),ytId:isId?ytv.replace(/^channel\//,""):null,ig:ig||null,tt:tt||null,desc:$("#f-desc").value.trim()};
+  const patch={name,cat:fcat.value,yt:isId?null:(ytv?(ytv.startsWith("@")?ytv:"@"+ytv):null),ytId:isId?ytv.replace(/^channel\//,""):null,ig:ig||null,tt:tt||null,desc:$("#f-desc").value.trim(),noyt:!ytv&&!isId?true:undefined};
   if(id){ const addedIdx=state.added.findIndex(x=>x.id===id); if(addedIdx>=0) Object.assign(state.added[addedIdx],patch); else state.edits[id]=Object.assign(state.edits[id]||{},patch); delete resolved[id]; lsSet(RKEY,resolved); }
   else state.added.unshift(Object.assign({id:"u"+Date.now(),followers:""},patch));
-  state.cat=patch.cat; saveState(); form.reset(); sheet.hidden=true; render(); loadLive(visible());
+  if(state.cat!=="all"&&state.cat!=="fav") state.cat=patch.cat;
+  saveState(); form.reset(); sheet.hidden=true; render(); loadLive(shownList());
 };
 
 /* ---------- misc ---------- */
-q.oninput=render;
-document.querySelectorAll("#pf button").forEach(b=>b.onclick=()=>{state.plat=state.plat===b.dataset.p?null:b.dataset.p;document.querySelectorAll("#pf button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.p===state.plat)));render();});
-$("#refreshBtn").onclick=()=>loadLive(visible(),true);
+let qt; q.oninput=()=>{ resetPage(); render(); clearTimeout(qt); qt=setTimeout(()=>loadLive(shownList()),400); };
+document.querySelectorAll("#pf button").forEach(b=>b.onclick=()=>{state.plat=state.plat===b.dataset.p?null:b.dataset.p;document.querySelectorAll("#pf button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.p===state.plat)));saveState();resetPage();render();loadLive(shownList());});
+document.querySelectorAll("#pf button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.p===state.plat)));
+const sortSel=$("#sort"); sortSel.value=state.sort||"subs"; sortSel.onchange=()=>{ state.sort=sortSel.value; saveState(); resetPage(); render(); loadLive(shownList()); };
+function applyVorder(){ document.querySelectorAll("#vorder button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===(state.vorder||"latest")))); }
+document.querySelectorAll("#vorder button").forEach(b=>b.onclick=()=>{ state.vorder=b.dataset.v; saveState(); applyVorder(); render(); }); applyVorder();
+$("#refreshBtn").onclick=()=>loadLive(shownList(),true);
 function applyDens(){ document.documentElement.style.setProperty("--colw",(state.colw||270)+"px"); document.querySelectorAll("#dens button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.w===(state.colw||270)))); }
 document.querySelectorAll("#dens button").forEach(b=>b.onclick=()=>{state.colw=+b.dataset.w;saveState();applyDens();});
 applyDens();
-$("#keySave").onclick=()=>{lsSet("snshub.key",$("#keyInput").value.trim());$("#keyNotice").hidden=!!apiKey();loadLive(visible());};
+$("#keySave").onclick=()=>{lsSet("snshub.key",$("#keyInput").value.trim());$("#keyNotice").hidden=!!apiKey();loadLive(shownList());};
 $("#exportBtn").onclick=()=>{
   const out=accounts().map(a=>({id:a.id,cat:a.cat,name:a.name,yt:a.yt||null,ytId:a.ytId||resolved[a.id]?.ytId||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||"",...(a.noyt?{noyt:true}:{})}));
   const txt="// 계정 데이터. 이 파일만 고치면 됩니다.\nwindow.ACCOUNTS="+JSON.stringify(out,null,0).replace(/\},\{/g,"},\n{")+";\n";
   const b=new Blob([txt],{type:"text/javascript"}); const u=URL.createObjectURL(b); const l=document.createElement("a"); l.href=u; l.download="data.js"; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),1e3);
 };
-$("#reset").onclick=()=>{const b=$("#reset"); if(b.dataset.arm){state={cat:"comedy",plat:null,favs:[],deleted:[],added:[],edits:{}};saveState();delete b.dataset.arm;b.textContent="기본 목록으로 되돌리기";render();} else {b.dataset.arm="1";b.textContent="정말 되돌릴까요? 다시 누르면 추가·수정·삭제·즐겨찾기가 모두 초기화됩니다.";}};
+$("#reset").onclick=()=>{const b=$("#reset"); if(b.dataset.arm){state={cat:"comedy",plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270};saveState();delete b.dataset.arm;b.textContent="기본 목록으로 되돌리기";applyDens();applyVorder();sortSel.value="subs";resetPage();render();} else {b.dataset.arm="1";b.textContent="정말 되돌릴까요? 다시 누르면 추가·수정·삭제·즐겨찾기가 모두 초기화됩니다.";}};
 
 $("#keyNotice").hidden=!!apiKey();
-render(); loadLive(visible()); checkLive(visible());
+render(); loadLive(shownList()); checkLive(shownList());
 </script>
 </body>
 </html>
