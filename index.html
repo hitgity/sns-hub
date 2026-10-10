@@ -161,7 +161,7 @@ a{color:inherit}
 </header>
 
 <div class="notice" id="keyNotice" hidden>
-  <div class="grow"><b>API 키가 없습니다.</b> 키가 없으면 조사 시점 수치만 보이고 프사·최신 영상은 뜨지 않아요. config.js에 넣거나 여기 붙여넣으세요(이 브라우저에만 저장).</div>
+  <div class="grow"><b>자동 갱신 데이터(live.json)가 아직 없어요.</b> 깃허브 Actions가 처음 실행되면 생깁니다(README 7번). 그 전까지 임시로 쓰려면 API 키를 여기 붙여넣으세요(이 브라우저에만 저장).</div>
   <input id="keyInput" placeholder="AIza..."><button class="btn sm" id="keySave" type="button">저장</button>
 </div>
 <div class="notice" id="errNotice" hidden><div class="grow" id="errText"></div></div>
@@ -201,7 +201,7 @@ a{color:inherit}
       <summary>이용 안내 · 개인정보 · 출처</summary>
       <ul>
         <li>이 사이트는 <b>YouTube API 서비스</b>를 사용해 채널 프로필·구독자 수·조회수·최신 영상 정보를 가져옵니다. 이 사이트를 이용하면 <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube 서비스 약관</a>에 동의하는 것으로 봅니다. 구글의 개인정보 처리 방식은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>을 따릅니다.</li>
-        <li>이 사이트는 서버가 없고 회원가입·쿠키·방문 기록 수집을 하지 않습니다. 즐겨찾기, 정렬 설정, 직접 추가한 계정, 받아온 채널 정보(최대 60분 보관)는 <b>내 브라우저 안(localStorage)에만</b> 저장되며 운영자에게 전송되지 않습니다. 브라우저의 사이트 데이터를 지우거나 아래 "기본 목록으로 되돌리기"를 누르면 삭제됩니다.</li>
+        <li>채널 정보는 운영자의 자동 갱신 작업이 20분~4시간마다 YouTube에서 받아 저장소에 저장한 것을 보여줍니다(30일 이내 갱신). 이 사이트는 서버가 없고 회원가입·쿠키·방문 기록 수집을 하지 않습니다. 즐겨찾기, 정렬 설정, 직접 추가한 계정은 <b>내 브라우저 안(localStorage)에만</b> 저장되며 운영자에게 전송되지 않습니다. 브라우저의 사이트 데이터를 지우거나 아래 "기본 목록으로 되돌리기"를 누르면 삭제됩니다.</li>
         <li>YouTube에서 받아온 데이터는 가공 없이 표시하며 60분 뒤 새로 받아옵니다. 프로필·썸네일을 누르면 YouTube의 해당 채널·영상으로 이동합니다.</li>
         <li>채널 설명과 "조사치" 숫자, 세부 분류는 언론 기사·공개 랭킹 사이트를 바탕으로 운영자가 정리한 것으로, 시점에 따라 실제와 다를 수 있습니다. 시사·정치의 성향 분류(진보·보수·언론)는 보도와 채널 자기소개를 기준으로 한 것이며 운영자의 평가가 아닙니다.</li>
         <li>인스타그램·틱톡은 공개 프로필로 연결되는 링크만 제공합니다. YouTube, Instagram, TikTok은 각 회사의 상표입니다. 이 사이트는 각 플랫폼과 제휴·후원 관계가 없습니다.</li>
@@ -212,8 +212,8 @@ a{color:inherit}
   </main>
 </div>
 
-<script src="config.js?v=10"></script>
-<script src="data.js?v=10"></script>
+<script src="config.js?v=12"></script>
+<script src="data.js?v=12"></script>
 <script>
 /* ---------- 분류 체계 ---------- */
 const TAX={
@@ -250,8 +250,22 @@ let state=Object.assign({cat:"comedy",sub:null,plat:null,sort:"subs",vorder:"lat
 const saveState=()=>lsSet(KEY,state);
 let cache=lsGet(CKEY,{});     // channelId -> {t,title,handle,avatar,subs,views,uploads,vids:[{id,title,at,views}],vt,vn,live,lt}
 let resolved=lsGet(RKEY,{});  // accountId -> {ytId,auto} | {ytId:null,failed}
-let saveT=0; const saveCache=()=>{ clearTimeout(saveT); saveT=setTimeout(()=>lsSet(CKEY,cache),1200); };
-addEventListener("pagehide",()=>{ clearTimeout(saveT); lsSet(CKEY,cache); });
+let saveT=0; const saveCache=()=>{ if(CENTRAL) return; clearTimeout(saveT); saveT=setTimeout(()=>lsSet(CKEY,cache),1200); };
+addEventListener("pagehide",()=>{ if(CENTRAL) return; clearTimeout(saveT); lsSet(CKEY,cache); });
+// 중앙 모드: 깃허브 Actions가 만든 live.json / ids.json을 읽는다. 있으면 브라우저에서 API를 전혀 부르지 않는다.
+let CENTRAL=null;
+async function loadCentral(){
+  try{
+    const [r1,r2]=await Promise.all([fetch("live.json",{cache:"no-cache"}),fetch("ids.json",{cache:"no-cache"})]);
+    if(!r1.ok) return false;
+    const j=await r1.json(), idsSrv=r2.ok?await r2.json():{}; const g=j.generatedAt||0, fa=j.fullAt||g;
+    const next={}; for(const [id,c] of Object.entries(j.channels||{})) next[id]=Object.assign({t:fa,vt:fa,vn:VN,lt:g},c);
+    cache=next; resolved=Object.assign({},lsGet(RKEY,{}),idsSrv); CENTRAL={generatedAt:g,fullAt:fa,quota:j.quota||{}}; invalidate();
+    const at=new Date(j.generatedAt||0), full=new Date(j.fullAt||0), f=d=>d.toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"});
+    $("#status").textContent=`라이브 확인 ${f(at)} · 전체 갱신 ${f(full)} · 20분마다 자동`;
+    return true;
+  }catch(e){ return false; }
+}
 let quota=lsGet("snshub.quota",{day:"",used:0});
 const quotaDay=()=>new Date(Date.now()-7*36e5).toISOString().slice(0,10);
 function addQuota(n){ const d=quotaDay(); if(quota.day!==d) quota={day:d,used:0}; quota.used+=n; lsSet("snshub.quota",quota); }
@@ -269,7 +283,7 @@ function accounts(){
   const base=(window.ACCOUNTS||[]).map(a=>Object.assign({},a,state.edits[a.id]||{}));
   ACC=base.concat(state.added).filter(a=>!state.deleted.includes(a.id)).map(a=>(a.fn=parseF(a.followers),a)); return ACC;
 }
-const ytIdOf=a=>a.ytId||(resolved[a.id]&&resolved[a.id].ytId)||null;
+const ytIdOf=a=>a.ytId||(!a.ytOverride&&resolved[a.id]&&resolved[a.id].ytId)||null;
 function fmtN(n){ n=+n; if(!n) return ""; if(n>=1e8) return (n/1e8).toFixed(n>=1e9?0:1).replace(/\.0$/,"")+"억"; if(n>=1e4){ const m=n/1e4; return (m>=100?Math.round(m).toLocaleString():m.toFixed(1).replace(/\.0$/,""))+"만"; } return n.toLocaleString(); }
 function ago(iso){ const d=(Date.now()-new Date(iso))/864e5; if(d<1) return "오늘"; if(d<30) return Math.floor(d)+"일 전"; if(d<365) return Math.floor(d/30)+"개월 전"; return Math.floor(d/365)+"년 전"; }
 const thumb=id=>`https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
@@ -284,10 +298,11 @@ async function yt(path,params){
   Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v)); u.searchParams.set("key",apiKey());
   addQuota(path==="search"?100:1);
   const r=await fetch(u); const j=await r.json();
-  if(!r.ok){ const e=new Error(j.error?.message||r.status); e.reason=j.error?.errors?.[0]?.reason||""; throw e; }
+  if(!r.ok){ const e=new Error(j.error?.message||r.status); e.reason=j.error?.errors?.[0]?.reason||(r.status===400?"badRequest":r.status===403?"forbidden":""); throw e; }
   return j;
 }
-async function pool(items,n,fn){ let i=0; await Promise.all(Array.from({length:Math.min(n,items.length)},async()=>{ while(i<items.length){ const it=items[i++]; try{ await fn(it); }catch(e){ if(e.reason==="quotaExceeded") throw e; } } })); }
+const FATAL=new Set(["quotaExceeded","dailyLimitExceeded","keyInvalid","forbidden","accessNotConfigured","ipRefererBlocked","badRequest"]);
+async function pool(items,n,fn){ let i=0; await Promise.all(Array.from({length:Math.min(n,items.length)},async()=>{ while(i<items.length){ const it=items[i++]; try{ await fn(it); }catch(e){ if(FATAL.has(e.reason)) throw e; } } })); }
 function showErr(e){
   $("#errNotice").hidden=false;
   $("#errText").innerHTML=e.reason==="quotaExceeded"?"<b>오늘 API 할당량(10,000)을 다 썼습니다.</b> 한국시간 오후 4~5시쯤 초기화됩니다. 받아둔 정보는 그대로 보입니다.":e.reason==="keyInvalid"||/API key/i.test(e.message)?"<b>API 키가 잘못됐거나 제한 설정과 맞지 않습니다.</b> "+esc(e.message):"<b>불러오기 실패:</b> "+esc(e.message);
@@ -310,7 +325,7 @@ async function fetchVideoStats(ids,perChannel){
 }
 let loading=false, queued=null;
 async function loadLive(list,force,doSearch){
-  if(!apiKey()) return;
+  if(CENTRAL||!apiKey()) return;
   if(loading){ queued={list,force,doSearch:doSearch||queued?.doSearch}; return; }
   loading=true; const st=$("#status"); $("#errNotice").hidden=true;
   try{
@@ -353,14 +368,14 @@ async function loadLive(list,force,doSearch){
   finally{ loading=false; scheduleRender(); if(queued){ const qd=queued; queued=null; loadLive(qd.list,qd.force,qd.doSearch); } }
 }
 async function checkLive(list,force){ // 라이브 재확인: 채널당 최신 2개만
-  if(!apiKey()) return;
+  if(CENTRAL||!apiKey()) return;
   const stale=Date.now()-10*6e4;
   const ids=[...new Set(list.map(ytIdOf).filter(Boolean))].filter(id=>cache[id]?.vids?.length&&(force||!cache[id].lt||cache[id].lt<stale));
   if(!ids.length) return;
-  try{ await fetchVideoStats(ids,2); saveCache(); scheduleRender(); }catch(e){ if(e.reason==="quotaExceeded") showErr(e); }
+  try{ await fetchVideoStats(ids,2); saveCache(); scheduleRender(); }catch(e){ if(FATAL.has(e.reason)) showErr(e); }
 }
-setInterval(()=>{ if(!document.hidden) checkLive(shownList()); },10*6e4);
-document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkLive(shownList()); });
+const tick=()=>{ if(document.hidden) return; if(CENTRAL) loadCentral().then(ok=>ok&&render()); else checkLive(shownList()); };
+setInterval(tick,10*6e4); document.addEventListener("visibilitychange",tick);
 
 /* ---------- 목록 ---------- */
 const grid=$("#grid"), q=$("#q");
@@ -402,6 +417,7 @@ function renderSubs(base){
 }
 function updateMeta(){
   const list=visible().filter(a=>!ytIdOf(a)&&!a.yt&&!a.noyt), rb=$("#resolveBtn"), qn=$("#quotaNote");
+  if(CENTRAL){ rb.hidden=true; qn.textContent=`오늘 API 사용 ${(CENTRAL.quota?.used||0).toLocaleString()} / 10,000 (방문자 공통)`; return; }
   if(!apiKey()||!list.length){ rb.hidden=true; qn.textContent=""; return; }
   const cost=list.length*100, left=10000-quotaUsed();
   rb.hidden=false; rb.textContent=`채널 자동 찾기 (${list.length}개 · ${cost.toLocaleString()}단위)`; rb.disabled=left<200||loading;
@@ -433,7 +449,7 @@ function fillCard(el,a,c,fav){
     </div>
     <div class="plats">${ytBtn}
       ${L.ig?`<a class="plat instagram" href="${esc(L.ig)}" target="_blank" rel="noopener"><span class="dot">IG</span><span class="h">@${esc(a.ig)}</span></a>`:`<button class="plat add" type="button" data-add="ig">+ 인스타</button>`}
-      ${L.tt?`<a class="plat tiktok" href="${esc(L.tt)}" target="_blank" rel="noopener"><span class="dot">TT</span><span class="h">@${esc(a.tt)}</span></a>`:`<button class="plat add" type="button" data-add="tt">+ 틱톡</button>`}
+      ${L.tt?`<a class="plat tiktok" href="${esc(L.tt)}" target="_blank" rel="noopener"><span class="dot">TT</span><span class="h">@${esc(a.tt)}</span></a>`:a.noyt&&!id&&!a.yt&&!L.ig?`<a class="plat tiktok" href="https://www.tiktok.com/search?q=${encodeURIComponent(a.name)}" target="_blank" rel="noopener"><span class="dot">TT</span><span class="h">검색</span></a>`:`<button class="plat add" type="button" data-add="tt">+ 틱톡</button>`}
     </div>
     ${a.desc?`<p class="desc">${esc(a.desc)}</p>`:""}
     ${vidsHtml}
@@ -475,6 +491,11 @@ function loadMore(){ if(visible().length<=shown) return; shown+=PAGE; render(); 
 $("#moreBtn").onclick=loadMore;
 if("IntersectionObserver" in window) new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)&&!$("#more").hidden) loadMore(); },{rootMargin:"600px"}).observe($("#more"));
 $("#brand").onclick=e=>{ e.preventDefault(); goCat("all"); };
+addEventListener("hashchange",()=>{ // 주소창에서 해시를 바꾸거나 뒤로가기 했을 때
+  const [h0,hs]=location.hash.slice(1).split("-"); if(!(h0==="all"||h0==="fav"||catOf(h0))) return;
+  const sub=(catOf(h0)?.subs||[]).some(x=>x.id===hs)?hs:null; if(h0===state.cat&&sub===state.sub) return;
+  state.cat=h0; state.sub=sub; saveState(); resetPage(); render(); loadLive(shownList()); checkLive(shownList());
+});
 
 /* ---------- 폼 ---------- */
 const sheet=$("#sheet"), form=$("#form"), fcat=$("#f-cat"), fsub=$("#f-sub");
@@ -497,8 +518,10 @@ form.onsubmit=e=>{
   if(!name){ $("#f-err").textContent="이름을 입력하세요."; return; }
   if(!ytv&&!ig&&!tt){ $("#f-err").textContent="유튜브·인스타·틱톡 중 하나는 필요합니다."; return; }
   const isId=/^UC[\w-]{20,}$/.test(ytv.replace(/^channel\//,""));
+  const orig=accounts().find(x=>x.id===id), origYt=orig?(orig.yt||orig.ytId||resolved[id]?.ytId||""):"";
   const patch={name,cat:fcat.value,sub:fsub.value,yt:isId?null:(ytv?(ytv.startsWith("@")?ytv:"@"+ytv):null),ytId:isId?ytv.replace(/^channel\//,""):null,ig:ig||null,tt:tt||null,desc:$("#f-desc").value.trim(),noyt:!ytv&&!isId?true:undefined};
-  if(id){ const k=state.added.findIndex(x=>x.id===id); if(k>=0) Object.assign(state.added[k],patch); else state.edits[id]=Object.assign(state.edits[id]||{},patch); delete resolved[id]; lsSet(RKEY,resolved); }
+  if(id&&ytv!==origYt) patch.ytOverride=true; // 서버가 찾은 ID 대신 내가 적은 값을 쓴다
+  if(id){ const k=state.added.findIndex(x=>x.id===id); if(k>=0) Object.assign(state.added[k],patch); else state.edits[id]=Object.assign(state.edits[id]||{},patch); if(!CENTRAL){ delete resolved[id]; lsSet(RKEY,resolved); } }
   else state.added.unshift(Object.assign({id:"u"+Date.now(),followers:""},patch));
   if(state.cat!=="all"&&state.cat!=="fav"){ state.cat=patch.cat; state.sub=patch.sub; setHash(); }
   saveState(); invalidate(); form.reset(); sheet.hidden=true; render(); loadLive(shownList());
@@ -512,17 +535,17 @@ const syncVo=seg("#vorder","vorder","v",()=>render());
 const applyDens=()=>document.documentElement.style.setProperty("--colw",(state.colw||270)+"px");
 const syncDens=seg("#dens","colw","w",applyDens); applyDens();
 const sortSel=$("#sort"); sortSel.value=state.sort||"subs"; sortSel.onchange=()=>{ state.sort=sortSel.value; saveState(); resetPage(); render(); loadLive(shownList()); };
-$("#refreshBtn").onclick=()=>loadLive(shownList(),true);
+$("#refreshBtn").onclick=()=>{ if(CENTRAL) loadCentral().then(()=>render()); else loadLive(shownList(),true); };
 $("#keySave").onclick=()=>{ lsSet("snshub.key",$("#keyInput").value.trim()); $("#keyNotice").hidden=!!apiKey(); loadLive(shownList()); };
 $("#exportBtn").onclick=()=>{
-  const out=accounts().map(a=>({id:a.id,cat:a.cat,sub:a.sub||null,name:a.name,yt:a.yt||null,ytId:a.ytId||resolved[a.id]?.ytId||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||"",...(a.noyt?{noyt:true}:{})}));
+  const out=accounts().map(a=>({id:a.id,cat:a.cat,sub:a.sub||null,name:a.name,yt:a.yt||null,ytId:a.ytId||(a.ytOverride?null:resolved[a.id]?.ytId)||null,ig:a.ig||null,tt:a.tt||null,followers:a.followers||"",desc:a.desc||"",...(a.noyt?{noyt:true}:{})}));
   const txt="// 계정 데이터. 이 파일만 고치면 됩니다. sub = 세부 분류(index.html의 TAX 참고)\nwindow.ACCOUNTS=[\n"+out.map(o=>JSON.stringify(o)).join(",\n")+"\n];\n";
   const b=new Blob([txt],{type:"text/javascript"}), u=URL.createObjectURL(b), l=document.createElement("a"); l.href=u; l.download="data.js"; document.body.appendChild(l); l.click(); l.remove(); setTimeout(()=>URL.revokeObjectURL(u),1e3);
 };
 $("#reset").onclick=()=>{ const b=$("#reset"); if(b.dataset.arm){ state={cat:"comedy",sub:null,plat:null,sort:"subs",vorder:"latest",favs:[],deleted:[],added:[],edits:{},colw:270}; saveState(); invalidate(); delete b.dataset.arm; b.textContent="기본 목록으로 되돌리기"; syncPf(); syncVo(); syncDens(); applyDens(); sortSel.value="subs"; resetPage(); render(); } else { b.dataset.arm="1"; b.textContent="정말 되돌릴까요? 다시 누르면 추가·수정·삭제·즐겨찾기가 모두 초기화됩니다."; } };
 
-$("#keyNotice").hidden=!!apiKey();
-render(); loadLive(shownList()); checkLive(shownList());
+render();
+loadCentral().then(ok=>{ if(ok){ render(); } else { $("#keyNotice").hidden=!!apiKey(); loadLive(shownList()); checkLive(shownList()); } });
 </script>
 </body>
 </html>
