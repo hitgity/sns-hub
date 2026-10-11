@@ -31,7 +31,7 @@ jobs:
       - name: fetch from YouTube API
         run: node scripts/refresh.mjs
         env:
-          YT_API_KEY: ${{ secrets.AIzaSyB2IbRtK2HEbHT5V8eyycE0ZPQCwQxoTm4 }}
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
           MODE: ${{ github.event.inputs.mode || 'auto' }}
           SEARCH_COUNT: ${{ github.event.inputs.search_count || '0' }}
       - name: commit live.json
